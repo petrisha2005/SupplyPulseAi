@@ -2,18 +2,13 @@ import { ArrowUpRight } from "lucide-react";
 import type { RiskSku } from "@supplypulse/shared";
 import { getVisibleMarketplaceChannels, MultiChannelBadge } from "./ChannelBadge";
 import { RiskScoreBar } from "./RiskScoreBar";
+import { formatStockCover, getStockCoverHint, stockCoverToneClass } from "../utils/formatters";
 
 const getTopChannels = (sku: RiskSku) => {
   const split = sku.channelDemandSplit ?? {};
   const entries = Object.entries(split).filter(([, value]) => Number(value) > 0);
   if (!entries.length) return ["Amazon"];
   return getVisibleMarketplaceChannels(entries.sort((a, b) => Number(b[1]) - Number(a[1])).map(([channel]) => channel));
-};
-
-const coverClass = (days: number) => {
-  if (days <= 3) return "text-red-600 dark:text-red-300";
-  if (days <= 7) return "text-orange-600 dark:text-orange-300";
-  return "text-emerald-600 dark:text-emerald-300";
 };
 
 export function SKUTable({
@@ -41,7 +36,7 @@ export function SKUTable({
         <table className="w-full min-w-[860px] text-left text-sm">
           <thead className="bg-teal-50/45 text-xs uppercase text-slate-500 dark:bg-slate-950 dark:text-slate-400">
             <tr>
-              {["SKU", "Risk score", "Days cover", "7d velocity", "Channel", "Action"].map((head) => <th key={head} className="px-5 py-3 font-black">{head}</th>)}
+              {["SKU", "Risk score", "Stock left", "7d velocity", "Channel", "Action"].map((head) => <th key={head} className="px-5 py-3 font-black">{head}</th>)}
             </tr>
           </thead>
           <tbody>
@@ -65,7 +60,10 @@ export function SKUTable({
                       </button>
                     </div>
                   </td>
-                  <td className={`px-5 py-3 text-base font-black ${coverClass(sku.daysOfCover)}`}>{sku.daysOfCover} days</td>
+                  <td className="px-5 py-3" title={getStockCoverHint(sku.daysOfCover)}>
+                    <p className={`text-base font-black ${stockCoverToneClass(sku.daysOfCover)}`}>{formatStockCover(sku.daysOfCover)}</p>
+                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">stock cover</p>
+                  </td>
                   <td className="px-5 py-3">
                     <div className="flex flex-col gap-0.5">
                       <span className={trendPercent >= 0 ? "font-bold text-orange-600 dark:text-orange-300" : "font-bold text-emerald-600 dark:text-emerald-300"}>

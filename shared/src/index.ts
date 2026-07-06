@@ -280,6 +280,7 @@ export interface SupplierCompareResponse {
 
 export interface DashboardResponse {
   totalSkus: number;
+  actionNeededCount?: number;
   criticalSkus?: number;
   highRiskSkus: number;
   highOnlySkus?: number;
@@ -446,6 +447,7 @@ export interface ExecutiveReportResponse {
   generatedAt: string;
   pipeline: PipelineStatus;
   dashboardSummary: DashboardResponse & {
+    actionNeededCount?: number;
     criticalSkus?: number;
     highOnlySkus?: number;
     mediumRiskSkus?: number;

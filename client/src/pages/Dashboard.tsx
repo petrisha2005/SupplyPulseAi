@@ -7,6 +7,7 @@ import { MetricCard } from "../components/MetricCard";
 import { PipelineStatus } from "../components/PipelineStatus";
 import { SKUTable } from "../components/SKUTable";
 import { api, compactRupee, rupee } from "../lib/api";
+import { formatStockCover } from "../utils/formatters";
 
 type Panel = "po" | "spike" | null;
 
@@ -111,8 +112,9 @@ export function Dashboard({ setPage }: { setPage?: (page: "alerts") => void }) {
     return () => window.clearTimeout(timer);
   }, [loading]);
 
-  const criticalSkus = useMemo(() => risks.filter((sku) => sku.riskScore >= 80 || sku.riskLevel === "Critical"), [risks]);
-  const highAndCritical = useMemo(() => risks.filter((sku) => ["High", "Critical"].includes(sku.riskLevel)), [risks]);
+  const highAndCritical = useMemo(() => risks.filter((sku) => sku.riskScore >= 70), [risks]);
+  const actionNeededCount = dashboard?.actionNeededCount ?? highAndCritical.length;
+  const actionNeededHint = actionNeededCount > 0 ? "High + critical SKUs" : "All SKUs stable · Refresh pipeline to scan latest data";
   const tableRows = useMemo(() => (criticalOnly ? highAndCritical : risks).slice(0, 8), [criticalOnly, highAndCritical, risks]);
   const selectedSku = useMemo(() => risks.find((sku) => sku.skuId === selectedSkuId) ?? tableRows[0] ?? risks[0], [risks, selectedSkuId, tableRows]);
   const selectedRecommendation = useMemo(() => focusedRecommendation?.skuId === selectedSku?.skuId ? focusedRecommendation : recommendations.find((rec) => rec.skuId === selectedSku?.skuId) ?? recommendations[0], [focusedRecommendation, recommendations, selectedSku]);
@@ -215,11 +217,11 @@ export function Dashboard({ setPage }: { setPage?: (page: "alerts") => void }) {
           <PipelineStatus status={dashboard?.pipelineStatus ?? "Pipeline ready"} lastRefresh={shortRefresh(dashboard?.lastRefreshTime)} onRefresh={handleRefresh} refreshing={busy} />
         </div>
 
-        {!dismissedAlert && topSku && <div className="mt-5"><AlertBanner count={criticalAlerts.length || criticalSkus.length} topSku={topSku.productName} messages={criticalAlerts.map((alert) => alert.title ?? alert.message)} onDismiss={() => setDismissedAlert(true)} onFocus={handleAlertFocus} /></div>}
+        {!dismissedAlert && topSku && <div className="mt-5"><AlertBanner count={criticalAlerts.length || actionNeededCount} topSku={topSku.productName} messages={criticalAlerts.map((alert) => alert.title ?? alert.message)} onDismiss={() => setDismissedAlert(true)} onFocus={handleAlertFocus} /></div>}
 
         <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <MetricCard icon={<ShieldAlert size={17} />} label="Critical SKUs" value={dashboard?.criticalSkus ?? criticalSkus.length} hint="Need action today" tone="danger" />
-          <MetricCard icon={<PackageCheck size={17} />} label="Avg days of cover" value={`${avgDaysCover.toFixed(1)} days`} hint="Across scanned SKUs" tone={avgDaysCover < 7 ? "warning" : "success"} />
+          <MetricCard icon={<ShieldAlert size={17} />} label="Action Needed" value={actionNeededCount} hint={actionNeededHint} tone={actionNeededCount > 0 ? "danger" : "success"} />
+          <MetricCard icon={<PackageCheck size={17} />} label="Avg stock cover" value={formatStockCover(avgDaysCover)} hint="Across scanned SKUs" tone={avgDaysCover < 2 ? "warning" : "success"} />
           <MetricCard icon={<IndianRupee size={17} />} label="Revenue at risk" value={compactRupee(dashboard?.revenueAtRisk ?? risks.reduce((sum, sku) => sum + sku.revenueAtRisk, 0))} hint="If reorder is delayed" tone="danger" />
           <MetricCard icon={<Boxes size={17} />} label="SKUs scanned" value={dashboard?.totalSkus ?? risks.length} hint="Monitoring inventory across 4 marketplaces" />
         </div>
@@ -258,7 +260,7 @@ export function Dashboard({ setPage }: { setPage?: (page: "alerts") => void }) {
 
 function RiskExplanationModal({ explanation, onClose }: { explanation: RiskExplainResponse; onClose: () => void }) {
   const rows = [
-    ["Days cover risk", explanation.formulaBreakdown.daysCoverRisk, 35],
+    ["Stock cover risk", explanation.formulaBreakdown.daysCoverRisk, 35],
     ["Velocity trend risk", explanation.formulaBreakdown.velocityTrendRisk, 20],
     ["Festival risk", explanation.formulaBreakdown.festivalRisk, 15],
     ["Supplier risk", explanation.formulaBreakdown.supplierRisk, 15],
@@ -364,7 +366,9 @@ function DecisionPanel({
   const spikePercent = Math.round(((sku.salesVelocity - baseline28) / baseline28) * 100);
   const supplier = recommendation?.recommendedSupplier?.name ?? recommendation?.bestSupplier ?? sku.supplierName;
   const poDraft = recommendation?.purchaseOrderDraft;
-  const whatsappMessage = recommendation?.whatsappMessage ?? `Hi ${supplier}, please confirm dispatch for ${quantity} units of ${sku.productName} (${sku.skuId}) within 24 hours. Current cover is ${sku.daysOfCover} days and supplier lead time is ${sku.leadTime} days.`;
+  const stockCover = formatStockCover(sku.daysOfCover);
+  const poNote = `Current stock cover is ${stockCover}, supplier lead time is ${sku.leadTime} days, and ${sku.productName} is prioritized for reorder based on SKU-level stockout risk.`;
+  const whatsappMessage = `Hi ${supplier}, please confirm dispatch for ${quantity} units of ${sku.productName} (${sku.skuId}) within 24 hours. Current stock cover is ${stockCover} and supplier lead time is ${sku.leadTime} days.`;
 
   useEffect(() => {
     if (panel !== "spike") return;
@@ -394,7 +398,7 @@ function DecisionPanel({
       `Estimated total: ${rupee(poDraft.estimatedTotalValue)}`,
       `Dispatch deadline: ${poDraft.requestedDispatchDeadline}`,
       `Urgency: ${poDraft.deliveryUrgency}`,
-      `Reason: ${poDraft.note}`
+      `Reason: ${poNote}`
     ].join("\n") : recommendation?.purchaseOrderMessage ?? whatsappMessage;
     await navigator.clipboard?.writeText(poText);
     onNotify("Purchase order draft copied.");
@@ -420,7 +424,7 @@ function DecisionPanel({
               <Info label="Recommended quantity" value={`${quantity} units`} />
               <Info label="Unit cost" value={rupee(unitCost)} />
               <Info label="Total estimated PO value" value={rupee(poValue)} />
-              <Info label="Delivery urgency" value={poDraft?.deliveryUrgency ?? `${sku.riskLevel} · ${sku.daysOfCover} days cover`} />
+              <Info label="Delivery urgency" value={poDraft?.deliveryUrgency ?? `${sku.riskLevel} · ${stockCover}`} />
               <Info label="Dispatch deadline" value={poDraft?.requestedDispatchDeadline ?? recommendation?.reorderDeadlineLabel ?? "Within 24 hours"} />
               <Info label="Revenue protected" value={compactRupee(recommendation?.revenueProtected ?? sku.revenueAtRisk)} />
             </div>
@@ -428,7 +432,7 @@ function DecisionPanel({
               <div className="rounded-2xl border border-white/75 bg-white/65 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
                 <p className="text-xs font-black uppercase text-slate-500">Structured PO draft</p>
                 <p className="mt-2 font-black">{poDraft.title}</p>
-                <p className="mt-2 text-sm leading-6">{poDraft.note}</p>
+                <p className="mt-2 text-sm leading-6">{poNote}</p>
                 <button onClick={copyPo} className="app-button-secondary mt-3 inline-flex items-center gap-2 px-3 py-2 text-sm">
                   <Copy size={14} /> Copy PO
                 </button>
@@ -453,7 +457,7 @@ function DecisionPanel({
               <Info label="Confidence score" value={forecast ? `${forecast.confidenceScore}% · ${forecast.confidenceLabel}` : "Loading forecast"} />
             </div>
             <p className="rounded-2xl border border-orange-200 bg-orange-50/90 p-4 text-sm leading-6 text-orange-900 shadow-sm dark:border-orange-900 dark:bg-orange-950/50 dark:text-orange-100">
-              {forecast?.forecastExplanation?.summary ?? <>Demand is running about <span className="font-bold">{spikePercent >= 0 ? "+" : ""}{spikePercent}%</span> above the 28-day baseline while stock cover is only <span className="font-bold">{sku.daysOfCover} days</span>. Because supplier lead time is <span className="font-bold">{sku.leadTime} days</span>, the reorder buffer can disappear before the next marketplace refresh.</>}
+              Demand is running about <span className="font-bold">{spikePercent >= 0 ? "+" : ""}{spikePercent}%</span> above the 28-day baseline while stock cover is only <span className="font-bold">{stockCover}</span>. Because supplier lead time is <span className="font-bold">{sku.leadTime} days</span>, the reorder buffer can disappear before the next marketplace refresh.
             </p>
             {forecast?.forecastExplanation && <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{forecast.forecastExplanation.eventReason}</p>}
           </div>

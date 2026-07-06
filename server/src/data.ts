@@ -211,11 +211,16 @@ export const getRisks = () => buildInventory().map(scoreRisk).sort((a, b) => b.r
 
 export const getDashboard = (): DashboardResponse => {
   const risks = getRisks();
-  const highRiskSkus = risks.filter((sku) => sku.riskLevel === "High" || sku.riskLevel === "Critical").length;
+  const actionNeededCount = risks.filter((sku) => sku.riskScore >= 70).length;
+  const criticalSkus = risks.filter((sku) => sku.riskScore >= 80).length;
+  const highRiskSkus = risks.filter((sku) => sku.riskScore >= 70 && sku.riskScore < 80).length;
   const levels: RiskLevel[] = ["Low", "Medium", "High", "Critical"];
   return {
     totalSkus: risks.length,
-    highRiskSkus,
+    actionNeededCount,
+    criticalSkus,
+    highRiskSkus: actionNeededCount,
+    highOnlySkus: highRiskSkus,
     revenueAtRisk: risks.reduce((sum, sku) => sum + sku.revenueAtRisk, 0),
     forecastAccuracy: demoState.flashSaleSpike ? 86.2 : 91.4,
     lastRefreshTime: demoState.lastRefreshTime,

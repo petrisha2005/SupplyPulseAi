@@ -1,6 +1,7 @@
 import { ArrowUpRight, Bot, FileText, HelpCircle, TimerReset } from "lucide-react";
 import type { Recommendation, RiskSku } from "@supplypulse/shared";
 import { compactRupee } from "../lib/api";
+import { formatStockCover } from "../utils/formatters";
 
 export function GeminiPanel({
   sku,
@@ -21,6 +22,7 @@ export function GeminiPanel({
   const supplier = recommendation?.recommendedSupplier?.name ?? recommendation?.bestSupplier ?? sku?.supplierName ?? "preferred supplier";
   const revenue = recommendation?.revenueProtected ?? recommendation?.revenueSavedEstimate ?? sku?.revenueAtRisk ?? 0;
   const deadline = recommendation?.reorderDeadlineLabel ?? (sku?.riskLevel === "Critical" ? "Today before 6 PM" : "This week");
+  const stockCover = formatStockCover(sku?.daysOfCover);
 
   return (
     <section className="card-3d rounded-[1.5rem] border border-white/75 bg-white/80 p-5 shadow-xl shadow-slate-950/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/80">
@@ -39,15 +41,7 @@ export function GeminiPanel({
       </div>
       {sku ? (
         <p className="mt-4 max-w-4xl text-base leading-8 text-slate-700 dark:text-slate-200">
-          {recommendation?.reasoning ? (
-            <>
-              {recommendation.reasoning} <span className="font-bold text-teal-700 dark:text-teal-200">Deadline: {deadline}.</span>
-            </>
-          ) : (
-            <>
-              Reorder <span className="font-bold text-slate-950 dark:text-white">{sku.skuId}</span> immediately. Current cover is <span className="font-bold">{sku.daysOfCover} days</span>; supplier lead time is <span className="font-bold">{sku.leadTime} days</span>. Order <span className="font-bold text-slate-950 dark:text-white">{quantity} units</span> from <span className="font-bold text-slate-950 dark:text-white">{supplier}</span>. Estimated revenue at risk: <span className="font-bold text-red-600 dark:text-red-300">{compactRupee(revenue)}</span>.
-            </>
-          )}
+          Reorder <span className="font-bold text-slate-950 dark:text-white">{sku.skuId}</span> immediately. Current stock cover is <span className="font-bold">{stockCover}</span>; supplier lead time is <span className="font-bold">{sku.leadTime} days</span>. Order <span className="font-bold text-slate-950 dark:text-white">{quantity} units</span> from <span className="font-bold text-slate-950 dark:text-white">{supplier}</span>. Estimated revenue at risk: <span className="font-bold text-red-600 dark:text-red-300">{compactRupee(revenue)}</span>. <span className="font-bold text-teal-700 dark:text-teal-200">Deadline: {deadline}.</span>
         </p>
       ) : (
         <p className="mt-4 text-base leading-8 text-slate-700 dark:text-slate-200">No high-risk recommendation is selected yet.</p>

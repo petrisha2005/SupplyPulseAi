@@ -26,6 +26,7 @@ export const getExecutiveSummaryReport = () => {
     const alerts = buildAlerts({ limit: 80 });
     const criticalSkus = countByRisk("Critical", risks);
     const highOnlySkus = countByRisk("High", risks);
+    const actionNeededCount = risks.filter((sku) => sku.riskScore >= 70).length;
     const mediumRiskSkus = countByRisk("Medium", risks);
     const lowRiskSkus = countByRisk("Low", risks);
     const revenueAtRisk = risks.reduce((sum, sku) => sum + sku.revenueAtRisk, 0);
@@ -44,6 +45,7 @@ export const getExecutiveSummaryReport = () => {
         .sort((a, b) => (b.festivalImpact?.multiplier ?? b.festivalImpactMultiplier ?? 1) - (a.festivalImpact?.multiplier ?? a.festivalImpactMultiplier ?? 1))[0];
     const dashboardSummary = {
         totalSkus: risks.length,
+        actionNeededCount,
         criticalSkus,
         highRiskSkus: criticalSkus + highOnlySkus,
         highOnlySkus,

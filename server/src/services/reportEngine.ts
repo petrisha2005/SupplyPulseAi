@@ -31,6 +31,7 @@ export const getExecutiveSummaryReport = (): ExecutiveReportResponse => {
 
   const criticalSkus = countByRisk("Critical", risks);
   const highOnlySkus = countByRisk("High", risks);
+  const actionNeededCount = risks.filter((sku) => sku.riskScore >= 70).length;
   const mediumRiskSkus = countByRisk("Medium", risks);
   const lowRiskSkus = countByRisk("Low", risks);
   const revenueAtRisk = risks.reduce((sum, sku) => sum + sku.revenueAtRisk, 0);
@@ -50,6 +51,7 @@ export const getExecutiveSummaryReport = (): ExecutiveReportResponse => {
 
   const dashboardSummary: ExecutiveReportResponse["dashboardSummary"] = {
     totalSkus: risks.length,
+    actionNeededCount,
     criticalSkus,
     highRiskSkus: criticalSkus + highOnlySkus,
     highOnlySkus,

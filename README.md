@@ -283,7 +283,8 @@ Screenshots are not committed in this repository. For submission packaging, capt
 ### Backend: Render
 
 - Root Directory: `server`
-- Build Command: `npm install && npm run build`
+- Environment: `Node`
+- Build Command: `npm install --include=dev && npm run build`
 - Start Command: `npm run start`
 - Health Check Path: `/api/health`
 - Production API base URL: `https://your-render-backend.onrender.com`

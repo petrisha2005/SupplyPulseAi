@@ -22,7 +22,7 @@ const allowedOrigins = new Set([
     "http://localhost:5173",
     ...(clientOrigin ? clientOrigin.split(",").map((origin) => origin.trim()).filter(Boolean) : [])
 ]);
-app.use(cors({
+const corsOptions = {
     origin(origin, callback) {
         if (!origin || allowedOrigins.has(origin)) {
             callback(null, true);
@@ -30,7 +30,8 @@ app.use(cors({
         }
         callback(new Error(`CORS origin not allowed: ${origin}`));
     }
-}));
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 if (process.env.NODE_ENV !== "production") {
     app.use((req, res, next) => {

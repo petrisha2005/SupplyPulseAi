@@ -10,14 +10,16 @@ dashboardRouter.get("/", (_req, res) => {
   const cached = getCache("route:dashboard");
   if (cached) return res.json(cached);
   const risks = getRiskList();
-  const criticalSkus = risks.filter((sku) => sku.riskLevel === "Critical");
-  const highRiskSkus = risks.filter((sku) => sku.riskLevel === "High");
-  const mediumRiskSkus = risks.filter((sku) => sku.riskLevel === "Medium");
-  const lowRiskSkus = risks.filter((sku) => sku.riskLevel === "Low");
+  const criticalSkus = risks.filter((sku) => sku.riskScore >= 80);
+  const highRiskSkus = risks.filter((sku) => sku.riskScore >= 70 && sku.riskScore < 80);
+  const mediumRiskSkus = risks.filter((sku) => sku.riskScore >= 40 && sku.riskScore < 70);
+  const lowRiskSkus = risks.filter((sku) => sku.riskScore < 40);
+  const actionNeededSkus = risks.filter((sku) => sku.riskScore >= 70);
   const avgDaysCover = risks.length ? risks.reduce((sum, sku) => sum + sku.daysOfCover, 0) / risks.length : 0;
   const pipeline = getPipelineStatus();
   const payload = {
     totalSkus: risks.length,
+    actionNeededCount: actionNeededSkus.length,
     criticalSkus: criticalSkus.length,
     highRiskSkus: criticalSkus.length + highRiskSkus.length,
     highOnlySkus: highRiskSkus.length,
@@ -27,7 +29,7 @@ dashboardRouter.get("/", (_req, res) => {
     revenueAtRisk: risks.reduce((sum, sku) => sum + sku.revenueAtRisk, 0),
     forecastAccuracy: 91.4,
     skusScanned: risks.length,
-    topRiskSkus: risks.slice(0, 8),
+    topRiskSkus: (actionNeededSkus.length ? actionNeededSkus : risks).slice(0, 8),
     lastRefreshTime: pipeline.lastRunTime,
     lastUpdated: pipeline.lastRunTime,
     nextRefreshSeconds: 1800,

@@ -45,6 +45,7 @@ import { Badge, Card, Empty, Loading, Stat } from "./components/ui";
 import { Dashboard as MorningDashboard } from "./pages/Dashboard";
 import { Landing } from "./pages/Landing";
 import { getVisibleMarketplaceChannels, MultiChannelBadge } from "./components/ChannelBadge";
+import { formatStockCover, getStockCoverHint, stockCoverToneClass } from "./utils/formatters";
 
 type Page = "landing" | "dashboard" | "inventory" | "risks" | "forecast" | "recommendations" | "suppliers" | "events" | "acceleration" | "pipeline" | "alerts" | "reports";
 
@@ -1332,7 +1333,7 @@ function ReportsPage() {
         </div>
         <div className="report-summary-strip mt-5 grid gap-2 md:grid-cols-4 print:grid-cols-4">
           <ReportMetricCard label="SKUs scanned" value={data.riskSummary.totalSkus} hint="Monitoring inventory across 4 marketplaces" />
-          <ReportMetricCard label="Critical SKUs" value={data.riskSummary.criticalSkus} hint="Need action today" tone="red" />
+          <ReportMetricCard label="Critical SKUs" value={data.riskSummary.criticalSkus} hint="Risk score 80+" tone="red" />
           <ReportMetricCard label="High-risk SKUs" value={data.riskSummary.highRiskSkus} hint="Reorder this week" tone="orange" />
           <ReportMetricCard label="Revenue at risk" value={compactRupee(data.riskSummary.revenueAtRisk)} hint="If reorder slips" tone="red" />
           <ReportMetricCard label="Revenue protected" value={compactRupee(revenueProtected)} hint="Recommended actions" tone="green" />
@@ -1378,14 +1379,14 @@ function ReportsPage() {
 
       <ReportSection title="Top Risky SKUs" eyebrow="Priority inventory exposure">
         <InsightLine>Most urgent risk is concentrated in {leadCategoryText}, with stock cover below supplier lead time.</InsightLine>
-        <CompactReportTable headers={["SKU", "Product", "Category", "Risk", "Days cover", "Stockout", "Revenue at risk", "Action"]}>
+        <CompactReportTable headers={["SKU", "Product", "Category", "Risk", "Stock left", "Stockout", "Revenue at risk", "Action"]}>
           {topRiskSkus.map((sku) => (
             <tr key={sku.skuId}>
               <td className="font-black">{sku.skuId}</td>
               <td>{sku.productName}</td>
               <td>{sku.category}</td>
               <td><ReportRiskBadge level={sku.riskLevel} score={sku.riskScore} /></td>
-              <td>{sku.daysOfCover}d</td>
+              <td>{formatStockCover(sku.daysOfCover)}</td>
               <td>{sku.expectedStockoutLabel ?? sku.expectedStockoutDate ?? "Review"}</td>
               <td className="font-black text-[#DC2626]">{compactRupee(sku.revenueAtRisk)}</td>
               <td className="text-[#6B5B4A]">{sku.recommendedAction}</td>
@@ -1642,7 +1643,7 @@ function Table({ rows }: { rows: RiskSku[] }) {
   return (
     <Card className="overflow-x-auto">
       <table className="min-w-[1180px] w-full text-left text-sm">
-        <thead className="text-xs uppercase text-slate-500"><tr>{["SKU", "Product", "Category", "Channels", "Top stock", "Committed", "Available", "Velocity", "Cover", "Supplier", "Lead", "Festival", "Risk"].map((head) => <th key={head} className="px-3 py-2">{head}</th>)}</tr></thead>
+        <thead className="text-xs uppercase text-slate-500"><tr>{["SKU", "Product", "Category", "Channels", "Top stock", "Committed", "Available", "Velocity", "Stock left", "Supplier", "Lead", "Festival", "Risk"].map((head) => <th key={head} className="px-3 py-2">{head}</th>)}</tr></thead>
         <tbody>{rows.map((sku) => {
           const stockChannels = marketplaceChannels(sku.channelStock);
           const topStock = stockChannels[0];
@@ -1656,7 +1657,9 @@ function Table({ rows }: { rows: RiskSku[] }) {
               <td className="px-3 py-3">{sku.committedStock}</td>
               <td className="px-3 py-3">{sku.totalAvailableStock}</td>
               <td className="px-3 py-3">{sku.salesVelocity}/day</td>
-              <td className="px-3 py-3">{sku.daysOfCover} days</td>
+              <td className="px-3 py-3" title={getStockCoverHint(sku.daysOfCover)}>
+                <span className={`font-semibold ${stockCoverToneClass(sku.daysOfCover)}`}>{formatStockCover(sku.daysOfCover)}</span>
+              </td>
               <td className="px-3 py-3">{sku.supplierName}</td>
               <td className="px-3 py-3">{sku.leadTime} days</td>
               <td className="px-3 py-3">{sku.festivalProximity}</td>

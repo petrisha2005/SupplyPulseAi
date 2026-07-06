@@ -1,4 +1,5 @@
 import cors from "cors";
+import type { CorsOptions } from "cors";
 import express from "express";
 import { alertsRouter } from "./routes/alerts.js";
 import { dashboardRouter } from "./routes/dashboard.js";
@@ -24,7 +25,7 @@ const allowedOrigins = new Set([
   ...(clientOrigin ? clientOrigin.split(",").map((origin) => origin.trim()).filter(Boolean) : [])
 ]);
 
-app.use(cors({
+const corsOptions: CorsOptions = {
   origin(origin, callback) {
     if (!origin || allowedOrigins.has(origin)) {
       callback(null, true);
@@ -32,7 +33,9 @@ app.use(cors({
     }
     callback(new Error(`CORS origin not allowed: ${origin}`));
   }
-}));
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 if (process.env.NODE_ENV !== "production") {

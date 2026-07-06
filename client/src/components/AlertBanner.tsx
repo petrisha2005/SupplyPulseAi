@@ -22,7 +22,7 @@ export function AlertBanner({
           {messages?.length ? (
             <><span className="font-bold">{count} critical alerts</span> pending. {messages.slice(0, 2).join(" ")}</>
           ) : (
-            <><span className="font-bold">{count} critical SKUs</span> need reorder action today. Top risk: <span className="font-bold">{topSku}</span>.</>
+            <><span className="font-bold">{count} high-risk reorder deadlines</span> need attention. Top risk: <span className="font-bold">{topSku}</span>.</>
           )}
         </p>
       </div>
