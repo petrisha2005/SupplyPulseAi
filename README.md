@@ -1,347 +1,441 @@
 # SupplyPulse AI
 
-SupplyPulse AI is a hackathon-ready supply chain command center for Indian D2C brands that predicts SKU stockout risk, recommends reorder actions, and generates a morning executive report.
+## Real-Time Supply Chain Intelligence for Indian D2C Brands
+
+SupplyPulse AI is an AI-powered inventory intelligence platform designed for Indian D2C brands selling across multiple marketplaces such as **Amazon, Shopify, Meesho, and Flipkart**.
+
+The platform helps brands prevent stockouts by combining multi-channel inventory data, SKU-level sales trends, supplier reliability, festival demand impact, and reorder intelligence into one actionable dashboard.
+
+Instead of manually checking Excel sheets and reacting after products go out of stock, SupplyPulse AI helps operations managers understand:
+
+> Which product may go out of stock, when it may happen, how much to reorder, and which supplier to contact.
+
+---
+
+## Live Demo
+
+**Frontend:**  
+https://supply-pulse-ai-client.vercel.app
+
+**Backend API:**  
+https://supplypulseai.onrender.com
+
+---
 
 ## Problem Statement
 
-Indian D2C teams sell through Amazon, Meesho, Shopify, Flipkart, and ERP-backed warehouses, but inventory, demand, and supplier data often live in separate exports. Founders lose revenue when sale-event demand spikes before reorder decisions are made, and operations teams spend hours reconciling spreadsheets before supplier calls.
+Indian D2C brands often sell across multiple platforms such as Amazon, Shopify, Meesho, and Flipkart. Their inventory data is usually scattered across marketplace dashboards, spreadsheets, supplier updates, and ERP tools.
 
-## Solution
+During high-demand periods such as Diwali, Big Billion Day, Eid Sale, and flash sales, brands may not identify stockout risks early enough.
 
-SupplyPulse AI fuses local multi-channel inventory, sales history, supplier reliability, sale-event multipliers, forecast demand, risk scoring, reorder recommendations, alerts, and pipeline status into one operational dashboard. The current version uses a JSON local data layer so demos are reliable and the architecture remains ready for future BigQuery, GCP, GPU, and Gemini integration.
+This leads to:
 
-## Target Users
+- Lost revenue due to stockouts
+- Manual reorder calculations
+- Delayed supplier communication
+- Poor customer experience
+- Lower marketplace ranking
+- Overstock or deadstock issues
+- Lack of real-time decision support
 
-- D2C founders running lean inventory operations.
-- Marketplace operations managers.
-- Supply chain analysts.
-- Category managers handling sale events and supplier calls.
+SupplyPulse AI solves this by creating a real-time decision intelligence layer for D2C inventory operations.
+
+---
+
+## Solution Overview
+
+SupplyPulse AI ingests multi-channel sales and inventory data, analyzes SKU-level demand patterns, forecasts stockout risk, and generates reorder recommendations.
+
+The system provides:
+
+- Real-time dashboard for operations managers
+- SKU-level stockout risk scoring
+- Demand forecasting based on sales trends
+- Festival-aware demand impact
+- Supplier reliability scoring
+- AI-powered reorder recommendations
+- Purchase order and WhatsApp draft generation
+- Alerts for urgent stockout risks
+- Executive reports for business decisions
+
+---
 
 ## Key Features
 
-- Morning dashboard with KPI cards, realistic risk distribution, SKU table, and recommendation panel.
-- SKU risk scoring with explainable formula drivers.
-- Forecasting page with 7-day and 30-day demand, trend direction, and event impact.
-- AI Reorder page with reorder quantity, supplier choice, PO draft, and WhatsApp-ready message.
-- Supplier scorecards with dependency risk, delay simulation, and supplier comparison.
-- Alerts center with status updates and operational alert types.
-- Pipeline simulator with 8 stages, GPU-vs-CPU benchmark, and run history.
-- Executive Reports page with print, JSON download, and copyable summary.
+### 1. Multi-Channel Inventory Fusion
 
-## Architecture
+SupplyPulse AI unifies sales and inventory signals from four key D2C channels:
 
-```text
-React + Vite client
-        |
-        | REST API
-        v
-Express + TypeScript server
-        |
-        v
-JSON local data layer
-        |
-        v
-Risk, forecast, recommendation, supplier, alert, pipeline, and report engines
-```
+- Amazon
+- Shopify
+- Meesho
+- Flipkart
+
+This gives brands a single view of inventory health across all major sales channels.
+
+---
+
+### 2. Dashboard / Morning Brief
+
+The dashboard gives a quick morning summary for the operations manager.
+
+It shows:
+
+- Action-needed SKUs
+- Revenue at risk
+- Average stock cover
+- SKUs scanned
+- Reorder watchlist
+- Marketplace badges
+- GPU pipeline status
+
+The dashboard is designed to help the operations manager take quick decisions before stockouts happen.
+
+---
+
+### 3. SKU Stockout Risk Scoring
+
+Each SKU receives a stockout risk score from 0 to 100.
+
+The score considers:
+
+- Current inventory
+- Sales velocity
+- Supplier lead time
+- Festival or sale-event demand
+- Marketplace demand concentration
+- Revenue impact
+
+Risk categories:
+
+| Risk Level | Score Range |
+|---|---|
+| Critical | 80+ |
+| High | 70–79 |
+| Medium | 40–69 |
+| Low | Below 40 |
+
+---
+
+### 4. Human-Friendly Stock Cover
+
+Instead of showing confusing decimal values like `0.3 days`, the platform displays clear stock-left timing.
+
+Examples:
+
+| Old Format | New Format |
+|---|---|
+| 0.3 days | ~7 hrs left |
+| 0.4 days | ~10 hrs left |
+| 0.8 days | ~19 hrs left |
+| 1.2 days | 1 day 5 hrs left |
+| 14.4 days | 14.4 days left |
+
+This makes the dashboard easier for non-technical users to understand.
+
+---
+
+### 5. Demand Forecasting
+
+The forecasting module predicts upcoming SKU demand using:
+
+- Recent sales history
+- 7-day moving average
+- 28-day baseline
+- Trend adjustment
+- Festival/event multiplier
+- Channel-wise demand split
+
+This helps brands prepare before stockouts happen, especially during sales events and festivals.
+
+---
+
+### 6. AI Reorder Recommendation
+
+SupplyPulse AI converts risk insights into action.
+
+It recommends:
+
+- Quantity to reorder
+- Best supplier
+- Reorder deadline
+- Expected stockout timing
+- Revenue protected
+- Purchase order draft
+- WhatsApp supplier message
+
+Example recommendation:
+
+> Reorder 600 units of Cotton Kurti Premium Pack from Bengaluru Naturals before 6 PM to avoid stockout risk.
+
+---
+
+### 7. Supplier Intelligence
+
+The supplier module ranks suppliers based on:
+
+- Reliability
+- Lead time
+- Delay risk
+- Cost
+- On-time delivery history
+- SKU dependency
+
+This helps operations managers choose the best supplier for urgent replenishment.
+
+---
+
+### 8. Alerts
+
+The alerts page highlights urgent operational issues such as:
+
+- High-risk SKUs
+- Stockout deadlines
+- Supplier delays
+- Reorder urgency
+- Revenue-at-risk warnings
+
+---
+
+### 9. Pipeline / Acceleration
+
+SupplyPulse AI demonstrates a GPU-accelerated data pipeline concept.
+
+The pipeline compares:
+
+- CPU pipeline runtime
+- GPU pipeline runtime
+- Speedup achieved
+- Refresh cycle readiness
+
+Prototype benchmark:
+
+| Pipeline | Runtime |
+|---|---|
+| CPU Pipeline | 47.3 seconds |
+| GPU Pipeline | 4.2 seconds |
+| Speedup | 11.3× faster |
+
+---
+
+### 10. Executive Reports
+
+The reports page provides a business-ready summary including:
+
+- Risk overview
+- Top risky SKUs
+- Reorder action plan
+- Supplier recommendations
+- Forecast summary
+- Revenue at risk
+- Download / print options
+
+---
 
 ## Tech Stack
 
-- Frontend: React, Vite, TypeScript, Tailwind CSS, Recharts, lucide-react.
-- Backend: Node.js, Express, TypeScript.
-- Shared types: local `@supplypulse/shared` workspace package.
-- Data: JSON seed files for SKUs, suppliers, events, channels, and sales history.
-- Database status: no external DB yet; Phase 2 local JSON layer is the source of truth.
-- AI/GPU status: simulated Gemini-style recommendation and GPU acceleration story; no paid external APIs required.
+### Frontend
 
-## Screens And Pages
+- React.js
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
 
-- Problem
-- Dashboard
-- Inventory
-- Risk Scores
-- Forecasting
-- AI Reorder
-- Suppliers
-- Sale Calendar
-- Acceleration
-- Pipeline
-- Alerts
-- Reports
+### Backend
 
-## Backend APIs
+- Node.js
+- Express.js
+- TypeScript
+- REST APIs
+- JSON-based demo data layer
 
-- `GET /api/health`
-- `GET /api/dashboard`
-- `GET /api/inventory`
-- `GET /api/inventory/:skuId`
-- `GET /api/risks`
-- `GET /api/risks/:skuId/explain`
-- `GET /api/forecast/summary`
-- `GET /api/forecast/compare?skuIds=SKU1,SKU2`
-- `GET /api/forecast/:skuId`
-- `GET /api/recommendations`
-- `GET /api/recommendations/:skuId`
-- `POST /api/recommendations/generate-po`
-- `GET /api/suppliers`
-- `GET /api/suppliers/:supplierId/dependencies`
-- `GET /api/suppliers/compare?ids=SUP-BLR,SUP-SUR`
-- `GET /api/events`
-- `GET /api/alerts`
-- `POST /api/alerts/generate`
-- `PATCH /api/alerts/:alertId/status`
-- `GET /api/pipeline/status`
-- `GET /api/pipeline/runs`
-- `POST /api/pipeline/run`
-- `GET /api/reports/executive-summary`
-- `POST /api/simulate/flash-sale`
-- `POST /api/simulate/supplier-delay`
-- `POST /api/simulate/channel-mismatch`
-- `POST /api/simulate/benchmark`
-- `POST /api/simulate/reset`
+### Deployment
 
-## Data Model
+- Frontend: Vercel
+- Backend: Render
 
-Core entities:
+### Proposed Cloud Architecture
 
-- SKU: product, category, brand, price, cost, stock, committed stock, safety stock, supplier IDs, channel stock.
-- Supplier: location, lead time, reliability, on-time delivery, cost rating, delay days, min order quantity.
-- Sales history: daily SKU/channel units, revenue, returns, promo flag, and event linkage.
-- Event: sale/festival date range, categories, channels, multiplier, and priority.
-- Alert: type, severity, status, SKU/supplier/channel context, revenue at risk, and suggested action.
-- Pipeline run: stages, row counts, duration, speedup, alerts generated, and recommendations generated.
+- Google Cloud Storage
+- BigQuery
+- Google Kubernetes Engine
+- Cloud Functions
+- Cloud Scheduler
+- Pub/Sub
+- Looker
+- Gemini Enterprise Agent
+- NVIDIA RAPIDS cuDF
+- Spark RAPIDS
 
-## Risk Formula
+---
 
-The risk engine creates a 0-100 score from weighted drivers:
+## Project Architecture
 
-- Days cover risk: 35%.
-- Velocity trend risk: 20%.
-- Festival/event risk: 15%.
-- Supplier pressure: 15%.
-- Committed stock pressure: 10%.
-- Channel concentration: 5%.
+```text
+Marketplace Data
+Amazon / Shopify / Meesho / Flipkart
+        ↓
+Inventory & Sales Data Layer
+        ↓
+Risk Scoring Engine
+        ↓
+Demand Forecasting Engine
+        ↓
+Supplier Ranking Engine
+        ↓
+AI Reorder Recommendation
+        ↓
+Dashboard + Alerts + Reports
 
-Most scores are capped below 98 unless the SKU is truly extreme, which keeps the dashboard realistic while still allowing rare 100-level situations.
 
-## Forecast Formula
+**Main Pages**
 
-The forecasting engine blends:
+Landing Page
+Dashboard
+Inventory
+Risk Scores
+Forecasting
+AI Reorder
+Suppliers
+Sale Calendar
+Acceleration
+Pipeline
+Alerts
+Reports
+API Overview
 
-- 50% recent 7-day average.
-- 30% 28-day baseline.
-- 20% same-weekday average.
-- Capped trend adjustment.
-- Event/festival multiplier based on proximity and affected channel/category.
+Example backend endpoints:
 
-It returns confidence, channel split, reorder window, 7-day demand, 30-day demand, and explanation text.
-
-## Recommendation Formula
-
-The recommendation engine calculates:
-
-- Lead-time demand.
-- 7-day safety buffer.
-- Event buffer.
-- Committed stock requirement.
-- Current available stock offset.
-- Supplier min-order rounding and practical caps.
-
-It ranks suppliers by reliability, on-time percentage, lead time, cost, recent delay, and whether they are the primary supplier for the SKU.
-
-## Supplier Scoring Formula
-
-Supplier risk considers:
-
-- Recent delay days.
-- On-time delivery percentage.
-- Reliability score.
-- Average lead time.
-- Critical/high-risk SKU dependencies.
-- Revenue at risk linked to dependent SKUs.
-
-Levels are `Healthy`, `Watch`, `Risky`, and `Critical`.
-
-## Alerts And Pipeline Logic
-
-Alerts are generated for stockout risk, supplier delay, festival spike, reorder deadline, channel mismatch, revenue at risk, and pipeline events. Alerts can be marked pending, actioned, or dismissed.
-
-The pipeline simulates eight stages: marketplace ingestion, data cleaning, channel inventory fusion, forecast generation, risk scoring, recommendation generation, alert generation, and dashboard refresh.
-
-## Acceleration Story
-
-- CPU pipeline: 47.3s.
-- GPU pipeline: 4.2s.
-- Speedup: 11.3x.
-- Demo value: morning insight generation moves from manual spreadsheet work to a repeatable pipeline loop.
-- Future path: Cloud Run, BigQuery, GCS, Gemini, and GKE GPU node pools.
-
-## Run Locally
-
-Install dependencies:
-
-```bash
+GET /api/health
+GET /api/dashboard
+GET /api/inventory
+GET /api/risks
+GET /api/forecast/summary
+GET /api/recommendations
+GET /api/suppliers
+GET /api/alerts
+GET /api/pipeline/status
+GET /api/reports/executive-summary
+Local Setup
+1. Clone the repository
+git clone https://github.com/petrisha2005/SupplyPulseAi.git
+cd SupplyPulseAi
+2. Install dependencies
 npm install
-```
+3. Run backend
+npm --workspace server run dev
 
-Copy environment examples if needed:
+Backend runs at:
 
-```bash
-cp server/.env.example server/.env
-cp client/.env.example client/.env
-```
+http://127.0.0.1:5050
+4. Run frontend
+npm --workspace client run dev
 
-Run both apps:
+Frontend runs at:
 
-```bash
-npm run dev
-```
+http://127.0.0.1:5174
+Environment Variables
+Backend
 
-Run separately:
+Create .env inside the server folder:
 
-```bash
-npm run dev:server
-npm run dev:client
-```
+PORT=5050
+NODE_ENV=development
+DATA_MODE=json
+ENABLE_GEMINI=false
+ENABLE_GPU_SIMULATION=true
+CLIENT_ORIGIN=http://127.0.0.1:5174
+Frontend
 
-Default URLs:
+Create .env inside the client folder:
 
-- Frontend: `http://127.0.0.1:5174` or the next Vite port if 5174 is occupied.
-- Backend: `http://127.0.0.1:5050`.
-- Health check: `http://127.0.0.1:5050/api/health`.
+VITE_API_URL=http://127.0.0.1:5050
+Deployment
+Backend Deployment on Render
 
-If an old backend process is still occupying port 5050, stop it before the demo:
+Render settings:
 
-```bash
-lsof -i :5050
-kill -9 <PID>
-```
+Root Directory: server
+Environment: Node
+Build Command: npm install --include=dev && npm run build
+Start Command: npm run start
 
-Explicit canonical demo commands:
+Environment variables:
 
-```bash
-PORT=5050 npm --workspace server run start
-VITE_API_URL=http://127.0.0.1:5050 npm --workspace client run dev -- --port 5174
-```
+PORT=10000
+NODE_ENV=production
+DATA_MODE=json
+ENABLE_GEMINI=false
+ENABLE_GPU_SIMULATION=true
+CLIENT_ORIGIN=https://supply-pulse-ai-client.vercel.app
 
-Alternate ports if 5050/5174 are busy:
+Backend live URL:
 
-```bash
-PORT=5051 npm --workspace server run start
-VITE_API_URL=http://127.0.0.1:5051 npm --workspace client run dev -- --port 5175
-```
+https://supplypulseai.onrender.com
+Frontend Deployment on Vercel
 
-## Build Checks
+Vercel settings:
 
-```bash
+Root Directory: client
+Framework: Vite
+Build Command: npm run build
+Output Directory: dist
+
+Environment variable:
+
+VITE_API_URL=https://supplypulseai.onrender.com
+
+Frontend live URL:
+
+https://supply-pulse-ai-client.vercel.app
+Build Commands
+
+Run type checks and builds:
+
 npm --workspace shared run typecheck
 npm --workspace server run typecheck
 npm --workspace server run build
 npm --workspace client run typecheck
 npm --workspace client run build
-```
+Demo Flow
 
-The Vite chunk-size warning is currently non-blocking for the demo. Splitting heavier pages with `React.lazy` is a future optimization.
+Recommended demo flow:
 
-## Smoke Tests
+Open the landing page
+Click Launch Dashboard
+Show action-needed SKUs and revenue at risk
+Open Risk Scores page
+Show SKU risk heatmap
+Open Forecasting page
+Show demand prediction
+Open AI Reorder page
+Show reorder quantity and supplier recommendation
+Open Reports page
+Show executive summary and action plan
+Prototype Note
 
-Start the backend first, then run:
+This prototype uses realistic synthetic D2C inventory and sales data to demonstrate the product workflow.
 
-```bash
-npm --workspace server run smoke
-```
+The system is architected for future integration with real marketplace APIs, Google Cloud services, Gemini, and NVIDIA RAPIDS-based GPU acceleration.
 
-From the repository root, this alias is also available:
+Project Impact
 
-```bash
-npm run smoke
-```
+SupplyPulse AI helps D2C brands:
 
-Optional custom target:
+Prevent stockout losses
+Reduce manual Excel work
+Improve inventory accuracy
+Reorder before demand spikes
+Protect revenue during festivals and sales
+Make faster supplier decisions
+Move from dashboards to actionable recommendations
+One-Line Summary
 
-```bash
-SMOKE_API_URL=https://your-backend.example.com npm --workspace server run smoke
-```
+SupplyPulse AI is a real-time inventory intelligence platform that helps D2C brands prevent stockouts by predicting SKU risk, forecasting demand, and recommending reorder actions.
 
-## Demo Flow
+Author
 
-Use `DEMO_FLOW.md` for the 5-7 minute talk track. The high-level flow is Dashboard, Risk explanation, Forecasting, AI Reorder, Suppliers, supplier delay simulation, Alerts, Pipeline, and Reports.
+Petrisha V
 
-## Screenshots
-
-Screenshots are not committed in this repository. For submission packaging, capture:
-
-- Dashboard morning report.
-- Forecasting demand view.
-- AI Reorder recommendation and PO modal.
-- Supplier scorecard/dependency view.
-- Alerts center after supplier delay simulation.
-- Pipeline stage history.
-- Reports executive summary.
-
-## Deployment Guide
-
-### Backend: Render
-
-- Root Directory: `server`
-- Environment: `Node`
-- Build Command: `npm install --include=dev && npm run build`
-- Start Command: `npm run start`
-- Health Check Path: `/api/health`
-- Production API base URL: `https://your-render-backend.onrender.com`
-
-Environment variables:
-
-- `PORT=10000`
-- `NODE_ENV=production`
-- `CLIENT_ORIGIN=https://your-vercel-url.vercel.app`
-- `DATA_MODE=json`
-- `ENABLE_GEMINI=false`
-- `ENABLE_GPU_SIMULATION=true`
-
-Notes:
-
-- The backend listens on `process.env.PORT || 5050`.
-- In production, the backend binds to `0.0.0.0` unless `HOST` is explicitly set.
-- CORS allows local Vite origins and `CLIENT_ORIGIN`. Do not leave `CLIENT_ORIGIN` empty for a public frontend deployment.
-- The server build copies JSON seed data from `server/src/data` to `server/dist/data`, so Render can start from compiled output without missing data files.
-
-### Frontend: Vercel
-
-- Root Directory: `client`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-
-Environment variables:
-
-- `VITE_API_URL=https://your-render-backend.onrender.com`
-
-Notes:
-
-- The client API layer uses `import.meta.env.VITE_API_URL`.
-- Local fallback is `http://127.0.0.1:5050`.
-- The client build compiles the shared package first, so Vercel can build from the `client` directory in a clean checkout.
-
-### Optional Future Deployment
-
-- Cloud Run for backend APIs.
-- BigQuery for SKU, sales, supplier, and event tables.
-- GCS for marketplace export ingestion.
-- Gemini for guarded recommendation generation.
-- GKE GPU pipeline for RAPIDS-style batch scoring.
-
-## Future Scope
-
-- Real marketplace connectors.
-- Persistent database with organization workspaces.
-- Auth, roles, and audit trail.
-- Gemini API integration with grounded prompts.
-- BigQuery warehouse and scheduled transforms.
-- Supplier email, WhatsApp, and ERP purchase order integrations.
-- Production observability and alert notification channels.
-
-## Known Limitations
-
-- Current data is local JSON seed data, not live marketplace data.
-- GPU performance is simulated for hackathon storytelling.
-- Gemini is not connected yet.
-- No authentication or multi-tenant organization model yet.
+Project built for Gen AI Academy APAC Edition.
