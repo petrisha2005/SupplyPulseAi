@@ -1,0 +1,128 @@
+[
+  {
+    "supplierId": "SUP-BLR",
+    "name": "Bengaluru Naturals",
+    "city": "Bengaluru",
+    "avgLeadDays": 4,
+    "reliabilityScore": 92,
+    "onTimeDeliveryPct": 94,
+    "costRating": 3,
+    "lastDelayDays": 0,
+    "productsSupplied": [
+      "Beauty",
+      "Food",
+      "Personal Care"
+    ],
+    "minOrderQuantity": 120
+  },
+  {
+    "supplierId": "SUP-JAI",
+    "name": "Jaipur Loom Co.",
+    "city": "Jaipur",
+    "avgLeadDays": 5,
+    "reliabilityScore": 90,
+    "onTimeDeliveryPct": 91,
+    "costRating": 4,
+    "lastDelayDays": 1,
+    "productsSupplied": [
+      "Ethnic Wear",
+      "Home Decor"
+    ],
+    "minOrderQuantity": 180
+  },
+  {
+    "supplierId": "SUP-SUR",
+    "name": "Surat Textile Works",
+    "city": "Surat",
+    "avgLeadDays": 7,
+    "reliabilityScore": 84,
+    "onTimeDeliveryPct": 87,
+    "costRating": 5,
+    "lastDelayDays": 2,
+    "productsSupplied": [
+      "Ethnic Wear",
+      "Apparel",
+      "Accessories"
+    ],
+    "minOrderQuantity": 250
+  },
+  {
+    "supplierId": "SUP-MUM",
+    "name": "Mumbai QuickPack",
+    "city": "Mumbai",
+    "avgLeadDays": 3,
+    "reliabilityScore": 81,
+    "onTimeDeliveryPct": 82,
+    "costRating": 2,
+    "lastDelayDays": 3,
+    "productsSupplied": [
+      "Mobile Accessories",
+      "Accessories",
+      "Kitchenware"
+    ],
+    "minOrderQuantity": 150
+  },
+  {
+    "supplierId": "SUP-DEL",
+    "name": "Delhi Craft Hub",
+    "city": "Delhi",
+    "avgLeadDays": 6,
+    "reliabilityScore": 86,
+    "onTimeDeliveryPct": 88,
+    "costRating": 3,
+    "lastDelayDays": 1,
+    "productsSupplied": [
+      "Home Decor",
+      "Accessories",
+      "Kitchenware"
+    ],
+    "minOrderQuantity": 160
+  },
+  {
+    "supplierId": "SUP-COI",
+    "name": "Coimbatore Apparel Mills",
+    "city": "Coimbatore",
+    "avgLeadDays": 5,
+    "reliabilityScore": 89,
+    "onTimeDeliveryPct": 90,
+    "costRating": 4,
+    "lastDelayDays": 0,
+    "productsSupplied": [
+      "Apparel",
+      "Ethnic Wear"
+    ],
+    "minOrderQuantity": 200
+  },
+  {
+    "supplierId": "SUP-AHM",
+    "name": "Ahmedabad Daily Goods",
+    "city": "Ahmedabad",
+    "avgLeadDays": 4,
+    "reliabilityScore": 83,
+    "onTimeDeliveryPct": 85,
+    "costRating": 2,
+    "lastDelayDays": 2,
+    "productsSupplied": [
+      "Personal Care",
+      "Kitchenware",
+      "Food"
+    ],
+    "minOrderQuantity": 140
+  },
+  {
+    "supplierId": "SUP-HYD",
+    "name": "Hyderabad Home Studio",
+    "city": "Hyderabad",
+    "avgLeadDays": 6,
+    "reliabilityScore": 88,
+    "onTimeDeliveryPct": 89,
+    "costRating": 3,
+    "lastDelayDays": 1,
+    "productsSupplied": [
+      "Home Decor",
+      "Beauty",
+      "Mobile Accessories"
+    ],
+    "minOrderQuantity": 130
+  }
+]

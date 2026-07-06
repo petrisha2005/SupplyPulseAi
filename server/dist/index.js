@@ -13,9 +13,24 @@ import { simulateRouter } from "./routes/simulate.js";
 import { suppliersRouter } from "./routes/suppliers.js";
 const app = express();
 const port = Number(process.env.PORT ?? 5050);
-const host = process.env.HOST ?? "127.0.0.1";
+const host = process.env.HOST ?? (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
 const clientOrigin = process.env.CLIENT_ORIGIN;
-app.use(cors({ origin: clientOrigin ? clientOrigin.split(",").map((origin) => origin.trim()) : true }));
+const allowedOrigins = new Set([
+    "http://127.0.0.1:5174",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://localhost:5173",
+    ...(clientOrigin ? clientOrigin.split(",").map((origin) => origin.trim()).filter(Boolean) : [])
+]);
+app.use(cors({
+    origin(origin, callback) {
+        if (!origin || allowedOrigins.has(origin)) {
+            callback(null, true);
+            return;
+        }
+        callback(new Error(`CORS origin not allowed: ${origin}`));
+    }
+}));
 app.use(express.json());
 if (process.env.NODE_ENV !== "production") {
     app.use((req, res, next) => {

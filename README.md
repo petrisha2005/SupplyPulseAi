@@ -67,7 +67,6 @@ Risk, forecast, recommendation, supplier, alert, pipeline, and report engines
 - Pipeline
 - Alerts
 - Reports
-- Demo Controls
 
 ## Backend APIs
 
@@ -281,27 +280,45 @@ Screenshots are not committed in this repository. For submission packaging, capt
 
 ## Deployment Guide
 
-### Frontend: Vercel
-
-- Root directory: `client`.
-- Build command: `npm run build`.
-- Output directory: `dist`.
-- Environment variable: `VITE_API_URL=https://your-render-backend.onrender.com`.
-
 ### Backend: Render
 
-- Root directory: `server`.
-- Build command: `npm install && npm run build`.
-- Start command: `npm run start`.
-- Health check endpoint: `/api/health`.
-- Required env variables:
-  - `PORT`
-  - `HOST=0.0.0.0`
-  - `NODE_ENV=production`
-  - `CLIENT_ORIGIN=https://your-vercel-app.vercel.app`
-  - `DATA_MODE=json`
-  - `ENABLE_GEMINI=false`
-  - `ENABLE_GPU_SIMULATION=true`
+- Root Directory: `server`
+- Build Command: `npm install && npm run build`
+- Start Command: `npm run start`
+- Health Check Path: `/api/health`
+- Production API base URL: `https://your-render-backend.onrender.com`
+
+Environment variables:
+
+- `PORT=10000`
+- `NODE_ENV=production`
+- `CLIENT_ORIGIN=https://your-vercel-url.vercel.app`
+- `DATA_MODE=json`
+- `ENABLE_GEMINI=false`
+- `ENABLE_GPU_SIMULATION=true`
+
+Notes:
+
+- The backend listens on `process.env.PORT || 5050`.
+- In production, the backend binds to `0.0.0.0` unless `HOST` is explicitly set.
+- CORS allows local Vite origins and `CLIENT_ORIGIN`. Do not leave `CLIENT_ORIGIN` empty for a public frontend deployment.
+- The server build copies JSON seed data from `server/src/data` to `server/dist/data`, so Render can start from compiled output without missing data files.
+
+### Frontend: Vercel
+
+- Root Directory: `client`
+- Build Command: `npm run build`
+- Output Directory: `dist`
+
+Environment variables:
+
+- `VITE_API_URL=https://your-render-backend.onrender.com`
+
+Notes:
+
+- The client API layer uses `import.meta.env.VITE_API_URL`.
+- Local fallback is `http://127.0.0.1:5050`.
+- The client build compiles the shared package first, so Vercel can build from the `client` directory in a clean checkout.
 
 ### Optional Future Deployment
 
