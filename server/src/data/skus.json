@@ -1,0 +1,3066 @@
+[
+  {
+    "skuId": "SKU-COTT-1001",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "Aarika",
+    "sellingPrice": 1199,
+    "costPrice": 540,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 13,
+    "committedStock": 5,
+    "reorderPoint": 70,
+    "safetyStock": 40,
+    "channelStock": {
+      "Amazon": 7,
+      "Shopify": 2,
+      "Meesho": 3,
+      "Flipkart": 2,
+      "ERP": 13
+    },
+    "status": "watch"
+  },
+  {
+    "skuId": "SKU-SARE-1002",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "Nira Roots",
+    "sellingPrice": 2234,
+    "costPrice": 998,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 22,
+    "committedStock": 7,
+    "reorderPoint": 91,
+    "safetyStock": 52,
+    "channelStock": {
+      "Amazon": 4,
+      "Shopify": 10,
+      "Meesho": 4,
+      "Flipkart": 3,
+      "ERP": 22
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1003",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1569,
+    "costPrice": 646,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 67,
+    "committedStock": 11,
+    "reorderPoint": 112,
+    "safetyStock": 64,
+    "channelStock": {
+      "Amazon": 12,
+      "Shopify": 12,
+      "Meesho": 33,
+      "Flipkart": 10,
+      "ERP": 67
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1004",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "MittiMade",
+    "sellingPrice": 1004,
+    "costPrice": 374,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 87,
+    "committedStock": 15,
+    "reorderPoint": 133,
+    "safetyStock": 76,
+    "channelStock": {
+      "Amazon": 48,
+      "Shopify": 17,
+      "Meesho": 12,
+      "Flipkart": 10,
+      "ERP": 87
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1005",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "GlowKart",
+    "sellingPrice": 489,
+    "costPrice": 95,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 110,
+    "committedStock": 20,
+    "reorderPoint": 154,
+    "safetyStock": 88,
+    "channelStock": {
+      "Amazon": 25,
+      "Shopify": 23,
+      "Meesho": 13,
+      "Flipkart": 50,
+      "ERP": 110
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1006",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 799,
+    "costPrice": 278,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 275,
+    "committedStock": 11,
+    "reorderPoint": 175,
+    "safetyStock": 100,
+    "channelStock": {
+      "Amazon": 52,
+      "Shopify": 42,
+      "Meesho": 138,
+      "Flipkart": 44,
+      "ERP": 275
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1007",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "Aarika",
+    "sellingPrice": 284,
+    "costPrice": 118,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 328,
+    "committedStock": 16,
+    "reorderPoint": 196,
+    "safetyStock": 112,
+    "channelStock": {
+      "Amazon": 75,
+      "Shopify": 164,
+      "Meesho": 31,
+      "Flipkart": 58,
+      "ERP": 328
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PROT-1008",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "Nira Roots",
+    "sellingPrice": 249,
+    "costPrice": 112,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 384,
+    "committedStock": 21,
+    "reorderPoint": 217,
+    "safetyStock": 124,
+    "channelStock": {
+      "Amazon": 91,
+      "Shopify": 78,
+      "Meesho": 157,
+      "Flipkart": 57,
+      "ERP": 384
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COPP-1009",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1104,
+    "costPrice": 410,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 445,
+    "committedStock": 28,
+    "reorderPoint": 238,
+    "safetyStock": 136,
+    "channelStock": {
+      "Amazon": 265,
+      "Shopify": 43,
+      "Meesho": 49,
+      "Flipkart": 88,
+      "ERP": 445
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1010",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "MittiMade",
+    "sellingPrice": 289,
+    "costPrice": 60,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 851,
+    "committedStock": 34,
+    "reorderPoint": 259,
+    "safetyStock": 148,
+    "channelStock": {
+      "Amazon": 170,
+      "Shopify": 462,
+      "Meesho": 85,
+      "Flipkart": 134,
+      "ERP": 851
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1011",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 599,
+    "costPrice": 246,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 960,
+    "committedStock": 18,
+    "reorderPoint": 280,
+    "safetyStock": 160,
+    "channelStock": {
+      "Amazon": 180,
+      "Shopify": 187,
+      "Meesho": 440,
+      "Flipkart": 153,
+      "ERP": 960
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1012",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 434,
+    "costPrice": 146,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 1075,
+    "committedStock": 25,
+    "reorderPoint": 301,
+    "safetyStock": 172,
+    "channelStock": {
+      "Amazon": 588,
+      "Shopify": 138,
+      "Meesho": 116,
+      "Flipkart": 232,
+      "ERP": 1075
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1013",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "Aarika",
+    "sellingPrice": 1969,
+    "costPrice": 760,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 13,
+    "committedStock": 7,
+    "reorderPoint": 70,
+    "safetyStock": 40,
+    "channelStock": {
+      "Amazon": 3,
+      "Shopify": 2,
+      "Meesho": 3,
+      "Flipkart": 6,
+      "ERP": 13
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1014",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 1404,
+    "costPrice": 538,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 22,
+    "committedStock": 11,
+    "reorderPoint": 91,
+    "safetyStock": 52,
+    "channelStock": {
+      "Amazon": 5,
+      "Shopify": 4,
+      "Meesho": 10,
+      "Flipkart": 3,
+      "ERP": 22
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1015",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1539,
+    "costPrice": 656,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 67,
+    "committedStock": 15,
+    "reorderPoint": 112,
+    "safetyStock": 64,
+    "channelStock": {
+      "Amazon": 34,
+      "Shopify": 10,
+      "Meesho": 13,
+      "Flipkart": 10,
+      "ERP": 67
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COTT-1016",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "MittiMade",
+    "sellingPrice": 1199,
+    "costPrice": 594,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 87,
+    "committedStock": 9,
+    "reorderPoint": 133,
+    "safetyStock": 76,
+    "channelStock": {
+      "Amazon": 16,
+      "Shopify": 13,
+      "Meesho": 45,
+      "Flipkart": 13,
+      "ERP": 87
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-SARE-1017",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "GlowKart",
+    "sellingPrice": 2234,
+    "costPrice": 980,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 110,
+    "committedStock": 13,
+    "reorderPoint": 154,
+    "safetyStock": 88,
+    "channelStock": {
+      "Amazon": 54,
+      "Shopify": 17,
+      "Meesho": 22,
+      "Flipkart": 16,
+      "ERP": 110
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1018",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1569,
+    "costPrice": 628,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 275,
+    "committedStock": 17,
+    "reorderPoint": 175,
+    "safetyStock": 100,
+    "channelStock": {
+      "Amazon": 51,
+      "Shopify": 133,
+      "Meesho": 51,
+      "Flipkart": 41,
+      "ERP": 275
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1019",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "Aarika",
+    "sellingPrice": 1004,
+    "costPrice": 356,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 328,
+    "committedStock": 23,
+    "reorderPoint": 196,
+    "safetyStock": 112,
+    "channelStock": {
+      "Amazon": 81,
+      "Shopify": 63,
+      "Meesho": 146,
+      "Flipkart": 38,
+      "ERP": 328
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1020",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "Nira Roots",
+    "sellingPrice": 489,
+    "costPrice": 149,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 384,
+    "committedStock": 29,
+    "reorderPoint": 217,
+    "safetyStock": 124,
+    "channelStock": {
+      "Amazon": 211,
+      "Shopify": 80,
+      "Meesho": 44,
+      "Flipkart": 49,
+      "ERP": 384
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1021",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 799,
+    "costPrice": 260,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 472,
+    "committedStock": 16,
+    "reorderPoint": 252,
+    "safetyStock": 144,
+    "channelStock": {
+      "Amazon": 89,
+      "Shopify": 72,
+      "Meesho": 89,
+      "Flipkart": 223,
+      "ERP": 472
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1022",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "MittiMade",
+    "sellingPrice": 284,
+    "costPrice": 100,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 897,
+    "committedStock": 22,
+    "reorderPoint": 273,
+    "safetyStock": 156,
+    "channelStock": {
+      "Amazon": 206,
+      "Shopify": 176,
+      "Meesho": 358,
+      "Flipkart": 158,
+      "ERP": 897
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PROT-1023",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "GlowKart",
+    "sellingPrice": 249,
+    "costPrice": 94,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 1008,
+    "committedStock": 29,
+    "reorderPoint": 294,
+    "safetyStock": 168,
+    "channelStock": {
+      "Amazon": 549,
+      "Shopify": 206,
+      "Meesho": 103,
+      "Flipkart": 151,
+      "ERP": 1008
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COPP-1024",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1104,
+    "costPrice": 464,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 1125,
+    "committedStock": 36,
+    "reorderPoint": 315,
+    "safetyStock": 180,
+    "channelStock": {
+      "Amazon": 324,
+      "Shopify": 108,
+      "Meesho": 123,
+      "Flipkart": 570,
+      "ERP": 1125
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1025",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "Aarika",
+    "sellingPrice": 289,
+    "costPrice": 42,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 16,
+    "committedStock": 11,
+    "reorderPoint": 84,
+    "safetyStock": 48,
+    "channelStock": {
+      "Amazon": 3,
+      "Shopify": 4,
+      "Meesho": 7,
+      "Flipkart": 3,
+      "ERP": 16
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1026",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 599,
+    "costPrice": 228,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 26,
+    "committedStock": 7,
+    "reorderPoint": 105,
+    "safetyStock": 60,
+    "channelStock": {
+      "Amazon": 5,
+      "Shopify": 13,
+      "Meesho": 4,
+      "Flipkart": 4,
+      "ERP": 26
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1027",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 434,
+    "costPrice": 128,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-MUM",
+    "currentStock": 76,
+    "committedStock": 10,
+    "reorderPoint": 126,
+    "safetyStock": 72,
+    "channelStock": {
+      "Amazon": 18,
+      "Shopify": 10,
+      "Meesho": 31,
+      "Flipkart": 16,
+      "ERP": 76
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1028",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "MittiMade",
+    "sellingPrice": 1969,
+    "costPrice": 814,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 97,
+    "committedStock": 14,
+    "reorderPoint": 147,
+    "safetyStock": 84,
+    "channelStock": {
+      "Amazon": 49,
+      "Shopify": 16,
+      "Meesho": 19,
+      "Flipkart": 13,
+      "ERP": 97
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1029",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 1404,
+    "costPrice": 520,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 120,
+    "committedStock": 19,
+    "reorderPoint": 168,
+    "safetyStock": 96,
+    "channelStock": {
+      "Amazon": 25,
+      "Shopify": 58,
+      "Meesho": 20,
+      "Flipkart": 17,
+      "ERP": 120
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1030",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1539,
+    "costPrice": 638,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 297,
+    "committedStock": 25,
+    "reorderPoint": 189,
+    "safetyStock": 108,
+    "channelStock": {
+      "Amazon": 55,
+      "Shopify": 45,
+      "Meesho": 155,
+      "Flipkart": 42,
+      "ERP": 297
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COTT-1031",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "Aarika",
+    "sellingPrice": 1199,
+    "costPrice": 576,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 351,
+    "committedStock": 14,
+    "reorderPoint": 210,
+    "safetyStock": 120,
+    "channelStock": {
+      "Amazon": 176,
+      "Shopify": 54,
+      "Meesho": 71,
+      "Flipkart": 51,
+      "ERP": 351
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-SARE-1032",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "Nira Roots",
+    "sellingPrice": 2234,
+    "costPrice": 1034,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 409,
+    "committedStock": 19,
+    "reorderPoint": 231,
+    "safetyStock": 132,
+    "channelStock": {
+      "Amazon": 77,
+      "Shopify": 64,
+      "Meesho": 83,
+      "Flipkart": 185,
+      "ERP": 409
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1033",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1569,
+    "costPrice": 610,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 472,
+    "committedStock": 25,
+    "reorderPoint": 252,
+    "safetyStock": 144,
+    "channelStock": {
+      "Amazon": 87,
+      "Shopify": 83,
+      "Meesho": 231,
+      "Flipkart": 71,
+      "ERP": 472
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1034",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "MittiMade",
+    "sellingPrice": 1004,
+    "costPrice": 338,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 897,
+    "committedStock": 32,
+    "reorderPoint": 273,
+    "safetyStock": 156,
+    "channelStock": {
+      "Amazon": 221,
+      "Shopify": 449,
+      "Meesho": 123,
+      "Flipkart": 104,
+      "ERP": 897
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1035",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "GlowKart",
+    "sellingPrice": 489,
+    "costPrice": 131,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 1008,
+    "committedStock": 39,
+    "reorderPoint": 294,
+    "safetyStock": 168,
+    "channelStock": {
+      "Amazon": 230,
+      "Shopify": 209,
+      "Meesho": 439,
+      "Flipkart": 130,
+      "ERP": 1008
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1036",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 799,
+    "costPrice": 314,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 1125,
+    "committedStock": 20,
+    "reorderPoint": 315,
+    "safetyStock": 180,
+    "channelStock": {
+      "Amazon": 563,
+      "Shopify": 172,
+      "Meesho": 211,
+      "Flipkart": 180,
+      "ERP": 1125
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1037",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "Aarika",
+    "sellingPrice": 284,
+    "costPrice": 82,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 16,
+    "committedStock": 7,
+    "reorderPoint": 84,
+    "safetyStock": 48,
+    "channelStock": {
+      "Amazon": 4,
+      "Shopify": 8,
+      "Meesho": 2,
+      "Flipkart": 3,
+      "ERP": 16
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PROT-1038",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "Nira Roots",
+    "sellingPrice": 249,
+    "costPrice": 76,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 26,
+    "committedStock": 10,
+    "reorderPoint": 105,
+    "safetyStock": 60,
+    "channelStock": {
+      "Amazon": 6,
+      "Shopify": 5,
+      "Meesho": 11,
+      "Flipkart": 4,
+      "ERP": 26
+    },
+    "status": "watch"
+  },
+  {
+    "skuId": "SKU-COPP-1039",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1104,
+    "costPrice": 446,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 76,
+    "committedStock": 15,
+    "reorderPoint": 126,
+    "safetyStock": 72,
+    "channelStock": {
+      "Amazon": 45,
+      "Shopify": 7,
+      "Meesho": 8,
+      "Flipkart": 15,
+      "ERP": 76
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1040",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "MittiMade",
+    "sellingPrice": 289,
+    "costPrice": 96,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 97,
+    "committedStock": 20,
+    "reorderPoint": 147,
+    "safetyStock": 84,
+    "channelStock": {
+      "Amazon": 19,
+      "Shopify": 21,
+      "Meesho": 10,
+      "Flipkart": 46,
+      "ERP": 97
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1041",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 599,
+    "costPrice": 210,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 130,
+    "committedStock": 12,
+    "reorderPoint": 182,
+    "safetyStock": 104,
+    "channelStock": {
+      "Amazon": 24,
+      "Shopify": 25,
+      "Meesho": 60,
+      "Flipkart": 21,
+      "ERP": 130
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1042",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 434,
+    "costPrice": 110,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 319,
+    "committedStock": 17,
+    "reorderPoint": 203,
+    "safetyStock": 116,
+    "channelStock": {
+      "Amazon": 175,
+      "Shopify": 41,
+      "Meesho": 34,
+      "Flipkart": 69,
+      "ERP": 319
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1043",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "Aarika",
+    "sellingPrice": 1969,
+    "costPrice": 796,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 374,
+    "committedStock": 22,
+    "reorderPoint": 224,
+    "safetyStock": 128,
+    "channelStock": {
+      "Amazon": 74,
+      "Shopify": 61,
+      "Meesho": 188,
+      "Flipkart": 51,
+      "ERP": 374
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1044",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 1404,
+    "costPrice": 574,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 434,
+    "committedStock": 28,
+    "reorderPoint": 245,
+    "safetyStock": 140,
+    "channelStock": {
+      "Amazon": 223,
+      "Shopify": 77,
+      "Meesho": 71,
+      "Flipkart": 62,
+      "ERP": 434
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1045",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1539,
+    "costPrice": 620,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 498,
+    "committedStock": 35,
+    "reorderPoint": 266,
+    "safetyStock": 152,
+    "channelStock": {
+      "Amazon": 92,
+      "Shopify": 235,
+      "Meesho": 100,
+      "Flipkart": 71,
+      "ERP": 498
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COTT-1046",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "MittiMade",
+    "sellingPrice": 1199,
+    "costPrice": 558,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 943,
+    "committedStock": 18,
+    "reorderPoint": 287,
+    "safetyStock": 164,
+    "channelStock": {
+      "Amazon": 177,
+      "Shopify": 144,
+      "Meesho": 485,
+      "Flipkart": 138,
+      "ERP": 943
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-SARE-1047",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "GlowKart",
+    "sellingPrice": 2234,
+    "costPrice": 1016,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 1056,
+    "committedStock": 25,
+    "reorderPoint": 308,
+    "safetyStock": 176,
+    "channelStock": {
+      "Amazon": 521,
+      "Shopify": 164,
+      "Meesho": 214,
+      "Flipkart": 157,
+      "ERP": 1056
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1048",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1569,
+    "costPrice": 664,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 1175,
+    "committedStock": 32,
+    "reorderPoint": 329,
+    "safetyStock": 188,
+    "channelStock": {
+      "Amazon": 216,
+      "Shopify": 208,
+      "Meesho": 216,
+      "Flipkart": 536,
+      "ERP": 1175
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1049",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "Aarika",
+    "sellingPrice": 1004,
+    "costPrice": 320,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 18,
+    "committedStock": 11,
+    "reorderPoint": 98,
+    "safetyStock": 56,
+    "channelStock": {
+      "Amazon": 4,
+      "Shopify": 3,
+      "Meesho": 8,
+      "Flipkart": 2,
+      "ERP": 18
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1050",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "Nira Roots",
+    "sellingPrice": 489,
+    "costPrice": 113,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 29,
+    "committedStock": 16,
+    "reorderPoint": 119,
+    "safetyStock": 68,
+    "channelStock": {
+      "Amazon": 16,
+      "Shopify": 6,
+      "Meesho": 3,
+      "Flipkart": 4,
+      "ERP": 29
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1051",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 799,
+    "costPrice": 296,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 84,
+    "committedStock": 9,
+    "reorderPoint": 140,
+    "safetyStock": 80,
+    "channelStock": {
+      "Amazon": 16,
+      "Shopify": 13,
+      "Meesho": 16,
+      "Flipkart": 40,
+      "ERP": 84
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1052",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "MittiMade",
+    "sellingPrice": 284,
+    "costPrice": 136,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 106,
+    "committedStock": 13,
+    "reorderPoint": 161,
+    "safetyStock": 92,
+    "channelStock": {
+      "Amazon": 24,
+      "Shopify": 21,
+      "Meesho": 42,
+      "Flipkart": 19,
+      "ERP": 106
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PROT-1053",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "GlowKart",
+    "sellingPrice": 249,
+    "costPrice": 58,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 130,
+    "committedStock": 18,
+    "reorderPoint": 182,
+    "safetyStock": 104,
+    "channelStock": {
+      "Amazon": 31,
+      "Shopify": 66,
+      "Meesho": 13,
+      "Flipkart": 19,
+      "ERP": 130
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COPP-1054",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1104,
+    "costPrice": 428,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 319,
+    "committedStock": 23,
+    "reorderPoint": 203,
+    "safetyStock": 116,
+    "channelStock": {
+      "Amazon": 92,
+      "Shopify": 31,
+      "Meesho": 133,
+      "Flipkart": 63,
+      "ERP": 319
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1055",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "Aarika",
+    "sellingPrice": 289,
+    "costPrice": 78,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 374,
+    "committedStock": 30,
+    "reorderPoint": 224,
+    "safetyStock": 128,
+    "channelStock": {
+      "Amazon": 195,
+      "Shopify": 83,
+      "Meesho": 37,
+      "Flipkart": 59,
+      "ERP": 374
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1056",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 599,
+    "costPrice": 264,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 434,
+    "committedStock": 16,
+    "reorderPoint": 245,
+    "safetyStock": 140,
+    "channelStock": {
+      "Amazon": 81,
+      "Shopify": 220,
+      "Meesho": 63,
+      "Flipkart": 69,
+      "ERP": 434
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1057",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 434,
+    "costPrice": 92,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-MUM",
+    "currentStock": 498,
+    "committedStock": 22,
+    "reorderPoint": 266,
+    "safetyStock": 152,
+    "channelStock": {
+      "Amazon": 121,
+      "Shopify": 64,
+      "Meesho": 205,
+      "Flipkart": 108,
+      "ERP": 498
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1058",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "MittiMade",
+    "sellingPrice": 1969,
+    "costPrice": 778,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 943,
+    "committedStock": 28,
+    "reorderPoint": 287,
+    "safetyStock": 164,
+    "channelStock": {
+      "Amazon": 475,
+      "Shopify": 154,
+      "Meesho": 186,
+      "Flipkart": 128,
+      "ERP": 943
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1059",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 1404,
+    "costPrice": 556,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 1056,
+    "committedStock": 36,
+    "reorderPoint": 308,
+    "safetyStock": 176,
+    "channelStock": {
+      "Amazon": 217,
+      "Shopify": 188,
+      "Meesho": 174,
+      "Flipkart": 477,
+      "ERP": 1056
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1060",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1539,
+    "costPrice": 674,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 1175,
+    "committedStock": 44,
+    "reorderPoint": 329,
+    "safetyStock": 188,
+    "channelStock": {
+      "Amazon": 218,
+      "Shopify": 176,
+      "Meesho": 613,
+      "Flipkart": 168,
+      "ERP": 1175
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COTT-1061",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "Aarika",
+    "sellingPrice": 1199,
+    "costPrice": 540,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 21,
+    "committedStock": 7,
+    "reorderPoint": 112,
+    "safetyStock": 64,
+    "channelStock": {
+      "Amazon": 4,
+      "Shopify": 10,
+      "Meesho": 4,
+      "Flipkart": 3,
+      "ERP": 21
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-SARE-1062",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "Nira Roots",
+    "sellingPrice": 2234,
+    "costPrice": 998,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 32,
+    "committedStock": 11,
+    "reorderPoint": 133,
+    "safetyStock": 76,
+    "channelStock": {
+      "Amazon": 6,
+      "Shopify": 5,
+      "Meesho": 16,
+      "Flipkart": 5,
+      "ERP": 32
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1063",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1569,
+    "costPrice": 646,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 92,
+    "committedStock": 15,
+    "reorderPoint": 154,
+    "safetyStock": 88,
+    "channelStock": {
+      "Amazon": 45,
+      "Shopify": 16,
+      "Meesho": 17,
+      "Flipkart": 14,
+      "ERP": 92
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1064",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "MittiMade",
+    "sellingPrice": 1004,
+    "costPrice": 374,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 115,
+    "committedStock": 20,
+    "reorderPoint": 175,
+    "safetyStock": 100,
+    "channelStock": {
+      "Amazon": 28,
+      "Shopify": 58,
+      "Meesho": 16,
+      "Flipkart": 13,
+      "ERP": 115
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1065",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "GlowKart",
+    "sellingPrice": 489,
+    "costPrice": 95,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 140,
+    "committedStock": 26,
+    "reorderPoint": 196,
+    "safetyStock": 112,
+    "channelStock": {
+      "Amazon": 32,
+      "Shopify": 29,
+      "Meesho": 61,
+      "Flipkart": 18,
+      "ERP": 140
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1066",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 799,
+    "costPrice": 278,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 341,
+    "committedStock": 14,
+    "reorderPoint": 217,
+    "safetyStock": 124,
+    "channelStock": {
+      "Amazon": 171,
+      "Shopify": 52,
+      "Meesho": 64,
+      "Flipkart": 54,
+      "ERP": 341
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1067",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "Aarika",
+    "sellingPrice": 284,
+    "costPrice": 118,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 398,
+    "committedStock": 19,
+    "reorderPoint": 238,
+    "safetyStock": 136,
+    "channelStock": {
+      "Amazon": 91,
+      "Shopify": 78,
+      "Meesho": 38,
+      "Flipkart": 191,
+      "ERP": 398
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PROT-1068",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "Nira Roots",
+    "sellingPrice": 249,
+    "costPrice": 112,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 459,
+    "committedStock": 26,
+    "reorderPoint": 259,
+    "safetyStock": 148,
+    "channelStock": {
+      "Amazon": 109,
+      "Shopify": 94,
+      "Meesho": 187,
+      "Flipkart": 69,
+      "ERP": 459
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COPP-1069",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1104,
+    "costPrice": 410,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 524,
+    "committedStock": 32,
+    "reorderPoint": 280,
+    "safetyStock": 160,
+    "channelStock": {
+      "Amazon": 312,
+      "Shopify": 50,
+      "Meesho": 57,
+      "Flipkart": 104,
+      "ERP": 524
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1070",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "MittiMade",
+    "sellingPrice": 289,
+    "costPrice": 60,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 989,
+    "committedStock": 40,
+    "reorderPoint": 301,
+    "safetyStock": 172,
+    "channelStock": {
+      "Amazon": 198,
+      "Shopify": 219,
+      "Meesho": 99,
+      "Flipkart": 473,
+      "ERP": 989
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1071",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 599,
+    "costPrice": 246,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 1104,
+    "committedStock": 21,
+    "reorderPoint": 322,
+    "safetyStock": 184,
+    "channelStock": {
+      "Amazon": 552,
+      "Shopify": 215,
+      "Meesho": 161,
+      "Flipkart": 176,
+      "ERP": 1104
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1072",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 434,
+    "costPrice": 146,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 1225,
+    "committedStock": 28,
+    "reorderPoint": 343,
+    "safetyStock": 196,
+    "channelStock": {
+      "Amazon": 298,
+      "Shopify": 530,
+      "Meesho": 132,
+      "Flipkart": 265,
+      "ERP": 1225
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1073",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "Aarika",
+    "sellingPrice": 1969,
+    "costPrice": 760,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 21,
+    "committedStock": 11,
+    "reorderPoint": 112,
+    "safetyStock": 64,
+    "channelStock": {
+      "Amazon": 4,
+      "Shopify": 3,
+      "Meesho": 11,
+      "Flipkart": 3,
+      "ERP": 21
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1074",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 1404,
+    "costPrice": 538,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 32,
+    "committedStock": 15,
+    "reorderPoint": 133,
+    "safetyStock": 76,
+    "channelStock": {
+      "Amazon": 16,
+      "Shopify": 6,
+      "Meesho": 5,
+      "Flipkart": 5,
+      "ERP": 32
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1075",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1539,
+    "costPrice": 656,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 92,
+    "committedStock": 20,
+    "reorderPoint": 154,
+    "safetyStock": 88,
+    "channelStock": {
+      "Amazon": 17,
+      "Shopify": 43,
+      "Meesho": 18,
+      "Flipkart": 13,
+      "ERP": 92
+    },
+    "status": "watch"
+  },
+  {
+    "skuId": "SKU-COTT-1076",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "MittiMade",
+    "sellingPrice": 1199,
+    "costPrice": 594,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 115,
+    "committedStock": 11,
+    "reorderPoint": 175,
+    "safetyStock": 100,
+    "channelStock": {
+      "Amazon": 22,
+      "Shopify": 18,
+      "Meesho": 59,
+      "Flipkart": 17,
+      "ERP": 115
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-SARE-1077",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "GlowKart",
+    "sellingPrice": 2234,
+    "costPrice": 980,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 140,
+    "committedStock": 16,
+    "reorderPoint": 196,
+    "safetyStock": 112,
+    "channelStock": {
+      "Amazon": 69,
+      "Shopify": 22,
+      "Meesho": 28,
+      "Flipkart": 21,
+      "ERP": 140
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1078",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1569,
+    "costPrice": 628,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 341,
+    "committedStock": 21,
+    "reorderPoint": 217,
+    "safetyStock": 124,
+    "channelStock": {
+      "Amazon": 63,
+      "Shopify": 60,
+      "Meesho": 63,
+      "Flipkart": 155,
+      "ERP": 341
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1079",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "Aarika",
+    "sellingPrice": 1004,
+    "costPrice": 356,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 398,
+    "committedStock": 28,
+    "reorderPoint": 238,
+    "safetyStock": 136,
+    "channelStock": {
+      "Amazon": 98,
+      "Shopify": 76,
+      "Meesho": 177,
+      "Flipkart": 46,
+      "ERP": 398
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1080",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "Nira Roots",
+    "sellingPrice": 489,
+    "costPrice": 149,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 459,
+    "committedStock": 34,
+    "reorderPoint": 259,
+    "safetyStock": 148,
+    "channelStock": {
+      "Amazon": 105,
+      "Shopify": 243,
+      "Meesho": 52,
+      "Flipkart": 59,
+      "ERP": 459
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1081",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 799,
+    "costPrice": 260,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 550,
+    "committedStock": 19,
+    "reorderPoint": 294,
+    "safetyStock": 168,
+    "channelStock": {
+      "Amazon": 103,
+      "Shopify": 84,
+      "Meesho": 275,
+      "Flipkart": 88,
+      "ERP": 550
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1082",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "MittiMade",
+    "sellingPrice": 284,
+    "costPrice": 100,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 1035,
+    "committedStock": 26,
+    "reorderPoint": 315,
+    "safetyStock": 180,
+    "channelStock": {
+      "Amazon": 552,
+      "Shopify": 203,
+      "Meesho": 98,
+      "Flipkart": 182,
+      "ERP": 1035
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PROT-1083",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "GlowKart",
+    "sellingPrice": 249,
+    "costPrice": 94,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 1152,
+    "committedStock": 33,
+    "reorderPoint": 336,
+    "safetyStock": 192,
+    "channelStock": {
+      "Amazon": 274,
+      "Shopify": 588,
+      "Meesho": 118,
+      "Flipkart": 172,
+      "ERP": 1152
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COPP-1084",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1104,
+    "costPrice": 464,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 1275,
+    "committedStock": 41,
+    "reorderPoint": 357,
+    "safetyStock": 204,
+    "channelStock": {
+      "Amazon": 367,
+      "Shopify": 122,
+      "Meesho": 533,
+      "Flipkart": 253,
+      "ERP": 1275
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1085",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "Aarika",
+    "sellingPrice": 289,
+    "costPrice": 42,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 23,
+    "committedStock": 17,
+    "reorderPoint": 126,
+    "safetyStock": 72,
+    "channelStock": {
+      "Amazon": 12,
+      "Shopify": 5,
+      "Meesho": 2,
+      "Flipkart": 4,
+      "ERP": 23
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1086",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 599,
+    "costPrice": 228,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 36,
+    "committedStock": 9,
+    "reorderPoint": 147,
+    "safetyStock": 84,
+    "channelStock": {
+      "Amazon": 7,
+      "Shopify": 7,
+      "Meesho": 5,
+      "Flipkart": 17,
+      "ERP": 36
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1087",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 434,
+    "costPrice": 128,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-MUM",
+    "currentStock": 101,
+    "committedStock": 14,
+    "reorderPoint": 168,
+    "safetyStock": 96,
+    "channelStock": {
+      "Amazon": 25,
+      "Shopify": 13,
+      "Meesho": 42,
+      "Flipkart": 22,
+      "ERP": 101
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1088",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "MittiMade",
+    "sellingPrice": 1969,
+    "costPrice": 814,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 124,
+    "committedStock": 19,
+    "reorderPoint": 189,
+    "safetyStock": 108,
+    "channelStock": {
+      "Amazon": 24,
+      "Shopify": 58,
+      "Meesho": 24,
+      "Flipkart": 17,
+      "ERP": 124
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1089",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 1404,
+    "costPrice": 520,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 150,
+    "committedStock": 24,
+    "reorderPoint": 210,
+    "safetyStock": 120,
+    "channelStock": {
+      "Amazon": 31,
+      "Shopify": 27,
+      "Meesho": 71,
+      "Flipkart": 22,
+      "ERP": 150
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1090",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1539,
+    "costPrice": 638,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 363,
+    "committedStock": 31,
+    "reorderPoint": 231,
+    "safetyStock": 132,
+    "channelStock": {
+      "Amazon": 184,
+      "Shopify": 54,
+      "Meesho": 73,
+      "Flipkart": 52,
+      "ERP": 363
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COTT-1091",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "Aarika",
+    "sellingPrice": 1199,
+    "costPrice": 576,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 421,
+    "committedStock": 16,
+    "reorderPoint": 252,
+    "safetyStock": 144,
+    "channelStock": {
+      "Amazon": 79,
+      "Shopify": 196,
+      "Meesho": 85,
+      "Flipkart": 61,
+      "ERP": 421
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-SARE-1092",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "Nira Roots",
+    "sellingPrice": 2234,
+    "costPrice": 1034,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 484,
+    "committedStock": 22,
+    "reorderPoint": 273,
+    "safetyStock": 156,
+    "channelStock": {
+      "Amazon": 92,
+      "Shopify": 75,
+      "Meesho": 245,
+      "Flipkart": 72,
+      "ERP": 484
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1093",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1569,
+    "costPrice": 610,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 550,
+    "committedStock": 29,
+    "reorderPoint": 294,
+    "safetyStock": 168,
+    "channelStock": {
+      "Amazon": 269,
+      "Shopify": 97,
+      "Meesho": 101,
+      "Flipkart": 82,
+      "ERP": 550
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1094",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "MittiMade",
+    "sellingPrice": 1004,
+    "costPrice": 338,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 1035,
+    "committedStock": 36,
+    "reorderPoint": 315,
+    "safetyStock": 180,
+    "channelStock": {
+      "Amazon": 255,
+      "Shopify": 198,
+      "Meesho": 142,
+      "Flipkart": 440,
+      "ERP": 1035
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1095",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "GlowKart",
+    "sellingPrice": 489,
+    "costPrice": 131,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 1152,
+    "committedStock": 45,
+    "reorderPoint": 336,
+    "safetyStock": 192,
+    "channelStock": {
+      "Amazon": 263,
+      "Shopify": 239,
+      "Meesho": 502,
+      "Flipkart": 148,
+      "ERP": 1152
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1096",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 799,
+    "costPrice": 314,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 1275,
+    "committedStock": 23,
+    "reorderPoint": 357,
+    "safetyStock": 204,
+    "channelStock": {
+      "Amazon": 638,
+      "Shopify": 195,
+      "Meesho": 239,
+      "Flipkart": 204,
+      "ERP": 1275
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1097",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "Aarika",
+    "sellingPrice": 284,
+    "costPrice": 82,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 23,
+    "committedStock": 10,
+    "reorderPoint": 126,
+    "safetyStock": 72,
+    "channelStock": {
+      "Amazon": 5,
+      "Shopify": 5,
+      "Meesho": 2,
+      "Flipkart": 11,
+      "ERP": 23
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PROT-1098",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "Nira Roots",
+    "sellingPrice": 249,
+    "costPrice": 76,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 36,
+    "committedStock": 14,
+    "reorderPoint": 147,
+    "safetyStock": 84,
+    "channelStock": {
+      "Amazon": 20,
+      "Shopify": 7,
+      "Meesho": 4,
+      "Flipkart": 5,
+      "ERP": 36
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COPP-1099",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1104,
+    "costPrice": 446,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 101,
+    "committedStock": 19,
+    "reorderPoint": 168,
+    "safetyStock": 96,
+    "channelStock": {
+      "Amazon": 29,
+      "Shopify": 41,
+      "Meesho": 11,
+      "Flipkart": 20,
+      "ERP": 101
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1100",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "MittiMade",
+    "sellingPrice": 289,
+    "costPrice": 96,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 124,
+    "committedStock": 25,
+    "reorderPoint": 189,
+    "safetyStock": 108,
+    "channelStock": {
+      "Amazon": 25,
+      "Shopify": 27,
+      "Meesho": 52,
+      "Flipkart": 19,
+      "ERP": 124
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1101",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 599,
+    "costPrice": 210,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 160,
+    "committedStock": 14,
+    "reorderPoint": 224,
+    "safetyStock": 128,
+    "channelStock": {
+      "Amazon": 80,
+      "Shopify": 31,
+      "Meesho": 23,
+      "Flipkart": 26,
+      "ERP": 160
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1102",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 434,
+    "costPrice": 110,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 385,
+    "committedStock": 20,
+    "reorderPoint": 245,
+    "safetyStock": 140,
+    "channelStock": {
+      "Amazon": 94,
+      "Shopify": 166,
+      "Meesho": 42,
+      "Flipkart": 83,
+      "ERP": 385
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1103",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "Aarika",
+    "sellingPrice": 1969,
+    "costPrice": 796,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 445,
+    "committedStock": 26,
+    "reorderPoint": 266,
+    "safetyStock": 152,
+    "channelStock": {
+      "Amazon": 88,
+      "Shopify": 73,
+      "Meesho": 224,
+      "Flipkart": 61,
+      "ERP": 445
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1104",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 1404,
+    "costPrice": 574,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 508,
+    "committedStock": 33,
+    "reorderPoint": 287,
+    "safetyStock": 164,
+    "channelStock": {
+      "Amazon": 261,
+      "Shopify": 90,
+      "Meesho": 84,
+      "Flipkart": 73,
+      "ERP": 508
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1105",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "UrbanHaath",
+    "sellingPrice": 1539,
+    "costPrice": 620,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 576,
+    "committedStock": 41,
+    "reorderPoint": 308,
+    "safetyStock": 176,
+    "channelStock": {
+      "Amazon": 107,
+      "Shopify": 86,
+      "Meesho": 115,
+      "Flipkart": 267,
+      "ERP": 576
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COTT-1106",
+    "productName": "Cotton Kurti Premium Pack",
+    "category": "Ethnic Wear",
+    "brand": "MittiMade",
+    "sellingPrice": 1199,
+    "costPrice": 558,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-JAI",
+    "currentStock": 1081,
+    "committedStock": 21,
+    "reorderPoint": 329,
+    "safetyStock": 188,
+    "channelStock": {
+      "Amazon": 203,
+      "Shopify": 165,
+      "Meesho": 556,
+      "Flipkart": 158,
+      "ERP": 1081
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-SARE-1107",
+    "productName": "Saree Classic Pack",
+    "category": "Ethnic Wear",
+    "brand": "GlowKart",
+    "sellingPrice": 2234,
+    "costPrice": 1016,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 1200,
+    "committedStock": 29,
+    "reorderPoint": 350,
+    "safetyStock": 200,
+    "channelStock": {
+      "Amazon": 227,
+      "Shopify": 551,
+      "Meesho": 243,
+      "Flipkart": 178,
+      "ERP": 1200
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-LINE-1108",
+    "productName": "Linen Shirt Value Pack",
+    "category": "Apparel",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1569,
+    "costPrice": 664,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 1325,
+    "committedStock": 37,
+    "reorderPoint": 371,
+    "safetyStock": 212,
+    "channelStock": {
+      "Amazon": 243,
+      "Shopify": 234,
+      "Meesho": 649,
+      "Flipkart": 198,
+      "ERP": 1325
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-ROSE-1109",
+    "productName": "Rose Serum Premium Pack",
+    "category": "Beauty",
+    "brand": "Aarika",
+    "sellingPrice": 1004,
+    "costPrice": 320,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 26,
+    "committedStock": 16,
+    "reorderPoint": 140,
+    "safetyStock": 80,
+    "channelStock": {
+      "Amazon": 14,
+      "Shopify": 5,
+      "Meesho": 4,
+      "Flipkart": 3,
+      "ERP": 26
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KAJA-1110",
+    "productName": "Kajal Classic Pack",
+    "category": "Beauty",
+    "brand": "Nira Roots",
+    "sellingPrice": 489,
+    "costPrice": 113,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-HYD",
+    "currentStock": 39,
+    "committedStock": 21,
+    "reorderPoint": 161,
+    "safetyStock": 92,
+    "channelStock": {
+      "Amazon": 9,
+      "Shopify": 21,
+      "Meesho": 4,
+      "Flipkart": 5,
+      "ERP": 39
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-JEWE-1111",
+    "productName": "Jewellery Set Value Pack",
+    "category": "Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 799,
+    "costPrice": 296,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 109,
+    "committedStock": 12,
+    "reorderPoint": 182,
+    "safetyStock": 104,
+    "channelStock": {
+      "Amazon": 20,
+      "Shopify": 17,
+      "Meesho": 55,
+      "Flipkart": 17,
+      "ERP": 109
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-MILL-1112",
+    "productName": "Millet Snack Pack Premium Pack",
+    "category": "Food",
+    "brand": "MittiMade",
+    "sellingPrice": 284,
+    "costPrice": 136,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 133,
+    "committedStock": 17,
+    "reorderPoint": 203,
+    "safetyStock": 116,
+    "channelStock": {
+      "Amazon": 71,
+      "Shopify": 26,
+      "Meesho": 13,
+      "Flipkart": 23,
+      "ERP": 133
+    },
+    "status": "watch"
+  },
+  {
+    "skuId": "SKU-PROT-1113",
+    "productName": "Protein Bar Classic Pack",
+    "category": "Food",
+    "brand": "GlowKart",
+    "sellingPrice": 249,
+    "costPrice": 58,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 160,
+    "committedStock": 22,
+    "reorderPoint": 224,
+    "safetyStock": 128,
+    "channelStock": {
+      "Amazon": 38,
+      "Shopify": 33,
+      "Meesho": 16,
+      "Flipkart": 73,
+      "ERP": 160
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-COPP-1114",
+    "productName": "Copper Bottle Value Pack",
+    "category": "Kitchenware",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1104,
+    "costPrice": 428,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-DEL",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-AHM",
+    "currentStock": 385,
+    "committedStock": 28,
+    "reorderPoint": 245,
+    "safetyStock": 140,
+    "channelStock": {
+      "Amazon": 111,
+      "Shopify": 37,
+      "Meesho": 161,
+      "Flipkart": 76,
+      "ERP": 385
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-BAMB-1115",
+    "productName": "Bamboo Toothbrush Premium Pack",
+    "category": "Personal Care",
+    "brand": "Aarika",
+    "sellingPrice": 289,
+    "costPrice": 78,
+    "supplierIds": [
+      "SUP-BLR",
+      "SUP-AHM"
+    ],
+    "primarySupplierId": "SUP-BLR",
+    "currentStock": 445,
+    "committedStock": 35,
+    "reorderPoint": 266,
+    "safetyStock": 152,
+    "channelStock": {
+      "Amazon": 232,
+      "Shopify": 99,
+      "Meesho": 45,
+      "Flipkart": 70,
+      "ERP": 445
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1116",
+    "productName": "Handmade Candle Classic Pack",
+    "category": "Home Decor",
+    "brand": "Nira Roots",
+    "sellingPrice": 599,
+    "costPrice": 264,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 508,
+    "committedStock": 18,
+    "reorderPoint": 287,
+    "safetyStock": 164,
+    "channelStock": {
+      "Amazon": 95,
+      "Shopify": 99,
+      "Meesho": 233,
+      "Flipkart": 81,
+      "ERP": 508
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-PHON-1117",
+    "productName": "Phone Case Value Pack",
+    "category": "Mobile Accessories",
+    "brand": "UrbanHaath",
+    "sellingPrice": 434,
+    "costPrice": 92,
+    "supplierIds": [
+      "SUP-MUM",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-MUM",
+    "currentStock": 576,
+    "committedStock": 25,
+    "reorderPoint": 308,
+    "safetyStock": 176,
+    "channelStock": {
+      "Amazon": 315,
+      "Shopify": 74,
+      "Meesho": 62,
+      "Flipkart": 125,
+      "ERP": 576
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HAND-1118",
+    "productName": "Handbag Premium Pack",
+    "category": "Accessories",
+    "brand": "MittiMade",
+    "sellingPrice": 1969,
+    "costPrice": 778,
+    "supplierIds": [
+      "SUP-SUR",
+      "SUP-MUM",
+      "SUP-DEL"
+    ],
+    "primarySupplierId": "SUP-SUR",
+    "currentStock": 1081,
+    "committedStock": 32,
+    "reorderPoint": 329,
+    "safetyStock": 188,
+    "channelStock": {
+      "Amazon": 213,
+      "Shopify": 507,
+      "Meesho": 213,
+      "Flipkart": 147,
+      "ERP": 1081
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-HOME-1119",
+    "productName": "Home Decor Lamp Classic Pack",
+    "category": "Home Decor",
+    "brand": "GlowKart",
+    "sellingPrice": 1404,
+    "costPrice": 556,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-DEL",
+      "SUP-HYD"
+    ],
+    "primarySupplierId": "SUP-DEL",
+    "currentStock": 1200,
+    "committedStock": 41,
+    "reorderPoint": 350,
+    "safetyStock": 200,
+    "channelStock": {
+      "Amazon": 247,
+      "Shopify": 214,
+      "Meesho": 567,
+      "Flipkart": 173,
+      "ERP": 1200
+    },
+    "status": "active"
+  },
+  {
+    "skuId": "SKU-KIDS-1120",
+    "productName": "Kids Ethnic Wear Value Pack",
+    "category": "Ethnic Wear",
+    "brand": "Tyohaar Co.",
+    "sellingPrice": 1539,
+    "costPrice": 674,
+    "supplierIds": [
+      "SUP-JAI",
+      "SUP-SUR",
+      "SUP-COI"
+    ],
+    "primarySupplierId": "SUP-COI",
+    "currentStock": 1325,
+    "committedStock": 49,
+    "reorderPoint": 371,
+    "safetyStock": 212,
+    "channelStock": {
+      "Amazon": 672,
+      "Shopify": 199,
+      "Meesho": 265,
+      "Flipkart": 189,
+      "ERP": 1325
+    },
+    "status": "active"
+  }
+]
