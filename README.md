@@ -288,7 +288,7 @@ AI Reorder Recommendation
         ↓
 Dashboard + Alerts + Reports
 
-
+--
 **Main Pages**
 
 Landing Page
@@ -305,6 +305,7 @@ Alerts
 Reports
 API Overview
 
+--
 Example backend endpoints:
 
 GET /api/health
@@ -317,6 +318,8 @@ GET /api/suppliers
 GET /api/alerts
 GET /api/pipeline/status
 GET /api/reports/executive-summary
+
+--
 Local Setup
 1. Clone the repository
 git clone https://github.com/petrisha2005/SupplyPulseAi.git
@@ -400,6 +403,7 @@ npm --workspace client run typecheck
 npm --workspace client run build
 Demo Flow
 
+--
 Recommended demo flow:
 
 Open the landing page
@@ -419,6 +423,7 @@ This prototype uses realistic synthetic D2C inventory and sales data to demonstr
 
 The system is architected for future integration with real marketplace APIs, Google Cloud services, Gemini, and NVIDIA RAPIDS-based GPU acceleration.
 
+--
 Project Impact
 
 SupplyPulse AI helps D2C brands:
@@ -434,6 +439,7 @@ One-Line Summary
 
 SupplyPulse AI is a real-time inventory intelligence platform that helps D2C brands prevent stockouts by predicting SKU risk, forecasting demand, and recommending reorder actions.
 
+--
 Author
 
 Petrisha V
