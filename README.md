@@ -270,43 +270,56 @@ The reports page provides a business-ready summary including:
 
 ---
 
-## Project Architecture
+```md
+# 🏗️ Project Architecture
 
-```text
+```
+
 Marketplace Data
+
 Amazon / Shopify / Meesho / Flipkart
-        ↓
+↓
 Inventory & Sales Data Layer
-        ↓
+↓
 Risk Scoring Engine
-        ↓
+↓
 Demand Forecasting Engine
-        ↓
+↓
 Supplier Ranking Engine
-        ↓
+↓
 AI Reorder Recommendation
-        ↓
+↓
 Dashboard + Alerts + Reports
 
---
-**Main Pages**
+```
 
-Landing Page
-Dashboard
-Inventory
-Risk Scores
-Forecasting
-AI Reorder
-Suppliers
-Sale Calendar
-Acceleration
-Pipeline
-Alerts
-Reports
-API Overview
+---
 
---
-Example backend endpoints:
+# 🖥️ Main Pages
+
+The application consists of the following modules:
+
+| Page | Description |
+|------|-------------|
+| Landing Page | Introduction and overview of SupplyPulse AI |
+| Dashboard | Real-time inventory intelligence overview |
+| Inventory | SKU-level inventory monitoring |
+| Risk Scores | Product risk analysis and risk visualization |
+| Forecasting | Demand prediction and future inventory planning |
+| AI Reorder | Intelligent reorder recommendations |
+| Suppliers | Supplier ranking and performance insights |
+| Sale Calendar | Festival and sales event planning |
+| Acceleration | Growth and optimization insights |
+| Pipeline | Data pipeline monitoring |
+| Alerts | Inventory and business alerts |
+| Reports | Executive summaries and business reports |
+| API Overview | Backend API documentation |
+
+---
+
+# 🔌 Backend API Endpoints
+
+```
 
 GET /api/health
 GET /api/dashboard
@@ -319,129 +332,247 @@ GET /api/alerts
 GET /api/pipeline/status
 GET /api/reports/executive-summary
 
---
-Local Setup
-1. Clone the repository
+````
+
+---
+
+# ⚙️ Local Setup
+
+## 1. Clone Repository
+
+```bash
 git clone https://github.com/petrisha2005/SupplyPulseAi.git
+
 cd SupplyPulseAi
-2. Install dependencies
+````
+
+---
+
+## 2. Install Dependencies
+
+```bash
 npm install
-3. Run backend
+```
+
+---
+
+## 3. Run Backend
+
+```bash
 npm --workspace server run dev
+```
 
 Backend runs at:
 
+```
 http://127.0.0.1:5050
-4. Run frontend
+```
+
+---
+
+## 4. Run Frontend
+
+```bash
 npm --workspace client run dev
+```
 
 Frontend runs at:
 
+```
 http://127.0.0.1:5174
-Environment Variables
-Backend
+```
 
-Create .env inside the server folder:
+---
 
+# 🔐 Environment Variables
+
+## Backend
+
+Create `.env` inside the `server` folder:
+
+```env
 PORT=5050
 NODE_ENV=development
 DATA_MODE=json
 ENABLE_GEMINI=false
 ENABLE_GPU_SIMULATION=true
 CLIENT_ORIGIN=http://127.0.0.1:5174
-Frontend
+```
 
-Create .env inside the client folder:
+---
 
+## Frontend
+
+Create `.env` inside the `client` folder:
+
+```env
 VITE_API_URL=http://127.0.0.1:5050
-Deployment
-Backend Deployment on Render
+```
 
-Render settings:
+---
 
-Root Directory: server
-Environment: Node
-Build Command: npm install --include=dev && npm run build
-Start Command: npm run start
+# 🚀 Deployment
 
-Environment variables:
+## Backend Deployment (Render)
 
+### Render Configuration
+
+```
+Root Directory:
+server
+
+Environment:
+Node
+
+Build Command:
+npm install --include=dev && npm run build
+
+Start Command:
+npm run start
+```
+
+### Environment Variables
+
+```env
 PORT=10000
 NODE_ENV=production
 DATA_MODE=json
 ENABLE_GEMINI=false
 ENABLE_GPU_SIMULATION=true
 CLIENT_ORIGIN=https://supply-pulse-ai-client.vercel.app
+```
 
-Backend live URL:
+### Backend Live URL
 
+```
 https://supplypulseai.onrender.com
-Frontend Deployment on Vercel
+```
 
-Vercel settings:
+---
 
-Root Directory: client
-Framework: Vite
-Build Command: npm run build
-Output Directory: dist
+## Frontend Deployment (Vercel)
 
-Environment variable:
+### Vercel Configuration
 
+```
+Root Directory:
+client
+
+Framework:
+Vite
+
+Build Command:
+npm run build
+
+Output Directory:
+dist
+```
+
+### Environment Variable
+
+```env
 VITE_API_URL=https://supplypulseai.onrender.com
+```
 
-Frontend live URL:
+### Frontend Live URL
 
+```
 https://supply-pulse-ai-client.vercel.app
-Build Commands
+```
+
+---
+
+# 🧪 Build Commands
 
 Run type checks and builds:
 
+```bash
 npm --workspace shared run typecheck
-npm --workspace server run typecheck
-npm --workspace server run build
-npm --workspace client run typecheck
-npm --workspace client run build
-Demo Flow
 
---
+npm --workspace server run typecheck
+
+npm --workspace server run build
+
+npm --workspace client run typecheck
+
+npm --workspace client run build
+```
+
+---
+
+# 🎬 Demo Flow
+
 Recommended demo flow:
 
-Open the landing page
-Click Launch Dashboard
-Show action-needed SKUs and revenue at risk
-Open Risk Scores page
-Show SKU risk heatmap
-Open Forecasting page
-Show demand prediction
-Open AI Reorder page
-Show reorder quantity and supplier recommendation
-Open Reports page
-Show executive summary and action plan
-Prototype Note
+1. Open the Landing Page
 
-This prototype uses realistic synthetic D2C inventory and sales data to demonstrate the product workflow.
+2. Click **Launch Dashboard**
 
-The system is architected for future integration with real marketplace APIs, Google Cloud services, Gemini, and NVIDIA RAPIDS-based GPU acceleration.
+3. Show:
 
---
-Project Impact
+   * Action-needed SKUs
+   * Revenue at risk
+   * Inventory overview
+
+4. Open **Risk Scores**
+
+   * Demonstrate SKU risk heatmap
+
+5. Open **Forecasting**
+
+   * Show demand prediction insights
+
+6. Open **AI Reorder**
+
+   * Show reorder quantity recommendations
+   * Supplier recommendations
+
+7. Open **Reports**
+
+   * Show executive summary
+   * AI-generated action plan
+
+---
+
+# 🧪 Prototype Note
+
+This prototype uses realistic synthetic D2C inventory and sales data to demonstrate the complete supply chain intelligence workflow.
+
+The system is architected for future integration with:
+
+* Real marketplace APIs
+* Google Cloud services
+* Gemini AI
+* NVIDIA RAPIDS-based GPU acceleration
+
+---
+
+# 🌟 Project Impact
 
 SupplyPulse AI helps D2C brands:
 
-Prevent stockout losses
-Reduce manual Excel work
-Improve inventory accuracy
-Reorder before demand spikes
-Protect revenue during festivals and sales
-Make faster supplier decisions
-Move from dashboards to actionable recommendations
-One-Line Summary
+* Prevent stockout losses
+* Reduce manual Excel operations
+* Improve inventory accuracy
+* Reorder before demand spikes
+* Protect revenue during festivals and sales
+* Make faster supplier decisions
+* Move from dashboards to actionable recommendations
 
-SupplyPulse AI is a real-time inventory intelligence platform that helps D2C brands prevent stockouts by predicting SKU risk, forecasting demand, and recommending reorder actions.
+---
 
---
-Author
+# 📌 One-Line Summary
 
-Petrisha V
+> SupplyPulse AI is a real-time inventory intelligence platform that helps D2C brands prevent stockouts by predicting SKU risk, forecasting demand, and recommending reorder actions.
 
-Project built for Gen AI Academy APAC Edition.
+---
+
+# 👩‍💻 Author
+
+**Petrisha V**
+
+Built for **Gen AI Academy APAC Edition**
+
+```
+```
+
