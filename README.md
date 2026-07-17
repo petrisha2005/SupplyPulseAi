@@ -295,7 +295,7 @@ Dashboard + Alerts + Reports
 
 ---
 
-# 🖥️ Main Pages
+###🖥️ **Main Pages**
 
 The application consists of the following modules:
 
@@ -316,8 +316,8 @@ The application consists of the following modules:
 | API Overview | Backend API documentation |
 
 ---
-
-# 🔌 Backend API Endpoints
+**
+##🔌 Backend API Endpoints**
 
 ```
 
@@ -336,7 +336,7 @@ GET /api/reports/executive-summary
 
 ---
 
-# ⚙️ Local Setup
+# **⚙️ Local Setup**
 
 ## 1. Clone Repository
 
