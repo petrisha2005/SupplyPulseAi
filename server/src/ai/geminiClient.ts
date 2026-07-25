@@ -1,41 +1,38 @@
 import { GoogleGenAI } from "@google/genai";
 import { geminiMorningBriefSchema, geminiRiskInvestigationSchema, geminiSkuInvestigationSchema, type GeminiRiskInvestigation, type GeminiSkuInvestigation, parseGeminiMorningBrief, parseGeminiRiskInvestigation, parseGeminiSkuInvestigation, type MorningBriefContext, type RiskInvestigationContext } from "./schemas.js";
 import type { MorningBriefContent } from "@supplypulse/shared";
-
-const defaultModel = "gemini-3.5-flash";
-const defaultTimeoutMs = 12_000;
-const placeholderApiKey = "YOUR_API_KEY_HERE";
+import { getAIConfiguration, getGeminiApiKey } from "./aiConfig.js";
 
 export interface GeminiConfiguration {
   enabled: boolean;
   apiKeyConfigured: boolean;
   model: string;
   timeoutMs: number;
+  temperature: number;
+  maxOutputTokens: number;
   mode: "Live Gemini" | "Deterministic Fallback";
 }
 
-const configuredTimeoutMs = () => {
-  const value = Number(process.env.GEMINI_TIMEOUT_MS ?? defaultTimeoutMs);
-  return Number.isFinite(value) ? Math.max(1_000, value) : defaultTimeoutMs;
-};
-
-const usableApiKey = () => {
-  const value = process.env.GEMINI_API_KEY?.trim();
-  return value && value !== placeholderApiKey ? value : undefined;
-};
-
 export const getGeminiConfiguration = (): GeminiConfiguration => {
+  const aiConfiguration = getAIConfiguration();
   const enabled = process.env.ENABLE_GEMINI === "true";
-  const apiKeyConfigured = Boolean(usableApiKey());
-  const model = process.env.GEMINI_MODEL?.trim() || defaultModel;
-  const timeoutMs = configuredTimeoutMs();
+  const apiKeyConfigured = Boolean(getGeminiApiKey());
   return {
     enabled,
     apiKeyConfigured,
-    model,
-    timeoutMs,
+    model: aiConfiguration.model,
+    timeoutMs: aiConfiguration.timeoutMs,
+    temperature: aiConfiguration.temperature,
+    maxOutputTokens: aiConfiguration.maxOutputTokens,
     mode: enabled && apiKeyConfigured ? "Live Gemini" : "Deterministic Fallback"
   };
+};
+
+export const getGeminiClient = (): GoogleGenAI | undefined => {
+  const configuration = getGeminiConfiguration();
+  const apiKey = getGeminiApiKey();
+  if (configuration.mode !== "Live Gemini" || !apiKey) return undefined;
+  return new GoogleGenAI({ apiKey });
 };
 
 export const logGeminiConfiguration = () => {
@@ -66,15 +63,14 @@ ${JSON.stringify(context)}`;
 export const investigateWithGemini = async (context: RiskInvestigationContext): Promise<GeminiRiskInvestigation | undefined> => {
   const configuration = getGeminiConfiguration();
   if (configuration.mode !== "Live Gemini") return undefined;
-  const apiKey = usableApiKey();
-  if (!apiKey) return undefined;
-
-  const client = new GoogleGenAI({ apiKey });
+  const client = getGeminiClient();
+  if (!client) return undefined;
   const request = client.models.generateContent({
     model: configuration.model,
     contents: createPrompt(context),
     config: {
       temperature: 0,
+      maxOutputTokens: configuration.maxOutputTokens,
       responseMimeType: "application/json",
       responseJsonSchema: geminiRiskInvestigationSchema
     }
@@ -105,15 +101,14 @@ ${JSON.stringify(context)}`;
 export const generateMorningBriefWithGemini = async (context: MorningBriefContext): Promise<MorningBriefContent | undefined> => {
   const configuration = getGeminiConfiguration();
   if (configuration.mode !== "Live Gemini") return undefined;
-  const apiKey = usableApiKey();
-  if (!apiKey) return undefined;
-
-  const client = new GoogleGenAI({ apiKey });
+  const client = getGeminiClient();
+  if (!client) return undefined;
   const request = client.models.generateContent({
     model: configuration.model,
     contents: createMorningBriefPrompt(context),
     config: {
       temperature: 0,
+      maxOutputTokens: configuration.maxOutputTokens,
       responseMimeType: "application/json",
       responseJsonSchema: geminiMorningBriefSchema
     }
@@ -146,15 +141,14 @@ ${JSON.stringify(context)}`;
 export const investigateSkuWithGemini = async (context: RiskInvestigationContext, question: string): Promise<GeminiSkuInvestigation | undefined> => {
   const configuration = getGeminiConfiguration();
   if (configuration.mode !== "Live Gemini") return undefined;
-  const apiKey = usableApiKey();
-  if (!apiKey) return undefined;
-
-  const client = new GoogleGenAI({ apiKey });
+  const client = getGeminiClient();
+  if (!client) return undefined;
   const request = client.models.generateContent({
     model: configuration.model,
     contents: createSkuInvestigationPrompt(context, question),
     config: {
       temperature: 0,
+      maxOutputTokens: configuration.maxOutputTokens,
       responseMimeType: "application/json",
       responseJsonSchema: geminiSkuInvestigationSchema
     }
