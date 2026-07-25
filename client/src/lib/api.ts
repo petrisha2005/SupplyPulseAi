@@ -7,6 +7,7 @@ import type {
   ForecastResponse,
   ForecastSummaryResponse,
   InventorySku,
+  MorningBriefResponse,
   PipelineRun,
   Recommendation,
   PipelineStatus,
@@ -16,6 +17,7 @@ import type {
   Supplier,
   SupplierCompareResponse,
   SupplierDependenciesResponse
+  ,SkuInvestigationResponse
 } from "@supplypulse/shared";
 
 const API_BASE = import.meta.env.VITE_API_URL ?? import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:5050";
@@ -96,7 +98,9 @@ export const api = {
   benchmark: () => request<{ mode: "CPU" | "GPU" }>("/api/simulate/benchmark", { method: "POST" }),
   reset: () => request<{ ok: boolean }>("/api/simulate/reset", { method: "POST" }),
   generatePo: (skuId: string, options?: { supplierId?: string; quantity?: number }) => request<PurchaseOrderResponse>("/api/recommendations/generate-po", { method: "POST", body: JSON.stringify({ skuId, ...options }) }),
-  executiveReport: () => request<ExecutiveReportResponse>("/api/reports/executive-summary")
+  executiveReport: () => request<ExecutiveReportResponse>("/api/reports/executive-summary"),
+  morningBrief: () => request<MorningBriefResponse>("/api/ai/morning-brief", { method: "POST" }),
+  skuInvestigation: (skuId: string, question: string) => request<SkuInvestigationResponse>("/api/ai/sku-investigation", { method: "POST", body: JSON.stringify({ skuId, question }) })
 };
 
 export const rupee = (value: number) =>

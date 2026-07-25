@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AlertCircle, ArrowUpRight, BarChart3, Boxes, Copy, IndianRupee, PackageCheck, ShieldAlert, X } from "lucide-react";
-import type { AlertItem, DashboardResponse, ForecastResponse, Recommendation, RiskExplainResponse, RiskSku } from "@supplypulse/shared";
+import { AlertCircle, ArrowUpRight, BarChart3, Bot, Boxes, Copy, IndianRupee, PackageCheck, ShieldAlert, X } from "lucide-react";
+import type { AlertItem, DashboardResponse, ForecastResponse, MorningBriefResponse, Recommendation, RiskExplainResponse, RiskSku, SkuInvestigationResponse } from "@supplypulse/shared";
 import { AlertBanner } from "../components/AlertBanner";
 import { GeminiPanel } from "../components/GeminiPanel";
 import { MetricCard } from "../components/MetricCard";
@@ -73,6 +73,9 @@ export function Dashboard({ setPage }: { setPage?: (page: "alerts") => void }) {
   const [riskExplain, setRiskExplain] = useState<RiskExplainResponse | null>(null);
   const [riskExplainLoading, setRiskExplainLoading] = useState(false);
   const [slowLoading, setSlowLoading] = useState(false);
+  const [morningBrief, setMorningBrief] = useState<MorningBriefResponse | null>(null);
+  const [morningBriefLoading, setMorningBriefLoading] = useState(false);
+  const [morningBriefError, setMorningBriefError] = useState("");
   const tableRef = useRef<HTMLDivElement | null>(null);
 
   const notify = (message: string) => {
@@ -160,6 +163,18 @@ export function Dashboard({ setPage }: { setPage?: (page: "alerts") => void }) {
     }
   };
 
+  const handleGenerateMorningBrief = async () => {
+    setMorningBriefLoading(true);
+    setMorningBriefError("");
+    try {
+      setMorningBrief(await api.morningBrief());
+    } catch (err) {
+      setMorningBriefError(err instanceof Error ? err.message : "Unable to generate the morning brief.");
+    } finally {
+      setMorningBriefLoading(false);
+    }
+  };
+
   const handleAlertFocus = () => {
     if (setPage && criticalAlerts.length) {
       setPage("alerts");
@@ -214,6 +229,10 @@ export function Dashboard({ setPage }: { setPage?: (page: "alerts") => void }) {
         </div>
 
         <div className="mt-5">
+          <MorningBriefCard brief={morningBrief} loading={morningBriefLoading} error={morningBriefError} onGenerate={handleGenerateMorningBrief} />
+        </div>
+
+        <div className="mt-5">
           <PipelineStatus status={dashboard?.pipelineStatus ?? "Pipeline ready"} lastRefresh={shortRefresh(dashboard?.lastRefreshTime)} onRefresh={handleRefresh} refreshing={busy} />
         </div>
 
@@ -258,7 +277,57 @@ export function Dashboard({ setPage }: { setPage?: (page: "alerts") => void }) {
   );
 }
 
+function MorningBriefCard({ brief, loading, error, onGenerate }: { brief: MorningBriefResponse | null; loading: boolean; error: string; onGenerate: () => void }) {
+  return (
+    <section className="rounded-[1.35rem] border border-teal-200/80 bg-teal-50/50 p-4 shadow-sm dark:border-teal-900/80 dark:bg-teal-950/25">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="flex items-start gap-3">
+          <span className="grid h-10 w-10 place-items-center rounded-2xl bg-teal-600 text-white shadow-lg shadow-teal-900/15"><Bot size={19} /></span>
+          <div>
+            <p className="text-xs font-black uppercase tracking-wide text-teal-700 dark:text-teal-300">AI Morning Operations Brief</p>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">Grounded in the current SupplyPulse operational snapshot.</p>
+          </div>
+        </div>
+        <button onClick={onGenerate} disabled={loading} className="app-button-primary px-3 py-2 text-sm disabled:cursor-wait disabled:opacity-70">
+          {loading ? "Generating brief..." : "Generate AI Morning Brief"}
+        </button>
+      </div>
+
+      {loading && <div className="mt-4 space-y-3" aria-label="Generating morning brief"><div className="h-5 w-1/4 animate-pulse rounded bg-teal-100 dark:bg-teal-900" /><div className="h-16 animate-pulse rounded-2xl bg-white/70 dark:bg-slate-900/70" /><div className="grid gap-3 md:grid-cols-3">{[0, 1, 2].map((item) => <div key={item} className="h-24 animate-pulse rounded-2xl bg-white/70 dark:bg-slate-900/70" />)}</div></div>}
+      {error && <p className="mt-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-semibold text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200">{error}</p>}
+      {brief && !loading && <div className="mt-4 space-y-4">
+        <div className="flex flex-wrap items-center gap-2"><span className={`rounded-full px-2.5 py-1 text-xs font-black ${brief.brief.overallHealth === "Healthy" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-200" : brief.brief.overallHealth === "At Risk" ? "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-200" : "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-200"}`}>Overall health: {brief.brief.overallHealth}</span><span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{brief.source === "gemini" ? "Gemini-grounded summary" : "Deterministic fallback"}</span></div>
+        <p className="text-sm leading-6 text-slate-700 dark:text-slate-200">{brief.brief.summary}</p>
+        <section><h3 className="text-sm font-black text-[#1F160F] dark:text-white">Top priorities &amp; recommended actions</h3><div className="mt-2 grid gap-3 lg:grid-cols-3">{brief.brief.priorities.map((priority) => <article key={`${priority.title}-${priority.severity}`} className="rounded-2xl border border-white/75 bg-white/75 p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900/75"><p className="text-xs font-black uppercase text-teal-700 dark:text-teal-300">{priority.severity} priority</p><h4 className="mt-1 font-black text-[#1F160F] dark:text-white">{priority.title}</h4><p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{priority.reason}</p><p className="mt-3 border-t border-slate-100 pt-3 text-sm font-bold text-teal-800 dark:border-slate-800 dark:text-teal-200">Action: {priority.recommendedAction}</p></article>)}</div></section>
+        <div className="grid gap-3 md:grid-cols-2"><BriefList title="Opportunities" items={brief.brief.opportunities} /><BriefList title="Watch items" items={brief.brief.watchItems} /></div>
+        {!!brief.brief.limitations.length && <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">Assumptions / limitations: {brief.brief.limitations.join(" ")}</p>}
+      </div>}
+    </section>
+  );
+}
+
+function BriefList({ title, items }: { title: string; items: string[] }) {
+  return <section className="rounded-2xl border border-white/75 bg-white/60 p-3 dark:border-slate-800 dark:bg-slate-900/60"><h3 className="text-sm font-black text-[#1F160F] dark:text-white">{title}</h3>{items.length ? <ul className="mt-2 space-y-1.5 text-sm text-slate-600 dark:text-slate-300">{items.map((item) => <li key={item}>• {item}</li>)}</ul> : <p className="mt-2 text-sm text-slate-500">No current items.</p>}</section>;
+}
+
 function RiskExplanationModal({ explanation, onClose }: { explanation: RiskExplainResponse; onClose: () => void }) {
+  const [question, setQuestion] = useState("");
+  const [investigation, setInvestigation] = useState<SkuInvestigationResponse | null>(null);
+  const [investigationLoading, setInvestigationLoading] = useState(false);
+  const [investigationError, setInvestigationError] = useState("");
+  const askAi = async (nextQuestion: string) => {
+    setQuestion(nextQuestion);
+    setInvestigationLoading(true);
+    setInvestigationError("");
+    try {
+      setInvestigation(await api.skuInvestigation(explanation.sku.skuId, nextQuestion));
+    } catch (err) {
+      setInvestigationError(err instanceof Error ? err.message : "Unable to investigate this SKU.");
+    } finally {
+      setInvestigationLoading(false);
+    }
+  };
+  const suggestedQuestions = ["Why is this SKU risky?", "Explain the forecast.", "Why was this supplier recommended?", "What should I do next?"];
   const rows = [
     ["Stock cover risk", explanation.formulaBreakdown.daysCoverRisk, 35],
     ["Velocity trend risk", explanation.formulaBreakdown.velocityTrendRisk, 20],
@@ -323,9 +392,21 @@ function RiskExplanationModal({ explanation, onClose }: { explanation: RiskExpla
             </ul>
           </section>
         )}
+        <section className="mt-5 rounded-2xl border border-teal-200 bg-teal-50/55 p-4 shadow-sm dark:border-teal-900 dark:bg-teal-950/25">
+          <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-xl bg-teal-600 text-white"><Bot size={16} /></span><div><h4 className="font-black">Ask AI</h4><p className="text-xs text-slate-500 dark:text-slate-400">Grounded in this SKU&apos;s deterministic risk, forecast, supplier, and reorder context.</p></div></div>
+          <div className="mt-3 flex flex-wrap gap-2">{suggestedQuestions.map((item) => <button key={item} onClick={() => void askAi(item)} disabled={investigationLoading} className="rounded-full border border-teal-200 bg-white/80 px-3 py-1.5 text-xs font-bold text-teal-800 transition hover:bg-teal-100 disabled:cursor-wait disabled:opacity-60 dark:border-teal-800 dark:bg-slate-900 dark:text-teal-200 dark:hover:bg-teal-900">{item}</button>)}</div>
+          <div className="mt-3 flex gap-2"><input value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && question.trim()) void askAi(question); }} placeholder="Ask about this SKU" className="min-w-0 flex-1 rounded-xl border border-teal-200 bg-white/80 px-3 py-2 text-sm outline-none ring-teal-500 focus:ring-2 dark:border-teal-800 dark:bg-slate-900" /><button onClick={() => question.trim() && void askAi(question)} disabled={investigationLoading || !question.trim()} className="rounded-xl bg-teal-700 px-3 py-2 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60">Ask</button></div>
+          {investigationLoading && <div className="mt-4 space-y-2" aria-label="Investigating SKU"><div className="h-5 w-1/3 animate-pulse rounded bg-teal-100 dark:bg-teal-900" /><div className="h-14 animate-pulse rounded-xl bg-white/80 dark:bg-slate-900" /><div className="h-10 animate-pulse rounded-xl bg-white/80 dark:bg-slate-900" /></div>}
+          {investigationError && <p className="mt-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-semibold text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200">{investigationError}</p>}
+          {investigation && !investigationLoading && <div className="mt-4 space-y-3 rounded-xl border border-white/75 bg-white/75 p-3 text-sm shadow-sm dark:border-slate-800 dark:bg-slate-900/75"><div className="flex flex-wrap items-center gap-2"><span className={`rounded-full px-2.5 py-1 text-xs font-black ${investigation.confidence === "High" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-200" : investigation.confidence === "Low" ? "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-200" : "bg-teal-100 text-teal-700 dark:bg-teal-950 dark:text-teal-200"}`}>Confidence: {investigation.confidence}</span><span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{investigation.source === "gemini" ? "Gemini" : "Deterministic Fallback"}</span></div><div><h5 className="font-black">Answer</h5><p className="mt-1 leading-6 text-slate-700 dark:text-slate-200">{investigation.answer}</p></div><InvestigationList title="Reasoning" items={investigation.reasoning} /><InvestigationList title="Recommended actions" items={investigation.recommendedActions} /><div><h5 className="font-black">Evidence</h5><div className="mt-2 flex flex-wrap gap-2">{investigation.evidence.map((item) => <span key={`${item.source}-${item.entity}`} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-200">{item.source} · {item.entity}</span>)}</div></div><InvestigationList title="Limitations" items={investigation.limitations} /></div>}
+        </section>
       </section>
     </div>
   );
+}
+
+function InvestigationList({ title, items }: { title: string; items: string[] }) {
+  return <div><h5 className="font-black">{title}</h5>{items.length ? <ul className="mt-1.5 space-y-1 text-slate-700 dark:text-slate-200">{items.map((item) => <li key={item}>• {item}</li>)}</ul> : <p className="mt-1 text-slate-500">No additional items.</p>}</div>;
 }
 
 function BreakdownRow({ label, value, max }: { label: string; value: number; max: number }) {

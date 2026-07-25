@@ -494,3 +494,54 @@ export interface ExecutiveReportResponse {
   };
   executiveSummaryText: string;
 }
+
+export type MorningBriefHealth = "Healthy" | "Watch" | "At Risk";
+export type MorningBriefSeverity = "low" | "medium" | "high" | "critical";
+
+export interface MorningBriefPriority {
+  title: string;
+  reason: string;
+  recommendedAction: string;
+  severity: MorningBriefSeverity;
+}
+
+export interface MorningBriefContent {
+  overallHealth: MorningBriefHealth;
+  summary: string;
+  priorities: MorningBriefPriority[];
+  opportunities: string[];
+  watchItems: string[];
+  limitations: string[];
+}
+
+export interface MorningBriefContext {
+  dashboard: DashboardResponse;
+  topRiskSkus: Array<RiskSku & { recommendedAction?: string }>;
+  forecastSummary: ForecastSummaryResponse;
+  suppliers: Supplier[];
+  activeAlerts: AlertItem[];
+  recommendations: Recommendation[];
+  pipeline: PipelineStatus;
+}
+
+export interface MorningBriefResponse {
+  source: "gemini" | "deterministic-fallback";
+  brief: MorningBriefContent;
+  context: MorningBriefContext;
+}
+
+export interface SkuInvestigationEvidence {
+  source: "Risk Engine" | "Forecast Engine" | "Supplier Engine" | "Recommendation Engine";
+  entity: string;
+}
+
+export interface SkuInvestigationResponse {
+  skuId: string;
+  source: "gemini" | "deterministic-fallback";
+  answer: string;
+  reasoning: string[];
+  recommendedActions: string[];
+  confidence: "High" | "Medium" | "Low";
+  limitations: string[];
+  evidence: SkuInvestigationEvidence[];
+}

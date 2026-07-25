@@ -1,6 +1,8 @@
+import "dotenv/config";
 import cors from "cors";
 import type { CorsOptions } from "cors";
 import express from "express";
+import { aiRouter } from "./routes/ai.js";
 import { alertsRouter } from "./routes/alerts.js";
 import { dashboardRouter } from "./routes/dashboard.js";
 import { eventsRouter } from "./routes/events.js";
@@ -12,6 +14,7 @@ import { reportsRouter } from "./routes/reports.js";
 import { risksRouter } from "./routes/risks.js";
 import { simulateRouter } from "./routes/simulate.js";
 import { suppliersRouter } from "./routes/suppliers.js";
+import { logGeminiConfiguration } from "./ai/geminiClient.js";
 
 const app = express();
 const port = Number(process.env.PORT ?? 5050);
@@ -78,7 +81,9 @@ app.use("/api/alerts", alertsRouter);
 app.use("/api/pipeline", pipelineRouter);
 app.use("/api/simulate", simulateRouter);
 app.use("/api/reports", reportsRouter);
+app.use("/api/ai", aiRouter);
 
 app.listen(port, host, () => {
+  logGeminiConfiguration();
   console.log(`SupplyPulse AI API listening on http://${host}:${port}`);
 });
