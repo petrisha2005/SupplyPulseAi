@@ -1,3 +1,4 @@
+import { executiveBriefingSchema, parseExecutiveBriefing } from "./executiveSchemas.js";
 import { getAIConfiguration } from "./aiConfig.js";
 import { validateGeminiReasoningInput, validateGeminiReasoningOutput } from "./aiGuardrails.js";
 import { getGeminiClient } from "./geminiClient.js";
@@ -14,6 +15,18 @@ const responseSchema = {
         reasoning: { type: "array", items: { type: "string" }, maxItems: 5 }
     }
 };
+const executiveResponseSchema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["answer", "confidence", "citations", "reasoning", "executiveBriefing"],
+    properties: {
+        answer: { type: "string" },
+        confidence: { type: "number", minimum: 0, maximum: 1 },
+        citations: { type: "array", items: { type: "string" } },
+        reasoning: { type: "array", items: { type: "string" }, maxItems: 5 },
+        executiveBriefing: executiveBriefingSchema
+    }
+};
 const isRecord = (value) => typeof value === "object" && value !== null && !Array.isArray(value);
 export const parseGeminiReasoningOutput = (value) => {
     if (!isRecord(value) || typeof value.answer !== "string" || !value.answer.trim())
@@ -26,6 +39,14 @@ export const parseGeminiReasoningOutput = (value) => {
         ? value.reasoning
         : undefined;
     return { answer: value.answer.trim(), confidence, citations, reasoning };
+};
+const parseGeminiExecutiveReasoningOutput = (value, evidence) => {
+    if (!isRecord(value))
+        return undefined;
+    const reasoning = parseGeminiReasoningOutput(value);
+    const supportedEvidenceIds = new Set(evidence.map((item) => item.id).filter((id) => Boolean(id)));
+    const executiveBriefing = parseExecutiveBriefing(value.executiveBriefing, supportedEvidenceIds);
+    return reasoning && executiveBriefing ? { reasoning, executiveBriefing } : undefined;
 };
 const reasoningPrompt = (input) => `${SUPPLYPULSE_SYSTEM_PROMPT}
 
@@ -86,13 +107,13 @@ export const requestGeminiToolCalls = async (question, context) => {
         functionCalls: (response.functionCalls ?? []).map(toGeminiFunctionCall).filter((call) => Boolean(call))
     };
 };
-export const generateGeminiToolResultAnswer = async ({ question, functionCalls, executions, evidence }) => {
+export const generateGeminiToolResultAnswer = async ({ question, functionCalls, executions, evidence, executiveContext }) => {
     const client = getGeminiClient();
     if (!client || !validateGeminiReasoningInput({ question, evidence, toolOutputs: executions }))
         return undefined;
     const configuration = getAIConfiguration();
     const contents = [
-        { role: "user", parts: [{ text: toolSelectionPrompt(question) }] },
+        { role: "user", parts: [{ text: `${toolSelectionPrompt(question)}\n\nExecutive decision context:\n${JSON.stringify(executiveContext)}` }] },
         { role: "model", parts: functionCalls.map((call) => ({ functionCall: { id: call.id, name: call.name, args: call.arguments } })) },
         {
             role: "user",
@@ -115,20 +136,21 @@ export const generateGeminiToolResultAnswer = async ({ question, functionCalls, 
             temperature: configuration.temperature,
             maxOutputTokens: configuration.maxOutputTokens,
             responseMimeType: "application/json",
-            responseJsonSchema: responseSchema
+            responseJsonSchema: executiveResponseSchema
         }
     }));
     if (!response?.text)
         return undefined;
     try {
-        const output = parseGeminiReasoningOutput(JSON.parse(response.text));
-        if (!output || !validateGeminiReasoningOutput(output, evidence))
+        const output = parseGeminiExecutiveReasoningOutput(JSON.parse(response.text), evidence);
+        if (!output || !validateGeminiReasoningOutput(output.reasoning, evidence))
             return undefined;
         return {
-            answer: output.answer,
-            confidence: output.confidence,
-            citations: evidence.filter((item) => output.citations?.includes(item.id ?? "")),
-            reasoning: output.reasoning
+            answer: output.reasoning.answer,
+            confidence: output.reasoning.confidence,
+            citations: evidence.filter((item) => output.reasoning.citations?.includes(item.id ?? "")),
+            reasoning: output.reasoning.reasoning,
+            executiveBriefing: output.executiveBriefing
         };
     }
     catch {

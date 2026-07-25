@@ -62,11 +62,13 @@ export const answerCopilotQuestion = async (request) => {
                 confidence: geminiResponse.confidence,
                 evidence: geminiResponse.evidence,
                 generatedBy: "gemini",
+                executiveBriefing: geminiResponse.executiveBriefing,
                 metadata: {
                     intent: intent.intent,
                     toolsUsed: geminiResponse.toolsUsed,
                     executionTimeMs: Date.now() - startedAt,
-                    aiMode: "gemini"
+                    aiMode: "gemini",
+                    reasoningLevel: "executive"
                 }
             };
         }
@@ -101,7 +103,8 @@ export const answerCopilotQuestion = async (request) => {
             intent: intent.intent,
             toolsUsed,
             executionTimeMs: Date.now() - startedAt,
-            aiMode: "fallback"
+            aiMode: "fallback",
+            reasoningLevel: "basic"
         }
     };
 };

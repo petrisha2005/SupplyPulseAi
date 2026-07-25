@@ -30,6 +30,7 @@ export interface CopilotMetadata {
   toolsUsed?: string[];
   executionTimeMs?: number;
   aiMode?: "fallback" | "gemini";
+  reasoningLevel?: "basic" | "executive";
 }
 
 export interface CopilotResponse {
@@ -39,6 +40,11 @@ export interface CopilotResponse {
   limitations?: string[];
   evidence: EvidenceItem[];
   generatedBy: "gemini" | "fallback";
+  executiveBriefing?: {
+    summary: string;
+    keyRisks: ExecutiveInsight[];
+    immediateActions: string[];
+  };
   metadata?: CopilotMetadata;
 }
 
@@ -59,3 +65,4 @@ export const parseCopilotRequest = (body: unknown): CopilotRequest | undefined =
 
   return { question, ...(context ? { context } : {}) };
 };
+import type { ExecutiveInsight } from "./executiveSchemas.js";

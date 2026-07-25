@@ -1,4 +1,5 @@
 import { containsProhibitedOperation, validateGeminiReasoningOutput } from "./aiGuardrails.js";
+import { buildDecisionIntelligence } from "./decisionEngine.js";
 import { generateGeminiToolResultAnswer, requestGeminiToolCalls } from "./geminiService.js";
 import { executeGeminiTool } from "./toolExecutor.js";
 const uniqueEvidence = (evidence) => evidence.filter((item, index, values) => values.findIndex((candidate) => candidate.source === item.source && candidate.type === item.type && candidate.id === item.id) === index);
@@ -30,11 +31,17 @@ export const orchestrateGemini = async (request) => {
     }
     const executions = await executeRequestedTools(initial.functionCalls);
     const evidence = uniqueEvidence(executions.flatMap(({ result }) => result.ok ? result.evidence : []));
+    const executiveContext = buildDecisionIntelligence({
+        question: request.question,
+        toolResults: executions.map(({ result }) => result),
+        evidence
+    });
     const final = await generateGeminiToolResultAnswer({
         question: request.question,
         functionCalls: initial.functionCalls,
         executions,
-        evidence
+        evidence,
+        executiveContext
     });
     if (!final)
         return undefined;
@@ -44,6 +51,7 @@ export const orchestrateGemini = async (request) => {
         evidence: final.citations?.length ? final.citations : evidence,
         confidence: final.confidence,
         reasoning: final.reasoning,
+        executiveBriefing: final.executiveBriefing,
         generatedBy: "gemini",
         toolsUsed: executions.filter(({ result }) => result.ok).map(({ result }) => result.tool)
     };

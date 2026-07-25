@@ -1,5 +1,7 @@
 import type { CopilotRequest, EvidenceItem } from "./copilotSchemas.js";
+import type { ExecutiveBriefing } from "./executiveSchemas.js";
 import { containsProhibitedOperation, validateGeminiReasoningOutput } from "./aiGuardrails.js";
+import { buildDecisionIntelligence } from "./decisionEngine.js";
 import { generateGeminiToolResultAnswer, requestGeminiToolCalls, type GeminiFunctionCall } from "./geminiService.js";
 import { executeGeminiTool, type GeminiToolExecutionResult } from "./toolExecutor.js";
 
@@ -9,6 +11,7 @@ export interface GeminiOrchestrationResponse {
   evidence: EvidenceItem[];
   confidence?: number;
   reasoning?: string[];
+  executiveBriefing?: ExecutiveBriefing;
   generatedBy: "gemini";
   toolsUsed: string[];
 }
@@ -46,11 +49,17 @@ export const orchestrateGemini = async (request: CopilotRequest): Promise<Gemini
 
   const executions = await executeRequestedTools(initial.functionCalls);
   const evidence = uniqueEvidence(executions.flatMap(({ result }) => result.ok ? result.evidence : []));
+  const executiveContext = buildDecisionIntelligence({
+    question: request.question,
+    toolResults: executions.map(({ result }) => result),
+    evidence
+  });
   const final = await generateGeminiToolResultAnswer({
     question: request.question,
     functionCalls: initial.functionCalls,
     executions,
-    evidence
+    evidence,
+    executiveContext
   });
   if (!final) return undefined;
 
@@ -60,6 +69,7 @@ export const orchestrateGemini = async (request: CopilotRequest): Promise<Gemini
     evidence: final.citations?.length ? final.citations : evidence,
     confidence: final.confidence,
     reasoning: final.reasoning,
+    executiveBriefing: final.executiveBriefing,
     generatedBy: "gemini",
     toolsUsed: executions.filter(({ result }) => result.ok).map(({ result }) => result.tool)
   };
