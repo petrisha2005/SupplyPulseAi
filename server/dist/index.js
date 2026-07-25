@@ -2,6 +2,7 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import { aiRouter } from "./routes/ai.js";
+import { copilotRouter } from "./routes/copilot.js";
 import { alertsRouter } from "./routes/alerts.js";
 import { dashboardRouter } from "./routes/dashboard.js";
 import { eventsRouter } from "./routes/events.js";
@@ -74,6 +75,7 @@ app.use("/api/pipeline", pipelineRouter);
 app.use("/api/simulate", simulateRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/ai", aiRouter);
+app.use("/api/ai", copilotRouter);
 app.listen(port, host, () => {
     logGeminiConfiguration();
     console.log(`SupplyPulse AI API listening on http://${host}:${port}`);
