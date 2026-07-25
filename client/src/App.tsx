@@ -4,6 +4,7 @@ import {
   AlertTriangle,
   BarChart3,
   Bell,
+  Bot,
   Boxes,
   CalendarDays,
   Copy,
@@ -43,14 +44,16 @@ import type { AlertItem, DashboardResponse, FestivalEvent, ForecastResponse, Pip
 import { api, compactRupee, rupee } from "./lib/api";
 import { Badge, Card, Empty, Loading, Stat } from "./components/ui";
 import { Dashboard as MorningDashboard } from "./pages/Dashboard";
+import { Copilot } from "./pages/Copilot";
 import { Landing } from "./pages/Landing";
 import { getVisibleMarketplaceChannels, MultiChannelBadge } from "./components/ChannelBadge";
 import { formatStockCover, getStockCoverHint, stockCoverToneClass } from "./utils/formatters";
 
-type Page = "landing" | "dashboard" | "inventory" | "risks" | "forecast" | "recommendations" | "suppliers" | "events" | "acceleration" | "pipeline" | "alerts" | "reports";
+type Page = "landing" | "dashboard" | "copilot" | "inventory" | "risks" | "forecast" | "recommendations" | "suppliers" | "events" | "acceleration" | "pipeline" | "alerts" | "reports";
 
 const nav: Array<{ id: Page; label: string; icon: typeof Home }> = [
   { id: "dashboard", label: "Dashboard", icon: Gauge },
+  { id: "copilot", label: "AI Copilot", icon: Bot },
   { id: "inventory", label: "Inventory", icon: Boxes },
   { id: "risks", label: "Risk Scores", icon: AlertTriangle },
   { id: "forecast", label: "Forecasting", icon: BarChart3 },
@@ -65,6 +68,7 @@ const nav: Array<{ id: Page; label: string; icon: typeof Home }> = [
 
 const pageCopy: Record<Exclude<Page, "landing">, { title: string; subtitle: string }> = {
   dashboard: { title: "Dashboard", subtitle: "Monitor stockout risk, revenue exposure, and today's reorder priorities." },
+  copilot: { title: "AI Copilot", subtitle: "Ask an evidence-grounded executive question and turn supply signals into a prioritized action plan." },
   inventory: { title: "Inventory", subtitle: "Inspect SKU coverage, channel stock, supplier lead times, and live risk status." },
   risks: { title: "Risk Scores", subtitle: "Prioritize SKUs by explainable stockout risk and revenue exposure." },
   forecast: { title: "Forecasting", subtitle: "Predict SKU demand using sales history, channel trends, and sale-event multipliers." },
@@ -111,13 +115,25 @@ async function copyToClipboard(text: string) {
 }
 
 export function App() {
-  const [page, setPage] = useState<Page>("landing");
+  const [page, setCurrentPage] = useState<Page>(() => window.location.pathname === "/copilot" ? "copilot" : "landing");
   const [dark, setDark] = useState(false);
   const [toast, setToast] = useState("");
+
+  const setPage = (nextPage: Page) => {
+    setCurrentPage(nextPage);
+    const nextPath = nextPage === "copilot" ? "/copilot" : "/";
+    if (window.location.pathname !== nextPath) window.history.pushState({}, "", nextPath);
+  };
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  useEffect(() => {
+    const handlePopState = () => setCurrentPage(window.location.pathname === "/copilot" ? "copilot" : "landing");
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const notify = (message: string) => {
     setToast(message);
@@ -1679,6 +1695,7 @@ function ChartBox({ children }: { children: React.ReactElement }) {
 const pages: Record<Page, (props: { notify: (message: string) => void; setPage: (page: Page) => void }) => JSX.Element> = {
   landing: ({ setPage }) => <Landing setPage={setPage} />,
   dashboard: MorningDashboard,
+  copilot: Copilot,
   inventory: InventoryPage,
   risks: RisksPage,
   forecast: ForecastPage,
