@@ -1,4 +1,6 @@
+import { getAIConfiguration } from "./aiConfig.js";
 import { detectCopilotIntent } from "./copilotIntent.js";
+import { orchestrateGemini } from "./geminiOrchestrator.js";
 import { analyzeSupplierRisk, getDailyRiskOverview, getDemandForecast, getReorderActionPlan, getSkuIntelligence } from "./copilotTools.js";
 import { getCopilotToolDefinition } from "./toolRegistry.js";
 const toAction = (recommendation) => ({
@@ -50,6 +52,25 @@ const executeTool = async (name, request) => {
 export const answerCopilotQuestion = async (request) => {
     const startedAt = Date.now();
     const intent = detectCopilotIntent(request);
+    const configuration = getAIConfiguration();
+    if (configuration.aiMode === "gemini") {
+        const geminiResponse = await orchestrateGemini(request);
+        if (geminiResponse) {
+            return {
+                answer: geminiResponse.answer,
+                actions: geminiResponse.actions,
+                confidence: geminiResponse.confidence,
+                evidence: geminiResponse.evidence,
+                generatedBy: "gemini",
+                metadata: {
+                    intent: intent.intent,
+                    toolsUsed: geminiResponse.toolsUsed,
+                    executionTimeMs: Date.now() - startedAt,
+                    aiMode: "gemini"
+                }
+            };
+        }
+    }
     const evidence = [];
     const summaries = [];
     const actions = [];
@@ -79,7 +100,8 @@ export const answerCopilotQuestion = async (request) => {
         metadata: {
             intent: intent.intent,
             toolsUsed,
-            executionTimeMs: Date.now() - startedAt
+            executionTimeMs: Date.now() - startedAt,
+            aiMode: "fallback"
         }
     };
 };

@@ -29,6 +29,7 @@ export interface CopilotMetadata {
   intent?: string;
   toolsUsed?: string[];
   executionTimeMs?: number;
+  aiMode?: "fallback" | "gemini";
 }
 
 export interface CopilotResponse {

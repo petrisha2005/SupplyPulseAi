@@ -6,12 +6,15 @@ const defaultRetryCount = 1;
 const minimumTimeoutMs = 1_000;
 const minimumMaxOutputTokens = 128;
 
+export type AIMode = "fallback" | "gemini";
+
 export interface AIConfiguration {
   model: string;
   temperature: number;
   maxOutputTokens: number;
   timeoutMs: number;
   retryCount: number;
+  aiMode: AIMode;
 }
 
 const configuredNumber = (value: string | undefined, fallback: number, minimum: number) => {
@@ -24,7 +27,8 @@ export const getAIConfiguration = (): AIConfiguration => ({
   temperature: configuredNumber(process.env.GEMINI_TEMPERATURE, defaultTemperature, 0),
   maxOutputTokens: configuredNumber(process.env.GEMINI_MAX_OUTPUT_TOKENS, defaultMaxOutputTokens, minimumMaxOutputTokens),
   timeoutMs: configuredNumber(process.env.GEMINI_TIMEOUT_MS, defaultTimeoutMs, minimumTimeoutMs),
-  retryCount: configuredNumber(process.env.GEMINI_RETRY_COUNT, defaultRetryCount, 0)
+  retryCount: configuredNumber(process.env.GEMINI_RETRY_COUNT, defaultRetryCount, 0),
+  aiMode: process.env.AI_MODE === "gemini" ? "gemini" : "fallback"
 });
 
 export const aiConfig = {
@@ -32,7 +36,8 @@ export const aiConfig = {
   get temperature() { return getAIConfiguration().temperature; },
   get maxOutputTokens() { return getAIConfiguration().maxOutputTokens; },
   get timeoutMs() { return getAIConfiguration().timeoutMs; },
-  get retryCount() { return getAIConfiguration().retryCount; }
+  get retryCount() { return getAIConfiguration().retryCount; },
+  get aiMode() { return getAIConfiguration().aiMode; }
 };
 
 export const getGeminiApiKey = (): string | undefined => {

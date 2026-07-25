@@ -1,6 +1,7 @@
 import { getAIConfiguration } from "./aiConfig.js";
 import { validateGeminiReasoningInput, validateGeminiReasoningOutput } from "./aiGuardrails.js";
 import { getGeminiClient } from "./geminiClient.js";
+import { getGeminiToolDefinitions } from "./geminiTools.js";
 import { SUPPLYPULSE_SYSTEM_PROMPT } from "./systemPrompt.js";
 const responseSchema = {
     type: "object",
@@ -14,7 +15,7 @@ const responseSchema = {
     }
 };
 const isRecord = (value) => typeof value === "object" && value !== null && !Array.isArray(value);
-const parseReasoningOutput = (value) => {
+export const parseGeminiReasoningOutput = (value) => {
     if (!isRecord(value) || typeof value.answer !== "string" || !value.answer.trim())
         return undefined;
     const confidence = typeof value.confidence === "number" ? value.confidence : undefined;
@@ -40,37 +41,11 @@ const withTimeout = (request, timeoutMs) => Promise.race([
     request,
     new Promise((_, reject) => setTimeout(() => reject(new Error("Gemini request timed out")), timeoutMs))
 ]);
-export const reasonWithGemini = async (input) => {
-    if (!validateGeminiReasoningInput(input))
-        return undefined;
-    const client = getGeminiClient();
-    if (!client)
-        return undefined;
+const generateWithRetry = async (request) => {
     const configuration = getAIConfiguration();
     for (let attempt = 0; attempt <= configuration.retryCount; attempt += 1) {
         try {
-            const response = await withTimeout(client.models.generateContent({
-                model: configuration.model,
-                contents: reasoningPrompt(input),
-                config: {
-                    temperature: configuration.temperature,
-                    maxOutputTokens: configuration.maxOutputTokens,
-                    responseMimeType: "application/json",
-                    responseJsonSchema: responseSchema
-                }
-            }), configuration.timeoutMs);
-            if (!response.text)
-                return undefined;
-            const output = parseReasoningOutput(JSON.parse(response.text));
-            if (!output || !validateGeminiReasoningOutput(output, input.evidence))
-                return undefined;
-            const citedEvidence = input.evidence.filter((item) => output.citations?.includes(item.id ?? ""));
-            return {
-                answer: output.answer,
-                confidence: output.confidence,
-                citations: citedEvidence,
-                reasoning: output.reasoning
-            };
+            return await withTimeout(request(), configuration.timeoutMs);
         }
         catch {
             if (attempt === configuration.retryCount)
@@ -78,4 +53,119 @@ export const reasonWithGemini = async (input) => {
         }
     }
     return undefined;
+};
+const toGeminiFunctionCall = (call) => typeof call.name === "string" && call.name.trim()
+    ? { id: call.id, name: call.name, arguments: call.args ?? {} }
+    : undefined;
+const toolSelectionPrompt = (question, context) => `User question:
+${question}
+
+Optional application context:
+${JSON.stringify(context ?? {})}
+
+Use approved tools when deterministic SupplyPulse evidence is needed. Do not answer with unsupported facts.`;
+export const requestGeminiToolCalls = async (question, context) => {
+    const client = getGeminiClient();
+    if (!client)
+        return undefined;
+    const configuration = getAIConfiguration();
+    const response = await generateWithRetry(() => client.models.generateContent({
+        model: configuration.model,
+        contents: toolSelectionPrompt(question, context),
+        config: {
+            systemInstruction: SUPPLYPULSE_SYSTEM_PROMPT,
+            temperature: configuration.temperature,
+            maxOutputTokens: configuration.maxOutputTokens,
+            tools: [{ functionDeclarations: getGeminiToolDefinitions() }]
+        }
+    }));
+    if (!response)
+        return undefined;
+    return {
+        text: response.text,
+        functionCalls: (response.functionCalls ?? []).map(toGeminiFunctionCall).filter((call) => Boolean(call))
+    };
+};
+export const generateGeminiToolResultAnswer = async ({ question, functionCalls, executions, evidence }) => {
+    const client = getGeminiClient();
+    if (!client || !validateGeminiReasoningInput({ question, evidence, toolOutputs: executions }))
+        return undefined;
+    const configuration = getAIConfiguration();
+    const contents = [
+        { role: "user", parts: [{ text: toolSelectionPrompt(question) }] },
+        { role: "model", parts: functionCalls.map((call) => ({ functionCall: { id: call.id, name: call.name, args: call.arguments } })) },
+        {
+            role: "user",
+            parts: executions.map(({ call, result }) => ({
+                functionResponse: {
+                    id: call.id,
+                    name: call.name,
+                    response: result.ok
+                        ? { output: { data: result.data, evidence: result.evidence } }
+                        : { error: result.error ?? "Approved tool execution failed." }
+                }
+            }))
+        }
+    ];
+    const response = await generateWithRetry(() => client.models.generateContent({
+        model: configuration.model,
+        contents,
+        config: {
+            systemInstruction: SUPPLYPULSE_SYSTEM_PROMPT,
+            temperature: configuration.temperature,
+            maxOutputTokens: configuration.maxOutputTokens,
+            responseMimeType: "application/json",
+            responseJsonSchema: responseSchema
+        }
+    }));
+    if (!response?.text)
+        return undefined;
+    try {
+        const output = parseGeminiReasoningOutput(JSON.parse(response.text));
+        if (!output || !validateGeminiReasoningOutput(output, evidence))
+            return undefined;
+        return {
+            answer: output.answer,
+            confidence: output.confidence,
+            citations: evidence.filter((item) => output.citations?.includes(item.id ?? "")),
+            reasoning: output.reasoning
+        };
+    }
+    catch {
+        return undefined;
+    }
+};
+export const reasonWithGemini = async (input) => {
+    if (!validateGeminiReasoningInput(input))
+        return undefined;
+    const client = getGeminiClient();
+    if (!client)
+        return undefined;
+    const configuration = getAIConfiguration();
+    const response = await generateWithRetry(() => client.models.generateContent({
+        model: configuration.model,
+        contents: reasoningPrompt(input),
+        config: {
+            temperature: configuration.temperature,
+            maxOutputTokens: configuration.maxOutputTokens,
+            responseMimeType: "application/json",
+            responseJsonSchema: responseSchema
+        }
+    }));
+    if (!response?.text)
+        return undefined;
+    try {
+        const output = parseGeminiReasoningOutput(JSON.parse(response.text));
+        if (!output || !validateGeminiReasoningOutput(output, input.evidence))
+            return undefined;
+        return {
+            answer: output.answer,
+            confidence: output.confidence,
+            citations: input.evidence.filter((item) => output.citations?.includes(item.id ?? "")),
+            reasoning: output.reasoning
+        };
+    }
+    catch {
+        return undefined;
+    }
 };

@@ -1,6 +1,8 @@
 import type { Recommendation } from "@supplypulse/shared";
 import type { CopilotAction, CopilotRequest, CopilotResponse, EvidenceItem } from "./copilotSchemas.js";
+import { getAIConfiguration } from "./aiConfig.js";
 import { detectCopilotIntent } from "./copilotIntent.js";
+import { orchestrateGemini } from "./geminiOrchestrator.js";
 import { analyzeSupplierRisk, getDailyRiskOverview, getDemandForecast, getReorderActionPlan, getSkuIntelligence } from "./copilotTools.js";
 import { getCopilotToolDefinition, type CopilotToolName } from "./toolRegistry.js";
 
@@ -65,6 +67,27 @@ const executeTool = async (name: CopilotToolName, request: CopilotRequest): Prom
 export const answerCopilotQuestion = async (request: CopilotRequest): Promise<CopilotResponse> => {
   const startedAt = Date.now();
   const intent = detectCopilotIntent(request);
+  const configuration = getAIConfiguration();
+
+  if (configuration.aiMode === "gemini") {
+    const geminiResponse = await orchestrateGemini(request);
+    if (geminiResponse) {
+      return {
+        answer: geminiResponse.answer,
+        actions: geminiResponse.actions,
+        confidence: geminiResponse.confidence,
+        evidence: geminiResponse.evidence,
+        generatedBy: "gemini",
+        metadata: {
+          intent: intent.intent,
+          toolsUsed: geminiResponse.toolsUsed,
+          executionTimeMs: Date.now() - startedAt,
+          aiMode: "gemini"
+        }
+      };
+    }
+  }
+
   const evidence: EvidenceItem[] = [];
   const summaries: string[] = [];
   const actions: CopilotAction[] = [];
@@ -96,7 +119,8 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
     metadata: {
       intent: intent.intent,
       toolsUsed,
-      executionTimeMs: Date.now() - startedAt
+      executionTimeMs: Date.now() - startedAt,
+      aiMode: "fallback"
     }
   };
 };
