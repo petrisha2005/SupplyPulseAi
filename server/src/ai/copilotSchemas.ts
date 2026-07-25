@@ -1,3 +1,5 @@
+import type { ExecutiveInsight } from "./executiveSchemas.js";
+
 export interface CopilotRequest {
   question: string;
   context?: {
@@ -31,6 +33,8 @@ export interface CopilotMetadata {
   executionTimeMs?: number;
   aiMode?: "fallback" | "gemini";
   reasoningLevel?: "basic" | "executive";
+  confidenceScore?: number;
+  groundingScore?: number;
 }
 
 export interface CopilotResponse {
@@ -65,4 +69,3 @@ export const parseCopilotRequest = (body: unknown): CopilotRequest | undefined =
 
   return { question, ...(context ? { context } : {}) };
 };
-import type { ExecutiveInsight } from "./executiveSchemas.js";

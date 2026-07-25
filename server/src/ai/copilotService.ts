@@ -1,6 +1,8 @@
 import type { Recommendation } from "@supplypulse/shared";
 import type { CopilotAction, CopilotRequest, CopilotResponse, EvidenceItem } from "./copilotSchemas.js";
 import { getAIConfiguration } from "./aiConfig.js";
+import { evaluateCopilotResponse } from "./aiEvaluation.js";
+import { recordFallback, recordGeminiSuccess, recordRequest, recordToolCall } from "./aiMetrics.js";
 import { detectCopilotIntent } from "./copilotIntent.js";
 import { orchestrateGemini } from "./geminiOrchestrator.js";
 import { analyzeSupplierRisk, getDailyRiskOverview, getDemandForecast, getReorderActionPlan, getSkuIntelligence } from "./copilotTools.js";
@@ -26,6 +28,32 @@ interface ToolExecution {
   actions?: CopilotAction[];
   evidence: EvidenceItem[];
 }
+
+const finalizeCopilotResponse = (response: CopilotResponse): CopilotResponse => {
+  const evaluation = evaluateCopilotResponse({
+    answer: response.answer,
+    evidence: response.evidence,
+    executiveBriefing: response.executiveBriefing
+  });
+  const metadata = {
+    ...response.metadata,
+    confidenceScore: evaluation.confidenceScore,
+    groundingScore: evaluation.groundingScore
+  };
+  const limitations = [...new Set([...(response.limitations ?? []), ...evaluation.issues])];
+  const executionTimeMs = metadata.executionTimeMs ?? 0;
+
+  recordRequest(executionTimeMs);
+  if (response.generatedBy === "gemini") recordGeminiSuccess();
+  else recordFallback();
+  recordToolCall(metadata.toolsUsed?.length ?? 0);
+
+  return {
+    ...response,
+    ...(limitations.length ? { limitations } : {}),
+    metadata
+  };
+};
 
 const executeTool = async (name: CopilotToolName, request: CopilotRequest): Promise<ToolExecution> => {
   if (name === "getDailyRiskOverview") {
@@ -72,7 +100,7 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
   if (configuration.aiMode === "gemini") {
     const geminiResponse = await orchestrateGemini(request);
     if (geminiResponse) {
-      return {
+      return finalizeCopilotResponse({
         answer: geminiResponse.answer,
         actions: geminiResponse.actions,
         confidence: geminiResponse.confidence,
@@ -86,7 +114,7 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
           aiMode: "gemini",
           reasoningLevel: "executive"
         }
-      };
+      });
     }
   }
 
@@ -108,7 +136,7 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
     values.findIndex((candidate) => candidate.source === item.source && candidate.type === item.type && candidate.id === item.id) === index
   );
 
-  return {
+  return finalizeCopilotResponse({
     answer: summaries.length
       ? summaries.join(" ")
       : actions.length
@@ -125,5 +153,5 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
       aiMode: "fallback",
       reasoningLevel: "basic"
     }
-  };
+  });
 };

@@ -1,4 +1,6 @@
 import { getAIConfiguration } from "./aiConfig.js";
+import { evaluateCopilotResponse } from "./aiEvaluation.js";
+import { recordFallback, recordGeminiSuccess, recordRequest, recordToolCall } from "./aiMetrics.js";
 import { detectCopilotIntent } from "./copilotIntent.js";
 import { orchestrateGemini } from "./geminiOrchestrator.js";
 import { analyzeSupplierRisk, getDailyRiskOverview, getDemandForecast, getReorderActionPlan, getSkuIntelligence } from "./copilotTools.js";
@@ -17,6 +19,31 @@ const toAction = (recommendation) => ({
             summary: recommendation.reasoning
         }]
 });
+const finalizeCopilotResponse = (response) => {
+    const evaluation = evaluateCopilotResponse({
+        answer: response.answer,
+        evidence: response.evidence,
+        executiveBriefing: response.executiveBriefing
+    });
+    const metadata = {
+        ...response.metadata,
+        confidenceScore: evaluation.confidenceScore,
+        groundingScore: evaluation.groundingScore
+    };
+    const limitations = [...new Set([...(response.limitations ?? []), ...evaluation.issues])];
+    const executionTimeMs = metadata.executionTimeMs ?? 0;
+    recordRequest(executionTimeMs);
+    if (response.generatedBy === "gemini")
+        recordGeminiSuccess();
+    else
+        recordFallback();
+    recordToolCall(metadata.toolsUsed?.length ?? 0);
+    return {
+        ...response,
+        ...(limitations.length ? { limitations } : {}),
+        metadata
+    };
+};
 const executeTool = async (name, request) => {
     if (name === "getDailyRiskOverview") {
         const result = await getDailyRiskOverview();
@@ -56,7 +83,7 @@ export const answerCopilotQuestion = async (request) => {
     if (configuration.aiMode === "gemini") {
         const geminiResponse = await orchestrateGemini(request);
         if (geminiResponse) {
-            return {
+            return finalizeCopilotResponse({
                 answer: geminiResponse.answer,
                 actions: geminiResponse.actions,
                 confidence: geminiResponse.confidence,
@@ -70,7 +97,7 @@ export const answerCopilotQuestion = async (request) => {
                     aiMode: "gemini",
                     reasoningLevel: "executive"
                 }
-            };
+            });
         }
     }
     const evidence = [];
@@ -89,7 +116,7 @@ export const answerCopilotQuestion = async (request) => {
             actions.push(...result.actions);
     }
     const uniqueEvidence = evidence.filter((item, index, values) => values.findIndex((candidate) => candidate.source === item.source && candidate.type === item.type && candidate.id === item.id) === index);
-    return {
+    return finalizeCopilotResponse({
         answer: summaries.length
             ? summaries.join(" ")
             : actions.length
@@ -106,5 +133,5 @@ export const answerCopilotQuestion = async (request) => {
             aiMode: "fallback",
             reasoningLevel: "basic"
         }
-    };
+    });
 };

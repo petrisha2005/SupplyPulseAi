@@ -6,6 +6,7 @@ import { getAIConfiguration } from "./aiConfig.js";
 import { type GeminiReasoningInput, type GeminiReasoningOutput, validateGeminiReasoningInput, validateGeminiReasoningOutput } from "./aiGuardrails.js";
 import { getGeminiClient } from "./geminiClient.js";
 import { getGeminiToolDefinitions } from "./geminiTools.js";
+import { withAIRetry, withAITimeout } from "./aiReliability.js";
 import { SUPPLYPULSE_SYSTEM_PROMPT } from "./systemPrompt.js";
 
 export interface GeminiReasoningResponse {
@@ -103,22 +104,9 @@ ${JSON.stringify(input.evidence)}
 Approved tool outputs:
 ${JSON.stringify(input.toolOutputs)}`;
 
-const withTimeout = <T>(request: Promise<T>, timeoutMs: number): Promise<T> =>
-  Promise.race([
-    request,
-    new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Gemini request timed out")), timeoutMs))
-  ]);
-
 const generateWithRetry = async (request: () => Promise<GenerateContentResponse>): Promise<GenerateContentResponse | undefined> => {
   const configuration = getAIConfiguration();
-  for (let attempt = 0; attempt <= configuration.retryCount; attempt += 1) {
-    try {
-      return await withTimeout(request(), configuration.timeoutMs);
-    } catch {
-      if (attempt === configuration.retryCount) return undefined;
-    }
-  }
-  return undefined;
+  return withAIRetry(() => withAITimeout(request(), configuration.timeoutMs), configuration.retryCount);
 };
 
 const toGeminiFunctionCall = (call: FunctionCall): GeminiFunctionCall | undefined =>
