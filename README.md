@@ -1,5 +1,4 @@
-BRO 🔥 I’ll give you the **complete clean Markdown README** in one copy-paste block.
-Just copy everything inside the code block and replace your `README.md`.
+
 
 ```markdown
 # 🚀 SupplyPulse AI
