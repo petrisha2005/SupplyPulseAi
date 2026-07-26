@@ -1,6 +1,6 @@
 const defaultModel = "gemini-3.5-flash";
 const defaultTemperature = 0;
-const defaultMaxOutputTokens = 1_024;
+const defaultMaxOutputTokens = 4_096;
 const defaultTimeoutMs = 12_000;
 const defaultRetryCount = 1;
 const minimumTimeoutMs = 1_000;

@@ -16,6 +16,7 @@ export const withAIRetry = async <T>(
     try {
       return await operation();
     } catch (error) {
+      if (process.env.NODE_ENV !== "production") console.error("Gemini API failure:", error);
       normalizeAIError(error);
       if (attempt === retryCount) return undefined;
     }

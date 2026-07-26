@@ -1,4 +1,4 @@
-import type { Content, FunctionCall, GenerateContentResponse } from "@google/genai";
+import { ThinkingLevel, type Content, type FunctionCall, type GenerateContentResponse } from "@google/genai";
 import type { EvidenceItem } from "./copilotSchemas.js";
 import type { DecisionIntelligenceContext } from "./decisionEngine.js";
 import { executiveBriefingSchema, parseExecutiveBriefing, type ExecutiveBriefing } from "./executiveSchemas.js";
@@ -29,6 +29,7 @@ export interface GeminiFunctionCall {
 export interface GeminiToolSelectionResponse {
   text?: string;
   functionCalls: GeminiFunctionCall[];
+  modelContent?: Content;
 }
 
 export interface GeminiToolExecutionInput {
@@ -142,29 +143,32 @@ export const requestGeminiToolCalls = async (
   if (!response) return undefined;
   return {
     text: response.text,
-    functionCalls: (response.functionCalls ?? []).map(toGeminiFunctionCall).filter((call): call is GeminiFunctionCall => Boolean(call))
+    functionCalls: (response.functionCalls ?? []).map(toGeminiFunctionCall).filter((call): call is GeminiFunctionCall => Boolean(call)),
+    modelContent: response.candidates?.[0]?.content
   };
 };
 
 export const generateGeminiToolResultAnswer = async ({
   question,
   functionCalls,
+  modelContent,
   executions,
   evidence,
   executiveContext
 }: {
   question: string;
   functionCalls: GeminiFunctionCall[];
+  modelContent?: Content;
   executions: GeminiToolExecutionInput[];
   evidence: EvidenceItem[];
   executiveContext: DecisionIntelligenceContext;
 }): Promise<GeminiExecutiveReasoningResponse | undefined> => {
   const client = getGeminiClient();
-  if (!client || !validateGeminiReasoningInput({ question, evidence, toolOutputs: executions })) return undefined;
+  if (!client || !modelContent || !validateGeminiReasoningInput({ question, evidence, toolOutputs: executions })) return undefined;
   const configuration = getAIConfiguration();
   const contents: Content[] = [
     { role: "user", parts: [{ text: `${toolSelectionPrompt(question)}\n\nExecutive decision context:\n${JSON.stringify(executiveContext)}` }] },
-    { role: "model", parts: functionCalls.map((call) => ({ functionCall: { id: call.id, name: call.name, args: call.arguments } })) },
+    modelContent,
     {
       role: "user",
       parts: executions.map(({ call, result }) => ({
@@ -185,6 +189,7 @@ export const generateGeminiToolResultAnswer = async ({
       systemInstruction: SUPPLYPULSE_SYSTEM_PROMPT,
       temperature: configuration.temperature,
       maxOutputTokens: configuration.maxOutputTokens,
+      thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL },
       responseMimeType: "application/json",
       responseJsonSchema: executiveResponseSchema
     }

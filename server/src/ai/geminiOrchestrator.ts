@@ -57,6 +57,7 @@ export const orchestrateGemini = async (request: CopilotRequest): Promise<Gemini
   const final = await generateGeminiToolResultAnswer({
     question: request.question,
     functionCalls: initial.functionCalls,
+    modelContent: initial.modelContent,
     executions,
     evidence,
     executiveContext

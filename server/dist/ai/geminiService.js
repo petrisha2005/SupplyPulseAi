@@ -1,3 +1,4 @@
+import { ThinkingLevel } from "@google/genai";
 import { executiveBriefingSchema, parseExecutiveBriefing } from "./executiveSchemas.js";
 import { getAIConfiguration } from "./aiConfig.js";
 import { validateGeminiReasoningInput, validateGeminiReasoningOutput } from "./aiGuardrails.js";
@@ -92,17 +93,18 @@ export const requestGeminiToolCalls = async (question, context) => {
         return undefined;
     return {
         text: response.text,
-        functionCalls: (response.functionCalls ?? []).map(toGeminiFunctionCall).filter((call) => Boolean(call))
+        functionCalls: (response.functionCalls ?? []).map(toGeminiFunctionCall).filter((call) => Boolean(call)),
+        modelContent: response.candidates?.[0]?.content
     };
 };
-export const generateGeminiToolResultAnswer = async ({ question, functionCalls, executions, evidence, executiveContext }) => {
+export const generateGeminiToolResultAnswer = async ({ question, functionCalls, modelContent, executions, evidence, executiveContext }) => {
     const client = getGeminiClient();
-    if (!client || !validateGeminiReasoningInput({ question, evidence, toolOutputs: executions }))
+    if (!client || !modelContent || !validateGeminiReasoningInput({ question, evidence, toolOutputs: executions }))
         return undefined;
     const configuration = getAIConfiguration();
     const contents = [
         { role: "user", parts: [{ text: `${toolSelectionPrompt(question)}\n\nExecutive decision context:\n${JSON.stringify(executiveContext)}` }] },
-        { role: "model", parts: functionCalls.map((call) => ({ functionCall: { id: call.id, name: call.name, args: call.arguments } })) },
+        modelContent,
         {
             role: "user",
             parts: executions.map(({ call, result }) => ({
@@ -123,6 +125,7 @@ export const generateGeminiToolResultAnswer = async ({ question, functionCalls, 
             systemInstruction: SUPPLYPULSE_SYSTEM_PROMPT,
             temperature: configuration.temperature,
             maxOutputTokens: configuration.maxOutputTokens,
+            thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL },
             responseMimeType: "application/json",
             responseJsonSchema: executiveResponseSchema
         }
