@@ -15,7 +15,7 @@ export const getAIConfiguration = () => ({
     maxOutputTokens: configuredNumber(process.env.GEMINI_MAX_OUTPUT_TOKENS, defaultMaxOutputTokens, minimumMaxOutputTokens),
     timeoutMs: configuredNumber(process.env.GEMINI_TIMEOUT_MS, defaultTimeoutMs, minimumTimeoutMs),
     retryCount: configuredNumber(process.env.GEMINI_RETRY_COUNT, defaultRetryCount, 0),
-    aiMode: process.env.AI_MODE === "gemini" ? "gemini" : "fallback"
+    aiMode: process.env.ENABLE_GEMINI === "true" && Boolean(getGeminiApiKey()) ? "gemini" : "fallback"
 });
 export const aiConfig = {
     get model() { return getAIConfiguration().model; },

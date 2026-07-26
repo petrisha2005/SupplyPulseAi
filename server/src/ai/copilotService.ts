@@ -143,7 +143,7 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
         ? "SupplyPulse prepared deterministic reorder actions from the current operational data."
         : "SupplyPulse could not find a deterministic response for this question.",
     actions: actions.filter((action, index, values) => values.findIndex((candidate) => candidate.title === action.title) === index),
-    limitations: ["This Phase 1 response is generated from deterministic SupplyPulse services; Gemini reasoning is not enabled for this endpoint yet."],
+    limitations: ["Gemini reasoning was unavailable for this request, so SupplyPulse returned deterministic intelligence."],
     evidence: uniqueEvidence,
     generatedBy: "fallback",
     metadata: {
