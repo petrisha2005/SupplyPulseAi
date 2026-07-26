@@ -1,28 +1,26 @@
 import { GoogleGenAI } from "@google/genai";
 import { geminiMorningBriefSchema, geminiRiskInvestigationSchema, geminiSkuInvestigationSchema, parseGeminiMorningBrief, parseGeminiRiskInvestigation, parseGeminiSkuInvestigation } from "./schemas.js";
-const defaultModel = "gemini-3.5-flash";
-const defaultTimeoutMs = 12_000;
-const placeholderApiKey = "YOUR_API_KEY_HERE";
-const configuredTimeoutMs = () => {
-    const value = Number(process.env.GEMINI_TIMEOUT_MS ?? defaultTimeoutMs);
-    return Number.isFinite(value) ? Math.max(1_000, value) : defaultTimeoutMs;
-};
-const usableApiKey = () => {
-    const value = process.env.GEMINI_API_KEY?.trim();
-    return value && value !== placeholderApiKey ? value : undefined;
-};
+import { getAIConfiguration, getGeminiApiKey } from "./aiConfig.js";
 export const getGeminiConfiguration = () => {
+    const aiConfiguration = getAIConfiguration();
     const enabled = process.env.ENABLE_GEMINI === "true";
-    const apiKeyConfigured = Boolean(usableApiKey());
-    const model = process.env.GEMINI_MODEL?.trim() || defaultModel;
-    const timeoutMs = configuredTimeoutMs();
+    const apiKeyConfigured = Boolean(getGeminiApiKey());
     return {
         enabled,
         apiKeyConfigured,
-        model,
-        timeoutMs,
+        model: aiConfiguration.model,
+        timeoutMs: aiConfiguration.timeoutMs,
+        temperature: aiConfiguration.temperature,
+        maxOutputTokens: aiConfiguration.maxOutputTokens,
         mode: enabled && apiKeyConfigured ? "Live Gemini" : "Deterministic Fallback"
     };
+};
+export const getGeminiClient = () => {
+    const configuration = getGeminiConfiguration();
+    const apiKey = getGeminiApiKey();
+    if (configuration.mode !== "Live Gemini" || !apiKey)
+        return undefined;
+    return new GoogleGenAI({ apiKey });
 };
 export const logGeminiConfiguration = () => {
     const configuration = getGeminiConfiguration();
@@ -51,15 +49,15 @@ export const investigateWithGemini = async (context) => {
     const configuration = getGeminiConfiguration();
     if (configuration.mode !== "Live Gemini")
         return undefined;
-    const apiKey = usableApiKey();
-    if (!apiKey)
+    const client = getGeminiClient();
+    if (!client)
         return undefined;
-    const client = new GoogleGenAI({ apiKey });
     const request = client.models.generateContent({
         model: configuration.model,
         contents: createPrompt(context),
         config: {
             temperature: 0,
+            maxOutputTokens: configuration.maxOutputTokens,
             responseMimeType: "application/json",
             responseJsonSchema: geminiRiskInvestigationSchema
         }
@@ -89,15 +87,15 @@ export const generateMorningBriefWithGemini = async (context) => {
     const configuration = getGeminiConfiguration();
     if (configuration.mode !== "Live Gemini")
         return undefined;
-    const apiKey = usableApiKey();
-    if (!apiKey)
+    const client = getGeminiClient();
+    if (!client)
         return undefined;
-    const client = new GoogleGenAI({ apiKey });
     const request = client.models.generateContent({
         model: configuration.model,
         contents: createMorningBriefPrompt(context),
         config: {
             temperature: 0,
+            maxOutputTokens: configuration.maxOutputTokens,
             responseMimeType: "application/json",
             responseJsonSchema: geminiMorningBriefSchema
         }
@@ -130,15 +128,15 @@ export const investigateSkuWithGemini = async (context, question) => {
     const configuration = getGeminiConfiguration();
     if (configuration.mode !== "Live Gemini")
         return undefined;
-    const apiKey = usableApiKey();
-    if (!apiKey)
+    const client = getGeminiClient();
+    if (!client)
         return undefined;
-    const client = new GoogleGenAI({ apiKey });
     const request = client.models.generateContent({
         model: configuration.model,
         contents: createSkuInvestigationPrompt(context, question),
         config: {
             temperature: 0,
+            maxOutputTokens: configuration.maxOutputTokens,
             responseMimeType: "application/json",
             responseJsonSchema: geminiSkuInvestigationSchema
         }

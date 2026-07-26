@@ -1,3 +1,5 @@
+import type { ExecutiveInsight } from "./executiveSchemas.js";
+
 export interface CopilotRequest {
   question: string;
   context?: {
@@ -29,6 +31,10 @@ export interface CopilotMetadata {
   intent?: string;
   toolsUsed?: string[];
   executionTimeMs?: number;
+  aiMode?: "fallback" | "gemini";
+  reasoningLevel?: "basic" | "executive";
+  confidenceScore?: number;
+  groundingScore?: number;
 }
 
 export interface CopilotResponse {
@@ -38,6 +44,11 @@ export interface CopilotResponse {
   limitations?: string[];
   evidence: EvidenceItem[];
   generatedBy: "gemini" | "fallback";
+  executiveBriefing?: {
+    summary: string;
+    keyRisks: ExecutiveInsight[];
+    immediateActions: string[];
+  };
   metadata?: CopilotMetadata;
 }
 

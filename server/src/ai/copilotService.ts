@@ -1,6 +1,10 @@
 import type { Recommendation } from "@supplypulse/shared";
 import type { CopilotAction, CopilotRequest, CopilotResponse, EvidenceItem } from "./copilotSchemas.js";
+import { getAIConfiguration } from "./aiConfig.js";
+import { evaluateCopilotResponse } from "./aiEvaluation.js";
+import { recordFallback, recordGeminiSuccess, recordRequest, recordToolCall } from "./aiMetrics.js";
 import { detectCopilotIntent } from "./copilotIntent.js";
+import { orchestrateGemini } from "./geminiOrchestrator.js";
 import { analyzeSupplierRisk, getDailyRiskOverview, getDemandForecast, getReorderActionPlan, getSkuIntelligence } from "./copilotTools.js";
 import { getCopilotToolDefinition, type CopilotToolName } from "./toolRegistry.js";
 
@@ -24,6 +28,32 @@ interface ToolExecution {
   actions?: CopilotAction[];
   evidence: EvidenceItem[];
 }
+
+const finalizeCopilotResponse = (response: CopilotResponse): CopilotResponse => {
+  const evaluation = evaluateCopilotResponse({
+    answer: response.answer,
+    evidence: response.evidence,
+    executiveBriefing: response.executiveBriefing
+  });
+  const metadata = {
+    ...response.metadata,
+    confidenceScore: evaluation.confidenceScore,
+    groundingScore: evaluation.groundingScore
+  };
+  const limitations = [...new Set([...(response.limitations ?? []), ...evaluation.issues])];
+  const executionTimeMs = metadata.executionTimeMs ?? 0;
+
+  recordRequest(executionTimeMs);
+  if (response.generatedBy === "gemini") recordGeminiSuccess();
+  else recordFallback();
+  recordToolCall(metadata.toolsUsed?.length ?? 0);
+
+  return {
+    ...response,
+    ...(limitations.length ? { limitations } : {}),
+    metadata
+  };
+};
 
 const executeTool = async (name: CopilotToolName, request: CopilotRequest): Promise<ToolExecution> => {
   if (name === "getDailyRiskOverview") {
@@ -65,6 +95,29 @@ const executeTool = async (name: CopilotToolName, request: CopilotRequest): Prom
 export const answerCopilotQuestion = async (request: CopilotRequest): Promise<CopilotResponse> => {
   const startedAt = Date.now();
   const intent = detectCopilotIntent(request);
+  const configuration = getAIConfiguration();
+
+  if (configuration.aiMode === "gemini") {
+    const geminiResponse = await orchestrateGemini(request);
+    if (geminiResponse) {
+      return finalizeCopilotResponse({
+        answer: geminiResponse.answer,
+        actions: geminiResponse.actions,
+        confidence: geminiResponse.confidence,
+        evidence: geminiResponse.evidence,
+        generatedBy: "gemini",
+        executiveBriefing: geminiResponse.executiveBriefing,
+        metadata: {
+          intent: intent.intent,
+          toolsUsed: geminiResponse.toolsUsed,
+          executionTimeMs: Date.now() - startedAt,
+          aiMode: "gemini",
+          reasoningLevel: "executive"
+        }
+      });
+    }
+  }
+
   const evidence: EvidenceItem[] = [];
   const summaries: string[] = [];
   const actions: CopilotAction[] = [];
@@ -83,7 +136,7 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
     values.findIndex((candidate) => candidate.source === item.source && candidate.type === item.type && candidate.id === item.id) === index
   );
 
-  return {
+  return finalizeCopilotResponse({
     answer: summaries.length
       ? summaries.join(" ")
       : actions.length
@@ -96,7 +149,9 @@ export const answerCopilotQuestion = async (request: CopilotRequest): Promise<Co
     metadata: {
       intent: intent.intent,
       toolsUsed,
-      executionTimeMs: Date.now() - startedAt
+      executionTimeMs: Date.now() - startedAt,
+      aiMode: "fallback",
+      reasoningLevel: "basic"
     }
-  };
+  });
 };
