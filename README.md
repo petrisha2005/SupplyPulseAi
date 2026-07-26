@@ -1,240 +1,442 @@
-# SupplyPulse AI
+BRO 🔥 I’ll give you the **complete clean Markdown README** in one copy-paste block.
+Just copy everything inside the code block and replace your `README.md`.
 
-## Real-Time Supply Chain Intelligence for Indian D2C Brands
+```markdown
+# 🚀 SupplyPulse AI
 
-SupplyPulse AI is an AI-powered inventory intelligence platform designed for Indian D2C brands selling across multiple marketplaces such as **Amazon, Shopify, Meesho, and Flipkart**.
+## Real-Time AI Supply Chain Intelligence Copilot for Indian D2C Brands
 
-The platform helps brands prevent stockouts by combining multi-channel inventory data, SKU-level sales trends, supplier reliability, festival demand impact, and reorder intelligence into one actionable dashboard.
+SupplyPulse AI is a **Gemini-powered supply chain intelligence platform** designed for Indian D2C brands selling across multiple marketplaces such as Amazon, Shopify, Meesho, and Flipkart.
 
-Instead of manually checking Excel sheets and reacting after products go out of stock, SupplyPulse AI helps operations managers understand:
+The platform combines multi-channel inventory intelligence, SKU-level risk analysis, demand forecasting, supplier intelligence, and AI-powered decision reasoning into one operational command center.
 
-> Which product may go out of stock, when it may happen, how much to reorder, and which supplier to contact.
+Instead of manually checking Excel sheets and reacting after products go out of stock, SupplyPulse AI helps operations teams understand:
+
+- Which product may go out of stock
+- When stockout may happen
+- How much inventory should be reordered
+- Which supplier should be contacted
+- What action should be taken immediately
+
+SupplyPulse AI transforms inventory data into **AI-powered executive decisions using Google Gemini reasoning.**
 
 ---
 
-## Live Demo
+# 🌐 Live Demo
 
-**Frontend:**  
+## Frontend
+
 https://supply-pulse-ai-client.vercel.app
 
-**Backend API:**  
+## Backend API
+
 https://supplypulseai.onrender.com
 
----
-
-## Problem Statement
-
-Indian D2C brands often sell across multiple platforms such as Amazon, Shopify, Meesho, and Flipkart. Their inventory data is usually scattered across marketplace dashboards, spreadsheets, supplier updates, and ERP tools.
-
-During high-demand periods such as Diwali, Big Billion Day, Eid Sale, and flash sales, brands may not identify stockout risks early enough.
-
-This leads to:
-
-- Lost revenue due to stockouts
-- Manual reorder calculations
-- Delayed supplier communication
-- Poor customer experience
-- Lower marketplace ranking
-- Overstock or deadstock issues
-- Lack of real-time decision support
-
-SupplyPulse AI solves this by creating a real-time decision intelligence layer for D2C inventory operations.
 
 ---
 
-## Solution Overview
+# 🧠 AI Copilot Architecture
 
-SupplyPulse AI ingests multi-channel sales and inventory data, analyzes SKU-level demand patterns, forecasts stockout risk, and generates reorder recommendations.
+SupplyPulse AI uses Gemini as an **executive reasoning layer** over deterministic supply chain intelligence engines.
 
-The system provides:
+The AI agent:
 
-- Real-time dashboard for operations managers
-- SKU-level stockout risk scoring
-- Demand forecasting based on sales trends
-- Festival-aware demand impact
-- Supplier reliability scoring
-- AI-powered reorder recommendations
-- Purchase order and WhatsApp draft generation
-- Alerts for urgent stockout risks
-- Executive reports for business decisions
+1. Understands business questions
+2. Selects relevant supply chain tools
+3. Executes intelligence engines
+4. Analyzes evidence
+5. Generates grounded business recommendations
+
+
+Architecture:
+
+```
+
+User Question
+|
+↓
+Gemini AI Supply Chain Agent
+|
+↓
+Controlled Tool Calling Layer
+|
+↓
+-
+
+Risk Engine
+Inventory Engine
+Forecast Engine
+Supplier Engine
+Recommendation Engine
+Alert Engine
+------------
+
+```
+    |
+    ↓
+```
+
+Executive Supply Chain Decision
+
+```
 
 ---
 
-## Key Features
+# Problem Statement
 
-### 1. Multi-Channel Inventory Fusion
-
-SupplyPulse AI unifies sales and inventory signals from four key D2C channels:
+Indian D2C brands sell across multiple platforms:
 
 - Amazon
 - Shopify
 - Meesho
 - Flipkart
 
-This gives brands a single view of inventory health across all major sales channels.
+However, inventory data is usually scattered across:
+
+- Marketplace dashboards
+- Excel sheets
+- Supplier updates
+- ERP systems
+
+During high-demand periods such as:
+
+- Diwali Sale
+- Big Billion Days
+- Eid Sale
+- Flash Sales
+
+brands often identify stockout risks too late.
+
+This leads to:
+
+- Lost revenue
+- Emergency purchasing
+- Delayed supplier communication
+- Poor customer experience
+- Marketplace ranking loss
+- Overstock and deadstock issues
+- Lack of real-time decision support
+
+
+SupplyPulse AI solves this by creating an AI-powered decision intelligence layer for D2C inventory operations.
 
 ---
 
-### 2. Dashboard / Morning Brief
+# 💡 Solution Overview
 
-The dashboard gives a quick morning summary for the operations manager.
+SupplyPulse AI collects inventory and sales signals, analyzes SKU-level risks, forecasts demand changes, ranks suppliers, and generates AI-powered recommendations.
 
-It shows:
+The system provides:
+
+✅ Real-time inventory dashboard  
+✅ SKU stockout risk scoring  
+✅ Demand forecasting  
+✅ Festival-aware demand analysis  
+✅ Supplier intelligence  
+✅ AI reorder recommendations  
+✅ Executive AI briefings  
+✅ Evidence-based recommendations  
+✅ Operational alerts  
+✅ Business reports  
+
+---
+
+# 🔥 Key Features
+
+## 1. Multi-Channel Inventory Intelligence
+
+SupplyPulse AI combines inventory signals from:
+
+- Amazon
+- Shopify
+- Meesho
+- Flipkart
+
+This provides a unified view of inventory health across multiple marketplaces.
+
+---
+
+# 2. Gemini AI Supply Chain Copilot
+
+The AI Copilot allows operations managers to ask natural language questions.
+
+Example:
+
+```
+
+What should I do today to prevent stockouts?
+
+```
+
+Gemini analyzes:
+
+- Inventory levels
+- Sales velocity
+- Supplier lead time
+- Festival impact
+- Revenue risk
+- Reorder opportunities
+
+
+Example output:
+
+```
+
+25 high-risk SKUs identified
+
+Revenue at Risk:
+₹99.0L
+
+Immediate Action:
+Reorder Handbag Premium Pack
+
+Supplier:
+Bengaluru Naturals
+
+Revenue Protected:
+₹6.7L
+
+```
+
+---
+
+# 3. Morning Operations Dashboard
+
+The dashboard provides:
 
 - Action-needed SKUs
 - Revenue at risk
-- Average stock cover
-- SKUs scanned
+- Inventory health
+- Risk summary
 - Reorder watchlist
-- Marketplace badges
-- GPU pipeline status
+- Marketplace insights
 
-The dashboard is designed to help the operations manager take quick decisions before stockouts happen.
+Designed for quick daily decision-making.
 
 ---
 
-### 3. SKU Stockout Risk Scoring
+# 4. SKU Stockout Risk Scoring
 
-Each SKU receives a stockout risk score from 0 to 100.
-
-The score considers:
+Each SKU receives a stockout risk score based on:
 
 - Current inventory
 - Sales velocity
 - Supplier lead time
-- Festival or sale-event demand
-- Marketplace demand concentration
-- Revenue impact
+- Demand spikes
+- Festival impact
+- Revenue contribution
 
-Risk categories:
 
-| Risk Level | Score Range |
-|---|---|
+Risk Categories:
+
+| Risk Level | Score |
+|------------|-------|
 | Critical | 80+ |
-| High | 70–79 |
-| Medium | 40–69 |
+| High | 70-79 |
+| Medium | 40-69 |
 | Low | Below 40 |
 
 ---
 
-### 4. Human-Friendly Stock Cover
+# 5. Human-Friendly Stock Cover
 
-Instead of showing confusing decimal values like `0.3 days`, the platform displays clear stock-left timing.
+SupplyPulse AI converts technical inventory values into understandable timelines.
 
 Examples:
 
-| Old Format | New Format |
-|---|---|
-| 0.3 days | ~7 hrs left |
-| 0.4 days | ~10 hrs left |
-| 0.8 days | ~19 hrs left |
-| 1.2 days | 1 day 5 hrs left |
-| 14.4 days | 14.4 days left |
-
-This makes the dashboard easier for non-technical users to understand.
+| System Value | Human View |
+|-------------|------------|
+| 0.3 days | ~7 hours left |
+| 0.4 days | ~10 hours left |
+| 0.8 days | ~19 hours left |
+| 1.2 days | 1 day 5 hours left |
 
 ---
 
-### 5. Demand Forecasting
+# 6. Demand Forecasting
 
-The forecasting module predicts upcoming SKU demand using:
+The forecasting engine analyzes:
 
 - Recent sales history
-- 7-day moving average
-- 28-day baseline
-- Trend adjustment
-- Festival/event multiplier
-- Channel-wise demand split
+- Moving averages
+- Demand trends
+- Festival multipliers
+- Marketplace demand
 
-This helps brands prepare before stockouts happen, especially during sales events and festivals.
+
+This helps brands prepare inventory before demand spikes.
 
 ---
 
-### 6. AI Reorder Recommendation
+# 7. Gemini AI Reorder Recommendations
 
-SupplyPulse AI converts risk insights into action.
+SupplyPulse AI converts risks into actions.
 
-It recommends:
+The AI recommends:
 
-- Quantity to reorder
+- Reorder quantity
 - Best supplier
 - Reorder deadline
-- Expected stockout timing
-- Revenue protected
-- Purchase order draft
-- WhatsApp supplier message
+- Revenue impact
+- Purchase action
 
-Example recommendation:
 
-> Reorder 600 units of Cotton Kurti Premium Pack from Bengaluru Naturals before 6 PM to avoid stockout risk.
+Example:
+
+```
+
+Reorder 600 units of Cotton Kurti Premium Pack
+
+Supplier:
+Bengaluru Naturals
+
+Deadline:
+Today before 6 PM
+
+Revenue Protected:
+₹4.6L
+
+```
 
 ---
 
-### 7. Supplier Intelligence
+# 8. Supplier Intelligence
 
-The supplier module ranks suppliers based on:
+Supplier ranking considers:
 
 - Reliability
 - Lead time
+- Delivery performance
 - Delay risk
-- Cost
-- On-time delivery history
 - SKU dependency
 
-This helps operations managers choose the best supplier for urgent replenishment.
+Helps operations teams select the best supplier during urgent situations.
 
 ---
 
-### 8. Alerts
+# 9. Operational Alerts
 
-The alerts page highlights urgent operational issues such as:
+The alert engine highlights:
 
 - High-risk SKUs
 - Stockout deadlines
-- Supplier delays
+- Supplier issues
+- Revenue risks
 - Reorder urgency
-- Revenue-at-risk warnings
 
 ---
 
-### 9. Pipeline / Acceleration
+# 10. Executive AI Reports
 
-SupplyPulse AI demonstrates a GPU-accelerated data pipeline concept.
-
-The pipeline compares:
-
-- CPU pipeline runtime
-- GPU pipeline runtime
-- Speedup achieved
-- Refresh cycle readiness
-
-Prototype benchmark:
-
-| Pipeline | Runtime |
-|---|---|
-| CPU Pipeline | 47.3 seconds |
-| GPU Pipeline | 4.2 seconds |
-| Speedup | 11.3× faster |
-
----
-
-### 10. Executive Reports
-
-The reports page provides a business-ready summary including:
+Reports provide:
 
 - Risk overview
 - Top risky SKUs
 - Reorder action plan
 - Supplier recommendations
 - Forecast summary
-- Revenue at risk
-- Download / print options
+- Revenue impact
 
 ---
 
-## Tech Stack
+# ⚡ GPU Acceleration Concept
 
-### Frontend
+SupplyPulse AI demonstrates a GPU-accelerated data pipeline concept.
+
+Prototype benchmark:
+
+| Pipeline | Runtime |
+|----------|---------|
+| CPU Pipeline | 47.3 seconds |
+| GPU Pipeline | 4.2 seconds |
+| Speedup | 11.3x faster |
+
+Future architecture supports:
+
+- NVIDIA RAPIDS cuDF
+- Spark RAPIDS
+
+---
+
+# 🏗️ System Architecture
+
+```
+
+Marketplace Data
+
+Amazon
+Shopify
+Meesho
+Flipkart
+
+```
+    ↓
+```
+
+Inventory & Sales Data Layer
+
+```
+    ↓
+```
+
+Risk Scoring Engine
+
+```
+    ↓
+```
+
+Demand Forecasting Engine
+
+```
+    ↓
+```
+
+Supplier Intelligence Engine
+
+```
+    ↓
+```
+
+Recommendation Engine
+
+```
+    ↓
+```
+
+Gemini AI Copilot
+
+```
+    ↓
+```
+
+Dashboard + Alerts + Reports
+
+```
+
+---
+
+# 🖥️ Application Modules
+
+| Page | Description |
+|------|-------------|
+| Landing Page | Project introduction |
+| Dashboard | Inventory intelligence overview |
+| Inventory | SKU monitoring |
+| Risk Scores | Risk visualization |
+| Forecasting | Demand prediction |
+| AI Copilot | Gemini-powered assistant |
+| AI Reorder | Smart recommendations |
+| Suppliers | Supplier insights |
+| Sale Calendar | Festival planning |
+| Pipeline | Data processing insights |
+| Alerts | Operational warnings |
+| Reports | Executive summaries |
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
 
 - React.js
 - TypeScript
@@ -242,103 +444,64 @@ The reports page provides a business-ready summary including:
 - Tailwind CSS
 - Recharts
 
-### Backend
+
+## Backend
 
 - Node.js
 - Express.js
 - TypeScript
 - REST APIs
-- JSON-based demo data layer
 
-### Deployment
 
-- Frontend: Vercel
-- Backend: Render
+## AI Layer
 
-### Proposed Cloud Architecture
+- Google Gemini API
+- AI Agent Architecture
+- Controlled Tool Calling
+- Grounded Reasoning
 
-- Google Cloud Storage
-- BigQuery
-- Google Kubernetes Engine
-- Cloud Functions
-- Cloud Scheduler
-- Pub/Sub
-- Looker
-- Gemini Enterprise Agent
-- NVIDIA RAPIDS cuDF
-- Spark RAPIDS
+
+## Deployment
+
+Frontend:
+- Vercel
+
+Backend:
+- Render
 
 ---
 
-```md
-# 🏗️ Project Architecture
-
-```
-
-Marketplace Data
-
-Amazon / Shopify / Meesho / Flipkart
-↓
-Inventory & Sales Data Layer
-↓
-Risk Scoring Engine
-↓
-Demand Forecasting Engine
-↓
-Supplier Ranking Engine
-↓
-AI Reorder Recommendation
-↓
-Dashboard + Alerts + Reports
-
-```
-
----
-
-###🖥️ **Main Pages**
-
-The application consists of the following modules:
-
-| Page | Description |
-|------|-------------|
-| Landing Page | Introduction and overview of SupplyPulse AI |
-| Dashboard | Real-time inventory intelligence overview |
-| Inventory | SKU-level inventory monitoring |
-| Risk Scores | Product risk analysis and risk visualization |
-| Forecasting | Demand prediction and future inventory planning |
-| AI Reorder | Intelligent reorder recommendations |
-| Suppliers | Supplier ranking and performance insights |
-| Sale Calendar | Festival and sales event planning |
-| Acceleration | Growth and optimization insights |
-| Pipeline | Data pipeline monitoring |
-| Alerts | Inventory and business alerts |
-| Reports | Executive summaries and business reports |
-| API Overview | Backend API documentation |
-
----
-**
-##🔌 Backend API Endpoints**
+# 🔌 Backend API Endpoints
 
 ```
 
 GET /api/health
+
 GET /api/dashboard
+
 GET /api/inventory
+
 GET /api/risks
+
 GET /api/forecast/summary
+
 GET /api/recommendations
+
 GET /api/suppliers
+
 GET /api/alerts
-GET /api/pipeline/status
+
 GET /api/reports/executive-summary
+
+POST /api/ai/copilot
 
 ````
 
 ---
 
-# **⚙️ Local Setup**
+# ⚙️ Local Setup
 
-## 1. Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/petrisha2005/SupplyPulseAi.git
@@ -346,37 +509,31 @@ git clone https://github.com/petrisha2005/SupplyPulseAi.git
 cd SupplyPulseAi
 ````
 
----
-
-## 2. Install Dependencies
+## Install Dependencies
 
 ```bash
 npm install
 ```
 
----
-
-## 3. Run Backend
+## Run Backend
 
 ```bash
 npm --workspace server run dev
 ```
 
-Backend runs at:
+Backend:
 
 ```
 http://127.0.0.1:5050
 ```
 
----
-
-## 4. Run Frontend
+## Run Frontend
 
 ```bash
 npm --workspace client run dev
 ```
 
-Frontend runs at:
+Frontend:
 
 ```
 http://127.0.0.1:5174
@@ -388,24 +545,22 @@ http://127.0.0.1:5174
 
 ## Backend
 
-Create `.env` inside the `server` folder:
+Create `.env` inside server:
 
-```env
+```
 PORT=5050
 NODE_ENV=development
 DATA_MODE=json
-ENABLE_GEMINI=false
+ENABLE_GEMINI=true
 ENABLE_GPU_SIMULATION=true
 CLIENT_ORIGIN=http://127.0.0.1:5174
 ```
 
----
-
 ## Frontend
 
-Create `.env` inside the `client` folder:
+Create `.env` inside client:
 
-```env
+```
 VITE_API_URL=http://127.0.0.1:5050
 ```
 
@@ -413,166 +568,105 @@ VITE_API_URL=http://127.0.0.1:5050
 
 # 🚀 Deployment
 
-## Backend Deployment (Render)
+## Frontend Deployment
 
-### Render Configuration
+Platform:
 
 ```
+Vercel
+```
+
 Root Directory:
-server
-
-Environment:
-Node
-
-Build Command:
-npm install --include=dev && npm run build
-
-Start Command:
-npm run start
-```
-
-### Environment Variables
-
-```env
-PORT=10000
-NODE_ENV=production
-DATA_MODE=json
-ENABLE_GEMINI=false
-ENABLE_GPU_SIMULATION=true
-CLIENT_ORIGIN=https://supply-pulse-ai-client.vercel.app
-```
-
-### Backend Live URL
 
 ```
-https://supplypulseai.onrender.com
-```
-
----
-
-## Frontend Deployment (Vercel)
-
-### Vercel Configuration
-
-```
-Root Directory:
 client
+```
 
 Framework:
+
+```
 Vite
-
-Build Command:
-npm run build
-
-Output Directory:
-dist
 ```
 
-### Environment Variable
+Environment Variable:
 
-```env
+```
 VITE_API_URL=https://supplypulseai.onrender.com
 ```
 
-### Frontend Live URL
+## Backend Deployment
+
+Platform:
 
 ```
-https://supply-pulse-ai-client.vercel.app
+Render
 ```
 
----
+Root Directory:
 
-# 🧪 Build Commands
-
-Run type checks and builds:
-
-```bash
-npm --workspace shared run typecheck
-
-npm --workspace server run typecheck
-
-npm --workspace server run build
-
-npm --workspace client run typecheck
-
-npm --workspace client run build
+```
+server
 ```
 
----
+Environment Variables:
 
-# 🎬 Demo Flow
-
-Recommended demo flow:
-
-1. Open the Landing Page
-
-2. Click **Launch Dashboard**
-
-3. Show:
-
-   * Action-needed SKUs
-   * Revenue at risk
-   * Inventory overview
-
-4. Open **Risk Scores**
-
-   * Demonstrate SKU risk heatmap
-
-5. Open **Forecasting**
-
-   * Show demand prediction insights
-
-6. Open **AI Reorder**
-
-   * Show reorder quantity recommendations
-   * Supplier recommendations
-
-7. Open **Reports**
-
-   * Show executive summary
-   * AI-generated action plan
+```
+PORT=10000
+NODE_ENV=production
+DATA_MODE=json
+ENABLE_GEMINI=true
+ENABLE_GPU_SIMULATION=true
+CLIENT_ORIGIN=https://supply-pulse-ai-client.vercel.app
+```
 
 ---
 
 # 🧪 Prototype Note
 
-This prototype uses realistic synthetic D2C inventory and sales data to demonstrate the complete supply chain intelligence workflow.
+This prototype uses realistic synthetic D2C inventory and sales data.
 
-The system is architected for future integration with:
+The architecture is designed for future integration with:
 
 * Real marketplace APIs
 * Google Cloud services
-* Gemini AI
-* NVIDIA RAPIDS-based GPU acceleration
+* BigQuery
+* Google Kubernetes Engine
+* Cloud Functions
+* Pub/Sub
+* Looker
+* NVIDIA RAPIDS
 
 ---
 
-# 🌟 Project Impact
+# 🌟 Impact
 
 SupplyPulse AI helps D2C brands:
 
-* Prevent stockout losses
-* Reduce manual Excel operations
-* Improve inventory accuracy
-* Reorder before demand spikes
-* Protect revenue during festivals and sales
-* Make faster supplier decisions
-* Move from dashboards to actionable recommendations
+✅ Prevent stockout losses
+✅ Reduce manual Excel operations
+✅ Improve inventory planning
+✅ Make faster supplier decisions
+✅ Protect festival sales revenue
+✅ Move from dashboards to AI-powered decisions
 
 ---
 
 # 📌 One-Line Summary
 
-> SupplyPulse AI is a real-time inventory intelligence platform that helps D2C brands prevent stockouts by predicting SKU risk, forecasting demand, and recommending reorder actions.
+**SupplyPulse AI is a Gemini-powered supply chain copilot that helps Indian D2C brands predict inventory risks, forecast demand, and take proactive actions before stockouts happen.**
 
 ---
 
 # 👩‍💻 Author
 
-**Petrisha V**
+## Petrisha V
 
-Built for **Gen AI Academy APAC Edition**
+Built for:
+
+**Gen AI Academy APAC Edition**
 
 ```
+
+
 ```
 
